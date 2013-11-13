@@ -9,10 +9,13 @@
 
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
+#import "AppDelegate.h"
 
 // HelloWorldLayer
 @interface IntroLayer : CCLayer
 {
+    int flashTimes_;
+    CCSprite *logo_;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

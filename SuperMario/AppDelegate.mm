@@ -5,40 +5,54 @@
 //  Created by jashon on 13-11-5.
 //  Copyright __MyCompanyName__ 2013年. All rights reserved.
 //
-
-#import "cocos2d.h"
-
 #import "AppDelegate.h"
 #import "IntroLayer.h"
+#import "GameConfig.h"
 
 @implementation AppController
 
 @synthesize window=window_, navController=navController_, director=director_;
+@synthesize startScene = startScene_, selectScene = selectScene_, gameOverScene = gameOverScene_;
+@synthesize mainGameScene = mainGameScene_;
+@synthesize curCoinNum = curCoinNum_, curLevelNum = curLevelNum_, curLives = curLives_, curScore = curScore_;
+@synthesize levels = levels_, coreDataContext = coreDataContext_, sharedPsc = sharedPsc_;
+@synthesize levelIndexInCoreData = levelIndexInCoreData_;
+@synthesize soundEngin = soundEngin_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	
-	
+
 	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
+    
+#if GAME_ORIENTATION == kGameOrientationPortrait
 	CCGLView *glView = [CCGLView viewWithFrame:[window_ bounds]
-								   pixelFormat:kEAGLColorFormatRGB565	//kEAGLColorFormatRGBA8
-								   depthFormat:0	//GL_DEPTH_COMPONENT24_OES
+								   pixelFormat:kEAGLColorFormatRGB565	
+								   depthFormat:0	
 							preserveBackbuffer:NO
 									sharegroup:nil
 								 multiSampling:NO
 							   numberOfSamples:0];
-
+#elif GAME_ORIENTATION == kGameOrientationLandScape
+    CCGLView *glView = [CCGLView viewWithFrame:CGRectMake(0, 0, [window_ bounds].size.height, [window_ bounds].size.width)
+								   pixelFormat:kEAGLColorFormatRGB565	
+								   depthFormat:0	
+							preserveBackbuffer:NO
+									sharegroup:nil
+								 multiSampling:NO
+							   numberOfSamples:0];
+#endif
+    
 	// Enable multiple touches
 	[glView setMultipleTouchEnabled:YES];
-
+    NSLog(@"glView width is : %f", glView.bounds.size.width);
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
 	
 	director_.wantsFullScreenLayout = YES;
-	
+    
 	// Display FSP and SPF
-	[director_ setDisplayStats:YES];
+	//[director_ setDisplayStats:YES];
 	
 	// set FPS at 60
 	[director_ setAnimationInterval:1.0/60];
@@ -48,20 +62,22 @@
 	
 	// for rotation and other messages
 	[director_ setDelegate:self];
-	
+
 	// 2D projection
 	[director_ setProjection:kCCDirectorProjection2D];
 	//	[director setProjection:kCCDirectorProjection3D];
 	
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ! [director_ enableRetinaDisplay:YES] )
-		CCLOG(@"Retina Display Not supported");
+//	if( ! [director_ enableRetinaDisplay:YES] )
+//		CCLOG(@"Retina Display Not supported");
 	
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	
+    
+    
 	// If the 1st suffix is not found and if fallback is enabled then fallback suffixes are going to searched. If none is found, it will try with the name without suffix.
 	// On iPad HD  : "-ipadhd", "-ipad",  "-hd"
 	// On iPad     : "-ipad", "-hd"
@@ -74,22 +90,51 @@
 	
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
-	
-	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [IntroLayer scene]]; 
-	
-	
-	// Create a Navigation Controller with the Director
+    
+    // Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
 	navController_.navigationBarHidden = YES;
-	
-	// set the Navigation Controller as the root view controller
-//	[window_ addSubview:navController_.view];	// Generates flicker.
+    
+    //[window_ addSubview:navController_.view];	// Generates flicker.
 	[window_ setRootViewController:navController_];
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
-	
+    
+    
+    
+    self.levelIndexInCoreData = [[NSMutableArray alloc] init];
+    self.levels = [[NSMutableArray alloc] init];
+    
+    self.coreDataContext = [[NSManagedObjectContext alloc] init];
+    self.sharedPsc = nil;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self sharedPersistentStoreCoordinator];
+        coreDataContext_.persistentStoreCoordinator = sharedPsc_;
+        [self loadLevelIndexData];
+    });
+    mainGameScene_ = [[MainGameScene scene] retain];
+    
+    self.curScore = 0;
+    self.curLives = 3;
+    self.curCoinNum = 0;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        for (int index = 0; index < 32; index++) {
+            Level *t_level = [[Level alloc] initWithLevelNum:index];
+            [self.levels addObject:t_level];
+            
+        }
+    });
+    
+    
+    
+
+    
+	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
+	[director_ pushScene: [IntroLayer scene]];
+    
 	return YES;
 }
 
@@ -144,11 +189,122 @@
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
 
+- (Level *)currentLevel {
+    return [levels_ objectAtIndex:curLevelNum_];
+}
+
+- (void) loadStartScene {
+    startScene_ =  [StartScene scene];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                                 scene:startScene_
+                                                                             withColor:ccWHITE]];
+}
+
+- (void) loadSelectScene {
+    [[CCDirector sharedDirector] replaceScene:selectScene_];
+}
+
+- (void) loadGameInfoScene {
+    [gameOverScene_.layer reset];
+    [[CCDirector sharedDirector] replaceScene:gameOverScene_];
+}
+
+- (void) loadMainGameScene {
+    
+    [mainGameScene_.gameLayer reset];
+    [[CCDirector sharedDirector] replaceScene:mainGameScene_];
+}
+
+- (void) nextLevel {
+//    [mainGameScene_.hudLayer reset];
+    [mainGameScene_.gameLayer reset];
+    [[CCDirector sharedDirector] replaceScene:mainGameScene_];
+}
+
+- (void) levelComplete {
+    curLevelNum_++;
+    [self loadGameInfoScene]; //check load winScene or newLevelScene
+}
+
+- (void) restartGame {
+    curLevelNum_ = 0;
+    [self loadSelectScene];
+}
+
+
+
+
+
+- (NSPersistentStoreCoordinator *)sharedPersistentStoreCoordinator {
+    if (sharedPsc_) {
+        return sharedPsc_;
+    }
+    sharedPsc_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:
+                                                            [NSManagedObjectModel mergedModelFromBundles:nil]];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *storePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"coredata.sql"];
+
+    NSURL *storeUrl = [NSURL fileURLWithPath:storePath];
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
+                             nil];
+    NSError *error = nil;
+    if (![sharedPsc_ addPersistentStoreWithType:NSSQLiteStoreType
+                                  configuration:nil
+                                            URL:storeUrl
+                                        options:options
+                                          error:&error]) {
+        NSLog(@"Unresolved Problem : %@ %@ \n!!", error, [error userInfo]);
+        abort();
+    }
+    return sharedPsc_;
+}
+
+- (void) loadLevelIndexData {
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    request.entity = [NSEntityDescription entityForName:@"Levels" inManagedObjectContext:coreDataContext_];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"levelIndex" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sort];
+//    request.predicate = [NSPredicate predicateWithFormat:@"leveIndex < %@", [NSNumber numberWithInt:32]];
+
+    NSError *error = nil;
+    NSArray *objs = [[[NSArray alloc] init] autorelease];
+    objs = [self.coreDataContext executeFetchRequest:request error:&error];
+
+    if (error) {
+        [NSException raise:@"Search error!\n" format:@"%@", [error localizedDescription]];
+    }
+    else if (objs.count == 0) {
+        NSLog(@"the objs is zero!!!\n");
+        NSManagedObject *level = [NSEntityDescription insertNewObjectForEntityForName:@"Levels" inManagedObjectContext:coreDataContext_];
+        [level setValue:[NSNumber numberWithInt:0] forKey:@"levelIndex"];
+        NSError *err = nil;
+        if (![self.coreDataContext save:&err]) {
+            [NSException raise:@"DataBase Access error!!\n" format:@"%@", [err localizedDescription]];
+        }
+        else {
+            [levelIndexInCoreData_ addObject:0];
+        }
+    }
+    else {
+        for (NSManagedObject *obj in objs) {
+            [levelIndexInCoreData_ addObject:[obj valueForKey:@"levelIndex"]];
+            
+        }
+    }
+}
+
 - (void) dealloc
 {
 	[window_ release];
 	[navController_ release];
-	
+	[levels_ release];
+    [coreDataContext_ release];
+    [sharedPsc_ release];
+    [levelIndexInCoreData_ release];
+    [mainGameScene_ release];
+    
 	[super dealloc];
 }
 @end
