@@ -26,11 +26,11 @@
 		385A9E0C1834718100F9188C /* smb_coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DFF1834718000F9188C /* smb_coin.wav */; };
 		385A9E0D1834718100F9188C /* startLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9E001834718000F9188C /* startLogo.png */; };
 		385A9E10183471EC00F9188C /* GameInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A9E0F183471EC00F9188C /* GameInfoLayer.m */; };
-		385A9E131834797000F9188C /* SuperMarioBros-World1-Area1.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9E111834796F00F9188C /* SuperMarioBros-World1-Area1.png */; };
-		385A9E141834797000F9188C /* world1-1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 385A9E121834796F00F9188C /* world1-1.tmx */; };
 		385A9E161834885F00F9188C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385A9E151834885E00F9188C /* CoreData.framework */; };
 		385A9E181834886C00F9188C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 385A9E171834886C00F9188C /* libsqlite3.dylib */; };
 		385A9E1F18348E2B00F9188C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 385A9E1D18348E2A00F9188C /* Model.xcdatamodeld */; };
+		385A9E2218349F8400F9188C /* SuperMarioBros-world1-Area1.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9E2018349F8200F9188C /* SuperMarioBros-world1-Area1.png */; };
+		385A9E2318349F8400F9188C /* world1-1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 385A9E2118349F8300F9188C /* world1-1.tmx */; };
 		38C9D1D218290B88007709D0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D118290B88007709D0 /* QuartzCore.framework */; };
 		38C9D1D418290B88007709D0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D318290B88007709D0 /* OpenGLES.framework */; };
 		38C9D1D618290B88007709D0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D518290B88007709D0 /* OpenAL.framework */; };
@@ -232,11 +232,11 @@
 		385A9E001834718000F9188C /* startLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = startLogo.png; path = Resources/startLogo.png; sourceTree = "<group>"; };
 		385A9E0E183471EB00F9188C /* GameInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInfoLayer.h; sourceTree = "<group>"; };
 		385A9E0F183471EC00F9188C /* GameInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameInfoLayer.m; sourceTree = "<group>"; };
-		385A9E111834796F00F9188C /* SuperMarioBros-World1-Area1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SuperMarioBros-World1-Area1.png"; sourceTree = "<group>"; };
-		385A9E121834796F00F9188C /* world1-1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "world1-1.tmx"; sourceTree = "<group>"; };
 		385A9E151834885E00F9188C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		385A9E171834886C00F9188C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		385A9E1E18348E2B00F9188C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		385A9E2018349F8200F9188C /* SuperMarioBros-world1-Area1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SuperMarioBros-world1-Area1.png"; path = "Resources/SuperMarioBros-world1-Area1.png"; sourceTree = "<group>"; };
+		385A9E2118349F8300F9188C /* world1-1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "world1-1.tmx"; path = "Resources/world1-1.tmx"; sourceTree = "<group>"; };
 		38C9D1CD18290B88007709D0 /* SuperMario.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperMario.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C9D1D118290B88007709D0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		38C9D1D318290B88007709D0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -686,8 +686,8 @@
 		38C9D1E418290B88007709D0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				385A9E111834796F00F9188C /* SuperMarioBros-World1-Area1.png */,
-				385A9E121834796F00F9188C /* world1-1.tmx */,
+				385A9E2018349F8200F9188C /* SuperMarioBros-world1-Area1.png */,
+				385A9E2118349F8300F9188C /* world1-1.tmx */,
 				385A9DF41834717F00F9188C /* Chesterfield Regular.ttf */,
 				385A9DF51834717F00F9188C /* cloud.png */,
 				385A9DF61834717F00F9188C /* enemy1_1.png */,
@@ -1298,8 +1298,8 @@
 				385A9E0B1834718100F9188C /* selectLayerSheet.png in Resources */,
 				385A9E0C1834718100F9188C /* smb_coin.wav in Resources */,
 				385A9E0D1834718100F9188C /* startLogo.png in Resources */,
-				385A9E131834797000F9188C /* SuperMarioBros-World1-Area1.png in Resources */,
-				385A9E141834797000F9188C /* world1-1.tmx in Resources */,
+				385A9E2218349F8400F9188C /* SuperMarioBros-world1-Area1.png in Resources */,
+				385A9E2318349F8400F9188C /* world1-1.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
