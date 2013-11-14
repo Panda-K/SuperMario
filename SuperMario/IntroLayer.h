@@ -3,19 +3,18 @@
 //  SuperMario
 //
 //  Created by jashon on 13-11-5.
-//  Copyright __MyCompanyName__ 2013年. All rights reserved.
+//  Copyright __Panda-K__ 2013年. All rights reserved.
 //
 
-
-// When you import this file, you import all the cocos2d classes
-#import "cocos2d.h"
 #import "AppDelegate.h"
 
 // HelloWorldLayer
 @interface IntroLayer : CCLayer
 {
-    int flashTimes_;
+    CGPoint flasPos_;
     CCSprite *logo_;
+    int flashTimes_;
+    CGSize winSize;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

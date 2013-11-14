@@ -6,8 +6,11 @@
 //  Copyright (c) 2013年 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@interface SelectLayer : CCLayer
 
-@interface SelectLayer : NSObject
+@end
 
+@interface SelectScene : CCScene {
+
+}
 @end

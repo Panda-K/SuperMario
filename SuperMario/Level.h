@@ -6,8 +6,10 @@
 //  Copyright (c) 2013年 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@interface Level : NSObject {
+    CCTMXTiledMap *m_bg;
+}
+@property (nonatomic, retain) CCTMXTiledMap *p_bg;
 
-@interface Level : NSObject
-
+- (Level *) initWithLevelNum:(int) num;
 @end

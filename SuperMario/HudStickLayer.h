@@ -6,8 +6,6 @@
 //  Copyright (c) 2013年 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface HudStickLayer : NSObject
+@interface HudStickLayer : CCLayer
 
 @end

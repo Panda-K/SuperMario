@@ -11,3 +11,9 @@
 @implementation StartLayer
 
 @end
+
+@implementation StartScene
+
+
+
+@end

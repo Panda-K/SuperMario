@@ -11,6 +11,7 @@
 #import "IntroLayer.h"
 #import "MainGameLayer.h"
 #import "StartLayer.h"
+#import "SimpleAudioEngine.h"
 
 #pragma mark - IntroLayer
 
@@ -33,33 +34,58 @@
 	return scene;
 }
 
-// 
+- (void) flashPoint {
+    if (flashTimes_ < 15) {
+        flasPos_ = ccp(logo_.position.x-logo_.contentSize.width/2+(10.0/480)*winSize.width+flashTimes_*(logo_.contentSize.width-20)/14, logo_.position.y - logo_.contentSize.height/2-(20.0/320)*winSize.height);
+        CCSprite *point = [CCSprite spriteWithFile:@"flashPoint.png"];
+        point.position = flasPos_;
+        point.scale = 0.8;
+        [self addChild:point z:1];
+        [point runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.5], nil]];
+        flashTimes_++;
+    }
+    else {
+        flashTimes_ = 0;
+    }
+}
+
+- (void) loadLogo {
+    if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
+		logo_ = [CCSprite spriteWithFile:@"logo.png"];
+	} else {
+		logo_ = [CCSprite spriteWithFile:@"Default-Landscape~ipad.png"];
+	}
+	logo_.position = ccp(winSize.width/2, winSize.height/2);
+	[self addChild: logo_ z:0];
+    [logo_ runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.5], [CCFadeIn actionWithDuration:0.5], nil]];
+}
+
+- (void) loadSoundEngine {
+    AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
+    delegate.soundEngin = [SimpleAudioEngine sharedEngine];
+    [delegate.soundEngin preloadEffect:@"smb_coin.wav"];
+    [delegate.soundEngin preloadBackgroundMusic:@"Overworld_piano.mid"];
+}
+
 -(void) onEnter
 {
 	[super onEnter];
-
-	// ask director for the window size
-	CGSize size = [[CCDirector sharedDirector] winSize];
-
-	CCSprite *background;
+	winSize = [[CCDirector sharedDirector] winSize];
+    flashTimes_ = 0;
+    
+	[self loadLogo];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self loadSoundEngine];
+    });
+    
+    [self schedule:@selector(flashPoint) interval:0.05 repeat:60 delay:0];
 	
-	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
-		background = [CCSprite spriteWithFile:@"Default.png"];
-		background.rotation = 90;
-	} else {
-		background = [CCSprite spriteWithFile:@"Default-Landscape~ipad.png"];
-	}
-	background.position = ccp(size.width/2, size.height/2);
-
-	// add the label as a child to this Layer
-	[self addChild: background];
-	
-	// In one second transition to the new scene
-	[self scheduleOnce:@selector(makeTransition:) delay:1];
+	[self scheduleOnce:@selector(makeTransition:) delay:4];
 }
 
 -(void) makeTransition:(ccTime)dt
 {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[HelloWorldLayer scene] withColor:ccWHITE]];
+    AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
+    [delegate loadStartScene];
 }
 @end

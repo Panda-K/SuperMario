@@ -12,7 +12,7 @@
 @implementation AppController
 
 @synthesize window=window_, navController=navController_, director=director_;
-@synthesize startScene = startScene_, selectScene = selectScene_, gameOverScene = gameOverScene_;
+@synthesize startScene = startScene_, selectScene = selectScene_, gameInfoScene = gameInfoScene_;
 @synthesize mainGameScene = mainGameScene_;
 @synthesize curCoinNum = curCoinNum_, curLevelNum = curLevelNum_, curLives = curLives_, curScore = curScore_;
 @synthesize levels = levels_, coreDataContext = coreDataContext_, sharedPsc = sharedPsc_;
@@ -194,7 +194,7 @@
 }
 
 - (void) loadStartScene {
-    startScene_ =  [StartScene scene];
+    startScene_ =  [StartScene node];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
                                                                                  scene:startScene_
                                                                              withColor:ccWHITE]];
@@ -205,8 +205,8 @@
 }
 
 - (void) loadGameInfoScene {
-    [gameOverScene_.layer reset];
-    [[CCDirector sharedDirector] replaceScene:gameOverScene_];
+    [gameInfoScene_.layer reset];
+    [[CCDirector sharedDirector] replaceScene:gameInfoScene_];
 }
 
 - (void) loadMainGameScene {

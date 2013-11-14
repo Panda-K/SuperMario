@@ -6,7 +6,7 @@
 //  Copyright __MyCompanyName__ 2013年. All rights reserved.
 //
 #import "MainGameLayer.h"
-#import "GameOverLayer.h"
+#import "GameInfoLayer.h"
 #import "StartLayer.h"
 #import "SelectLayer.h"
 #import "Level.h"
@@ -15,7 +15,7 @@
 
 @class MainGameScene;
 @class GameOverLayer;
-@class SelectLayer;
+@class SelectScene;
 @class Level;
 
 @interface AppController : NSObject <UIApplicationDelegate, CCDirectorDelegate>
@@ -24,7 +24,7 @@
 	UINavigationController *navController_;
     
     CCScene *startScene_;
-    GameOverScene *gameOverScene_;
+    GameInfoScene *gameInfoScene_;
     SelectScene *selectScene_;
     MainGameScene *mainGameScene_;
     NSMutableArray *levels_;
@@ -48,7 +48,7 @@
 @property (readonly) CCDirectorIOS *director;
 
 @property (nonatomic, retain) CCScene *startScene;
-@property (nonatomic, retain) GameOverScene *gameOverScene;
+@property (nonatomic, retain) GameInfoScene *gameInfoScene;
 @property (nonatomic, retain) SelectScene *selectScene;
 @property (nonatomic, retain) MainGameScene *mainGameScene;
 @property (nonatomic, retain) NSMutableArray *levels;
