@@ -201,10 +201,12 @@
 }
 
 - (void) loadSelectScene {
+    selectScene_ = [SelectScene node];
     [[CCDirector sharedDirector] replaceScene:selectScene_];
 }
 
 - (void) loadGameInfoScene {
+    [gameInfoScene_.hudLayer reset];
     [gameInfoScene_.layer reset];
     [[CCDirector sharedDirector] replaceScene:gameInfoScene_];
 }

@@ -3,10 +3,12 @@
 //  SuperMario
 //
 //  Created by jashon on 13-11-7.
-//  Copyright (c) 2013年 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2013年 __Panda-K__. All rights reserved.
 //
 
-@interface StartLayer : CCLayer
+@interface StartLayer : CCLayer {
+    CGSize winSize;
+}
 
 @end
 

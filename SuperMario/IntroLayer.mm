@@ -78,9 +78,9 @@
         [self loadSoundEngine];
     });
     
-    [self schedule:@selector(flashPoint) interval:0.05 repeat:60 delay:0];
+    [self schedule:@selector(flashPoint) interval:0.075 repeat:45 delay:0];
 	
-	[self scheduleOnce:@selector(makeTransition:) delay:4];
+	[self scheduleOnce:@selector(makeTransition:) delay:3];
 }
 
 -(void) makeTransition:(ccTime)dt
