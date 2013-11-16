@@ -7,9 +7,12 @@
 //
 
 #import "HudStickLayer.h"
-@interface GameInfoLayer : CCLayer
-
-- (void) reset;
+@interface GameInfoLayer : CCLayer {
+    CGSize winSize;
+    
+    CCSpriteBatchNode *m_spriteSheet;
+    CCAction *m_run;
+}
 
 @end
 

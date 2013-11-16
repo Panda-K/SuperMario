@@ -206,8 +206,7 @@
 }
 
 - (void) loadGameInfoScene {
-    [gameInfoScene_.hudLayer reset];
-    [gameInfoScene_.layer reset];
+    gameInfoScene_ = [GameInfoScene scene];
     [[CCDirector sharedDirector] replaceScene:gameInfoScene_];
 }
 
@@ -225,7 +224,7 @@
 
 - (void) levelComplete {
     curLevelNum_++;
-    [self loadGameInfoScene]; //check load winScene or newLevelScene
+    [self loadGameInfoScene]; //check load winScene ,gameoverScene or newLevelScene
 }
 
 - (void) restartGame {

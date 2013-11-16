@@ -7,7 +7,9 @@
 //
 #import "HudStickLayer.h"
 
-@interface MainGameLayer : CCLayer
+@interface MainGameLayer : CCLayer {
+    CGSize winSize;
+}
 
 - (void) reset;
 @end

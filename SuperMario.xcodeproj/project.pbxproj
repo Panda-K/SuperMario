@@ -31,6 +31,9 @@
 		385A9E1F18348E2B00F9188C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 385A9E1D18348E2A00F9188C /* Model.xcdatamodeld */; };
 		385A9E2218349F8400F9188C /* SuperMarioBros-world1-Area1.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9E2018349F8200F9188C /* SuperMarioBros-world1-Area1.png */; };
 		385A9E2318349F8400F9188C /* world1-1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 385A9E2118349F8300F9188C /* world1-1.tmx */; };
+		38A7E58D1836DFA2004B9B72 /* gameInfoLayerSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A7E58B1836DFA2004B9B72 /* gameInfoLayerSheet.plist */; };
+		38A7E58E1836DFA2004B9B72 /* gameInfoLayerSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A7E58C1836DFA2004B9B72 /* gameInfoLayerSheet.png */; };
+		38A7E5911836EA43004B9B72 /* smb_jumpsmall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 38A7E5901836EA43004B9B72 /* smb_jumpsmall.wav */; };
 		38C9D1D218290B88007709D0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D118290B88007709D0 /* QuartzCore.framework */; };
 		38C9D1D418290B88007709D0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D318290B88007709D0 /* OpenGLES.framework */; };
 		38C9D1D618290B88007709D0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D518290B88007709D0 /* OpenAL.framework */; };
@@ -237,6 +240,9 @@
 		385A9E1E18348E2B00F9188C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		385A9E2018349F8200F9188C /* SuperMarioBros-world1-Area1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SuperMarioBros-world1-Area1.png"; path = "Resources/SuperMarioBros-world1-Area1.png"; sourceTree = "<group>"; };
 		385A9E2118349F8300F9188C /* world1-1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "world1-1.tmx"; path = "Resources/world1-1.tmx"; sourceTree = "<group>"; };
+		38A7E58B1836DFA2004B9B72 /* gameInfoLayerSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = gameInfoLayerSheet.plist; sourceTree = "<group>"; };
+		38A7E58C1836DFA2004B9B72 /* gameInfoLayerSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameInfoLayerSheet.png; sourceTree = "<group>"; };
+		38A7E5901836EA43004B9B72 /* smb_jumpsmall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = smb_jumpsmall.wav; sourceTree = "<group>"; };
 		38C9D1CD18290B88007709D0 /* SuperMario.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperMario.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C9D1D118290B88007709D0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		38C9D1D318290B88007709D0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -662,18 +668,18 @@
 				385A9DDE183470F200F9188C /* GameConfig.h */,
 				385A9DE1183470F200F9188C /* HudStickLayer.h */,
 				385A9DE2183470F200F9188C /* HudStickLayer.mm */,
-				385A9DE3183470F200F9188C /* Level.h */,
-				385A9DE4183470F200F9188C /* Level.mm */,
 				385A9DE5183470F200F9188C /* MainGameLayer.h */,
 				385A9DE6183470F200F9188C /* MainGameLayer.mm */,
+				385A9E0E183471EB00F9188C /* GameInfoLayer.h */,
+				385A9E0F183471EC00F9188C /* GameInfoLayer.m */,
 				385A9DE7183470F300F9188C /* SelectLayer.h */,
 				385A9DE8183470F300F9188C /* SelectLayer.mm */,
 				385A9DE9183470F300F9188C /* StartLayer.h */,
 				385A9DEA183470F300F9188C /* StartLayer.mm */,
-				385A9E0E183471EB00F9188C /* GameInfoLayer.h */,
-				385A9E0F183471EC00F9188C /* GameInfoLayer.m */,
 				38C9D3F418290B8B007709D0 /* IntroLayer.h */,
 				38C9D3F518290B8B007709D0 /* IntroLayer.mm */,
+				385A9DE3183470F200F9188C /* Level.h */,
+				385A9DE4183470F200F9188C /* Level.mm */,
 				38C9D3F718290B8B007709D0 /* GLES-Render.h */,
 				38C9D3F818290B8B007709D0 /* GLES-Render.mm */,
 				38C9D1E418290B88007709D0 /* Resources */,
@@ -686,6 +692,9 @@
 		38C9D1E418290B88007709D0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				38A7E5901836EA43004B9B72 /* smb_jumpsmall.wav */,
+				38A7E58B1836DFA2004B9B72 /* gameInfoLayerSheet.plist */,
+				38A7E58C1836DFA2004B9B72 /* gameInfoLayerSheet.png */,
 				385A9E2018349F8200F9188C /* SuperMarioBros-world1-Area1.png */,
 				385A9E2118349F8300F9188C /* world1-1.tmx */,
 				385A9DF41834717F00F9188C /* Chesterfield Regular.ttf */,
@@ -1300,6 +1309,9 @@
 				385A9E0D1834718100F9188C /* startLogo.png in Resources */,
 				385A9E2218349F8400F9188C /* SuperMarioBros-world1-Area1.png in Resources */,
 				385A9E2318349F8400F9188C /* world1-1.tmx in Resources */,
+				38A7E58D1836DFA2004B9B72 /* gameInfoLayerSheet.plist in Resources */,
+				38A7E58E1836DFA2004B9B72 /* gameInfoLayerSheet.png in Resources */,
+				38A7E5911836EA43004B9B72 /* smb_jumpsmall.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

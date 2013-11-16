@@ -14,6 +14,13 @@
     
 }
 
+- (id)init {
+    if (self = [super init]) {
+        winSize = [[CCDirector sharedDirector] winSize];
+    }
+    return self;
+}
+
 @end
 
 

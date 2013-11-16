@@ -42,6 +42,8 @@
     CCMenuItem *item = (CCMenuItem *)sender;
     AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
     delegate.curCoinNum = 0;
+    delegate.curScore = 0;
+    delegate.curLives = 3;
     delegate.curLevelNum = item.tag;
     [delegate loadGameInfoScene];
 }
@@ -118,7 +120,7 @@
     [spriteSheet_ addChild:brick3 z:2];
     [brick3 runAction:[[flashBrick_ copy] autorelease]];
     
-    brick1 = [self getSpriteByName:@"no1.png"];
+    brick1 = [[self getSpriteByName:@"no1.png"] retain];
     brick1.position = ccp(winSize.width/2-(20.0/480)*winSize.width, brick2.position.y);
     [spriteSheet_ addChild:brick1 z:2];
     
