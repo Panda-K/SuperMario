@@ -9,10 +9,19 @@
 #ifndef SuperMario_Header_h
 #define SuperMario_Header_h
 
-
 #define kGameOrientationPortrait 1
 #define kGameOrientationLandScape 2
 
 #define GAME_ORIENTATION kGameOrientationLandScape
+
+#define PTM_RATIO 32
+
+typedef enum {
+    kGameObjectNone,
+    kGameObjectPlayer,
+    kGameObjectEnemy,
+    kGameObjectCollisionTile,
+    kGameObjectPlatform
+} GameObjectType;
 
 #endif

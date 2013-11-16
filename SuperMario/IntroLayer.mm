@@ -3,7 +3,7 @@
 //  SuperMario
 //
 //  Created by jashon on 13-11-5.
-//  Copyright __MyCompanyName__ 2013年. All rights reserved.
+//  Copyright __Panda-K__ 2013年. All rights reserved.
 //
 
 

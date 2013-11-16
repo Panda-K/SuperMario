@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		384C7E10183717A500CF720A /* gameInfoLayerSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 384C7E0D183717A500CF720A /* gameInfoLayerSheet.plist */; };
+		384C7E11183717A500CF720A /* gameInfoLayerSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 384C7E0E183717A500CF720A /* gameInfoLayerSheet.png */; };
+		384C7E12183717A500CF720A /* smb_jumpsmall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 384C7E0F183717A500CF720A /* smb_jumpsmall.wav */; };
+		384C7E15183717DE00CF720A /* GameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 384C7E14183717DE00CF720A /* GameObject.mm */; };
+		384C7E1B183724E200CF720A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 384C7E1A183724E200CF720A /* libz.dylib */; };
+		384C7E241837253900CF720A /* SneakyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 384C7E1D1837253900CF720A /* SneakyButton.m */; };
+		384C7E251837253900CF720A /* SneakyButtonSkinnedBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 384C7E1F1837253900CF720A /* SneakyButtonSkinnedBase.m */; };
+		384C7E261837253900CF720A /* SneakyJoystick.m in Sources */ = {isa = PBXBuildFile; fileRef = 384C7E211837253900CF720A /* SneakyJoystick.m */; };
+		384C7E271837253900CF720A /* SneakyJoystickSkinnedBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 384C7E231837253900CF720A /* SneakyJoystickSkinnedBase.m */; };
 		385A9DEE183470F300F9188C /* HudStickLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 385A9DE2183470F200F9188C /* HudStickLayer.mm */; };
 		385A9DEF183470F300F9188C /* Level.mm in Sources */ = {isa = PBXBuildFile; fileRef = 385A9DE4183470F200F9188C /* Level.mm */; };
 		385A9DF0183470F300F9188C /* MainGameLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 385A9DE6183470F200F9188C /* MainGameLayer.mm */; };
@@ -31,9 +40,6 @@
 		385A9E1F18348E2B00F9188C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 385A9E1D18348E2A00F9188C /* Model.xcdatamodeld */; };
 		385A9E2218349F8400F9188C /* SuperMarioBros-world1-Area1.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9E2018349F8200F9188C /* SuperMarioBros-world1-Area1.png */; };
 		385A9E2318349F8400F9188C /* world1-1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 385A9E2118349F8300F9188C /* world1-1.tmx */; };
-		38A7E58D1836DFA2004B9B72 /* gameInfoLayerSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A7E58B1836DFA2004B9B72 /* gameInfoLayerSheet.plist */; };
-		38A7E58E1836DFA2004B9B72 /* gameInfoLayerSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A7E58C1836DFA2004B9B72 /* gameInfoLayerSheet.png */; };
-		38A7E5911836EA43004B9B72 /* smb_jumpsmall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 38A7E5901836EA43004B9B72 /* smb_jumpsmall.wav */; };
 		38C9D1D218290B88007709D0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D118290B88007709D0 /* QuartzCore.framework */; };
 		38C9D1D418290B88007709D0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D318290B88007709D0 /* OpenGLES.framework */; };
 		38C9D1D618290B88007709D0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D518290B88007709D0 /* OpenAL.framework */; };
@@ -209,6 +215,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		384C7E0D183717A500CF720A /* gameInfoLayerSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = gameInfoLayerSheet.plist; path = Resources/gameInfoLayerSheet.plist; sourceTree = "<group>"; };
+		384C7E0E183717A500CF720A /* gameInfoLayerSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gameInfoLayerSheet.png; path = Resources/gameInfoLayerSheet.png; sourceTree = "<group>"; };
+		384C7E0F183717A500CF720A /* smb_jumpsmall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = smb_jumpsmall.wav; path = Resources/smb_jumpsmall.wav; sourceTree = "<group>"; };
+		384C7E13183717DE00CF720A /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		384C7E14183717DE00CF720A /* GameObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameObject.mm; sourceTree = "<group>"; };
+		384C7E1A183724E200CF720A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		384C7E1C1837253900CF720A /* SneakyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyButton.h; sourceTree = "<group>"; };
+		384C7E1D1837253900CF720A /* SneakyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyButton.m; sourceTree = "<group>"; };
+		384C7E1E1837253900CF720A /* SneakyButtonSkinnedBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyButtonSkinnedBase.h; sourceTree = "<group>"; };
+		384C7E1F1837253900CF720A /* SneakyButtonSkinnedBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyButtonSkinnedBase.m; sourceTree = "<group>"; };
+		384C7E201837253900CF720A /* SneakyJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyJoystick.h; sourceTree = "<group>"; };
+		384C7E211837253900CF720A /* SneakyJoystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyJoystick.m; sourceTree = "<group>"; };
+		384C7E221837253900CF720A /* SneakyJoystickSkinnedBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyJoystickSkinnedBase.h; sourceTree = "<group>"; };
+		384C7E231837253900CF720A /* SneakyJoystickSkinnedBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyJoystickSkinnedBase.m; sourceTree = "<group>"; };
 		385A9DDE183470F200F9188C /* GameConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		385A9DE1183470F200F9188C /* HudStickLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudStickLayer.h; sourceTree = "<group>"; };
 		385A9DE2183470F200F9188C /* HudStickLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HudStickLayer.mm; sourceTree = "<group>"; };
@@ -240,9 +260,6 @@
 		385A9E1E18348E2B00F9188C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		385A9E2018349F8200F9188C /* SuperMarioBros-world1-Area1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SuperMarioBros-world1-Area1.png"; path = "Resources/SuperMarioBros-world1-Area1.png"; sourceTree = "<group>"; };
 		385A9E2118349F8300F9188C /* world1-1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "world1-1.tmx"; path = "Resources/world1-1.tmx"; sourceTree = "<group>"; };
-		38A7E58B1836DFA2004B9B72 /* gameInfoLayerSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = gameInfoLayerSheet.plist; sourceTree = "<group>"; };
-		38A7E58C1836DFA2004B9B72 /* gameInfoLayerSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameInfoLayerSheet.png; sourceTree = "<group>"; };
-		38A7E5901836EA43004B9B72 /* smb_jumpsmall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = smb_jumpsmall.wav; sourceTree = "<group>"; };
 		38C9D1CD18290B88007709D0 /* SuperMario.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperMario.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C9D1D118290B88007709D0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		38C9D1D318290B88007709D0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -607,6 +624,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				384C7E1B183724E200CF720A /* libz.dylib in Frameworks */,
 				385A9E181834886C00F9188C /* libsqlite3.dylib in Frameworks */,
 				385A9E161834885F00F9188C /* CoreData.framework in Frameworks */,
 				38C9D1D218290B88007709D0 /* QuartzCore.framework in Frameworks */,
@@ -627,6 +645,14 @@
 		38C9D1C218290B87007709D0 = {
 			isa = PBXGroup;
 			children = (
+				384C7E1C1837253900CF720A /* SneakyButton.h */,
+				384C7E1D1837253900CF720A /* SneakyButton.m */,
+				384C7E1E1837253900CF720A /* SneakyButtonSkinnedBase.h */,
+				384C7E1F1837253900CF720A /* SneakyButtonSkinnedBase.m */,
+				384C7E201837253900CF720A /* SneakyJoystick.h */,
+				384C7E211837253900CF720A /* SneakyJoystick.m */,
+				384C7E221837253900CF720A /* SneakyJoystickSkinnedBase.h */,
+				384C7E231837253900CF720A /* SneakyJoystickSkinnedBase.m */,
 				385A9E1D18348E2A00F9188C /* Model.xcdatamodeld */,
 				38C9D1E318290B88007709D0 /* SuperMario */,
 				38C9D1D018290B88007709D0 /* Frameworks */,
@@ -645,6 +671,7 @@
 		38C9D1D018290B88007709D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				384C7E1A183724E200CF720A /* libz.dylib */,
 				385A9E171834886C00F9188C /* libsqlite3.dylib */,
 				385A9E151834885E00F9188C /* CoreData.framework */,
 				38C9D1D118290B88007709D0 /* QuartzCore.framework */,
@@ -663,9 +690,9 @@
 		38C9D1E318290B88007709D0 /* SuperMario */ = {
 			isa = PBXGroup;
 			children = (
+				385A9DDE183470F200F9188C /* GameConfig.h */,
 				38C9D3EE18290B8B007709D0 /* AppDelegate.h */,
 				38C9D3EF18290B8B007709D0 /* AppDelegate.mm */,
-				385A9DDE183470F200F9188C /* GameConfig.h */,
 				385A9DE1183470F200F9188C /* HudStickLayer.h */,
 				385A9DE2183470F200F9188C /* HudStickLayer.mm */,
 				385A9DE5183470F200F9188C /* MainGameLayer.h */,
@@ -678,6 +705,8 @@
 				385A9DEA183470F300F9188C /* StartLayer.mm */,
 				38C9D3F418290B8B007709D0 /* IntroLayer.h */,
 				38C9D3F518290B8B007709D0 /* IntroLayer.mm */,
+				384C7E13183717DE00CF720A /* GameObject.h */,
+				384C7E14183717DE00CF720A /* GameObject.mm */,
 				385A9DE3183470F200F9188C /* Level.h */,
 				385A9DE4183470F200F9188C /* Level.mm */,
 				38C9D3F718290B8B007709D0 /* GLES-Render.h */,
@@ -692,9 +721,9 @@
 		38C9D1E418290B88007709D0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				38A7E5901836EA43004B9B72 /* smb_jumpsmall.wav */,
-				38A7E58B1836DFA2004B9B72 /* gameInfoLayerSheet.plist */,
-				38A7E58C1836DFA2004B9B72 /* gameInfoLayerSheet.png */,
+				384C7E0D183717A500CF720A /* gameInfoLayerSheet.plist */,
+				384C7E0E183717A500CF720A /* gameInfoLayerSheet.png */,
+				384C7E0F183717A500CF720A /* smb_jumpsmall.wav */,
 				385A9E2018349F8200F9188C /* SuperMarioBros-world1-Area1.png */,
 				385A9E2118349F8300F9188C /* world1-1.tmx */,
 				385A9DF41834717F00F9188C /* Chesterfield Regular.ttf */,
@@ -1309,9 +1338,9 @@
 				385A9E0D1834718100F9188C /* startLogo.png in Resources */,
 				385A9E2218349F8400F9188C /* SuperMarioBros-world1-Area1.png in Resources */,
 				385A9E2318349F8400F9188C /* world1-1.tmx in Resources */,
-				38A7E58D1836DFA2004B9B72 /* gameInfoLayerSheet.plist in Resources */,
-				38A7E58E1836DFA2004B9B72 /* gameInfoLayerSheet.png in Resources */,
-				38A7E5911836EA43004B9B72 /* smb_jumpsmall.wav in Resources */,
+				384C7E10183717A500CF720A /* gameInfoLayerSheet.plist in Resources */,
+				384C7E11183717A500CF720A /* gameInfoLayerSheet.png in Resources */,
+				384C7E12183717A500CF720A /* smb_jumpsmall.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1329,7 +1358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "export CODESIGN_ALLOCATE=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]||[ \"${PLATFORM_NAME}\" == \"ipados\" ]; then\n/Developer/xcode-crack/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1494,6 +1523,11 @@
 				385A9DF2183470F300F9188C /* StartLayer.mm in Sources */,
 				385A9E10183471EC00F9188C /* GameInfoLayer.m in Sources */,
 				385A9E1F18348E2B00F9188C /* Model.xcdatamodeld in Sources */,
+				384C7E15183717DE00CF720A /* GameObject.mm in Sources */,
+				384C7E241837253900CF720A /* SneakyButton.m in Sources */,
+				384C7E251837253900CF720A /* SneakyButtonSkinnedBase.m in Sources */,
+				384C7E261837253900CF720A /* SneakyJoystick.m in Sources */,
+				384C7E271837253900CF720A /* SneakyJoystickSkinnedBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

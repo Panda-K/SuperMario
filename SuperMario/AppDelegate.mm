@@ -277,7 +277,6 @@
         [NSException raise:@"Search error!\n" format:@"%@", [error localizedDescription]];
     }
     else if (objs.count == 0) {
-        NSLog(@"the objs is zero!!!\n");
         NSManagedObject *level = [NSEntityDescription insertNewObjectForEntityForName:@"Levels" inManagedObjectContext:coreDataContext_];
         [level setValue:[NSNumber numberWithInt:0] forKey:@"levelIndex"];
         NSError *err = nil;
@@ -285,7 +284,7 @@
             [NSException raise:@"DataBase Access error!!\n" format:@"%@", [err localizedDescription]];
         }
         else {
-            [levelIndexInCoreData_ addObject:0];
+            [levelIndexInCoreData_ addObject:[NSNumber numberWithInt:0]];
         }
     }
     else {
