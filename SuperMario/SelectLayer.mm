@@ -45,6 +45,7 @@
     delegate.curScore = 0;
     delegate.curLives = 3;
     delegate.curLevelNum = item.tag;
+    delegate.marioStatus = kMarioSmall;
     [delegate loadGameInfoScene];
 }
 

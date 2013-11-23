@@ -12,6 +12,7 @@
     
     CCSpriteBatchNode *m_spriteSheet;
     CCAction *m_run;
+    CCSpriteFrame *m_marioJumpR;
 }
 
 @end

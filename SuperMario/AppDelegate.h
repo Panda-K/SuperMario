@@ -12,6 +12,8 @@
 #import "Level.h"
 #import <CoreData/CoreData.h>
 #import "SimpleAudioEngine.h"
+#import "IntroLayer.h"
+#import "GameConfig.h"
 
 @class MainGameScene;
 @class GameOverLayer;
@@ -37,6 +39,7 @@
     int curScore_;
     int curLives_;
     int curCoinNum_;
+    MarioStatus marioStatus_;
     
     SimpleAudioEngine *soundEngin_;
 	
@@ -60,6 +63,7 @@
 @property (nonatomic, assign) int curLives;
 @property (nonatomic, assign) int curCoinNum;
 @property (nonatomic, retain) SimpleAudioEngine *soundEngin;
+@property (nonatomic, readwrite) MarioStatus marioStatus;
 
 - (Level *)currentLevel;
 - (void) loadStartScene;

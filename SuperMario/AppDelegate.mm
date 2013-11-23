@@ -6,8 +6,6 @@
 //  Copyright __MyCompanyName__ 2013年. All rights reserved.
 //
 #import "AppDelegate.h"
-#import "IntroLayer.h"
-#import "GameConfig.h"
 
 @implementation AppController
 
@@ -17,7 +15,7 @@
 @synthesize curCoinNum = curCoinNum_, curLevelNum = curLevelNum_, curLives = curLives_, curScore = curScore_;
 @synthesize levels = levels_, coreDataContext = coreDataContext_, sharedPsc = sharedPsc_;
 @synthesize levelIndexInCoreData = levelIndexInCoreData_;
-@synthesize soundEngin = soundEngin_;
+@synthesize soundEngin = soundEngin_, marioStatus = marioStatus_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -108,32 +106,27 @@
     
     self.coreDataContext = [[NSManagedObjectContext alloc] init];
     self.sharedPsc = nil;
+    self.curScore = 0;
+    self.curLives = 3;
+    self.curCoinNum = 0;
+    self.marioStatus = kMarioSmall;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self sharedPersistentStoreCoordinator];
         coreDataContext_.persistentStoreCoordinator = sharedPsc_;
         [self loadLevelIndexData];
     });
-    mainGameScene_ = [[MainGameScene scene] retain];
     
-    self.curScore = 0;
-    self.curLives = 3;
-    self.curCoinNum = 0;
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        for (int index = 0; index < 32; index++) {
-            Level *t_level = [[Level alloc] initWithLevelNum:index];
-            [self.levels addObject:t_level];
-            
-        }
-    });
-    
-    
-    
+    for (int index = 0; index < 32; index++) {
+        Level *t_level = [[Level alloc] initWithLevelNum:index];
+        [self.levels addObject:t_level];
+        
+    }
+    [director_ pushScene: [IntroLayer scene]];
 
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [IntroLayer scene]];
+	
     
 	return YES;
 }
@@ -211,13 +204,12 @@
 }
 
 - (void) loadMainGameScene {
-    
+    mainGameScene_ = [[MainGameScene scene] retain];
     [mainGameScene_.gameLayer reset];
     [[CCDirector sharedDirector] replaceScene:mainGameScene_];
 }
 
 - (void) nextLevel {
-//    [mainGameScene_.hudLayer reset];
     [mainGameScene_.gameLayer reset];
     [[CCDirector sharedDirector] replaceScene:mainGameScene_];
 }
@@ -228,7 +220,6 @@
 }
 
 - (void) restartGame {
-    curLevelNum_ = 0;
     [self loadSelectScene];
 }
 

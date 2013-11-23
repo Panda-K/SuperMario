@@ -16,7 +16,7 @@
         
         switch (num) {
             case 0:
-                m_bg = [CCTMXTiledMap tiledMapWithTMXFile:@"world1-1.tmx"];
+                m_bg = [[CCTMXTiledMap tiledMapWithTMXFile:@"world1-1.tmx"] retain];
                 break;
     //        case 1:
     //            m_bg = [CCTMXTiledMap tiledMapWithTMXFile:@"world1-2.tmx"];
@@ -117,6 +117,11 @@
         }
     }
     return self;
+}
+
+- (void)dealloc {
+    [super dealloc];
+    [m_bg release];
 }
 
 @end

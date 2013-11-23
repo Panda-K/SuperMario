@@ -58,7 +58,7 @@
 
 - (void) stopRunAction: (id)sender {
     CCSprite *mario = (CCSprite *)sender;
-    [mario setDisplayFrame:[self getFrameByName:@"marios_jumpr.png"]];
+    [mario setDisplayFrame:[[m_marioJumpR copy] autorelease]];
     [mario stopActionByTag:0];
     [[SimpleAudioEngine sharedEngine] playEffect:@"smb_jumpsmall.wav"];
 }
@@ -74,7 +74,7 @@
         AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
         winSize = [[CCDirector sharedDirector] winSize];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gameInfoLayerSheet.plist"];
-        m_spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"gameInfoLayerSheet.png"];
+        m_spriteSheet = [[CCSpriteBatchNode batchNodeWithFile:@"gameInfoLayerSheet.png"] retain];
         [self addChild:m_spriteSheet];
         
         int l1 = delegate.curLevelNum/4 + 1;
@@ -94,7 +94,7 @@
             if (l2%2 == 1) {
                 m_run = [[self createFrameActionByName:@"marios_walkr%d.png" frameNum:3 interval:0.05 repeat:10] retain];
                 m_run.tag = 0;
-
+                m_marioJumpR = [[self getFrameByName:@"marios_jumpr.png"] retain];
                 [mario runAction:[CCSequence actions:
                                   [CCDelayTime actionWithDuration:1], 
                                   [CCSpawn actions:[[m_run copy] autorelease], 
@@ -134,6 +134,8 @@
 - (void)dealloc {
     [super dealloc];
     [m_run release];
+    [m_marioJumpR release];
+    [m_spriteSheet release];
 }
 
 @end

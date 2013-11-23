@@ -20,8 +20,15 @@ typedef enum {
     kGameObjectNone,
     kGameObjectPlayer,
     kGameObjectEnemy,
-    kGameObjectCollisionTile,
+    kGameObjectBrick,
+    kGameobjectGoldBrick,
+    kGameobjectMushBrick,
     kGameObjectPlatform
 } GameObjectType;
 
+typedef enum {
+    kMarioSmall,
+    kMarioLarge,
+    kMarioCanFire
+} MarioStatus;
 #endif
