@@ -10,12 +10,38 @@
 #import "GameConfig.h"
 
 @interface Player : GameObject {
-    
+    b2Fixture *p_topRightFixture;
+    b2Fixture *p_topLeftFixture;
+    BOOL isMarioStop_;
+    BOOL isMarioMovingRight_;
+    BOOL isMoveFast_;
+    BOOL isJump_;
+    BOOL readyToJump_;
+    BOOL isFaceWall_;
+    StickHeading stkHead_;
 }
+
+@property (nonatomic, readwrite) b2Fixture *topRightFixture;
+@property (nonatomic, readwrite) b2Fixture *topLeftFixture;
+@property (nonatomic, readwrite) BOOL isMarioStop;
+@property (nonatomic, readwrite) BOOL isMarioMovingRight;
+@property (nonatomic, readwrite) BOOL isMoveFast;
+@property (nonatomic, readwrite) BOOL isJump;
+@property (nonatomic, readwrite) BOOL readyToJump;
+@property (nonatomic, readwrite) BOOL isFaceWall;
+@property (nonatomic, readwrite) StickHeading stkHead;
 
 - (void) moveRight;
 - (void) moveLeft;
 - (void) jump;
 - (void) down;
+- (void)createPhisicsBody:(b2World *)world 
+                  postion:(CGPoint)pos 
+                     size:(CGPoint)size 
+                  dynamic:(BOOL)dy 
+                 friction:(float)f 
+                  density:(float)dens 
+              restitution:(long)rest 
+                    boxId:(int)id;
 
 @end

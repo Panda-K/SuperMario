@@ -9,6 +9,10 @@
 #import "Box2D.h"
 #import "GLES-Render.h"
 #import "Player.h"
+#import "PipeAndRock.h"
+#import "MarioContactListener.h"
+#import <vector>
+#import <algorithm>
 
 @interface MainGameLayer : CCLayer {
     CGSize winSize;
@@ -18,6 +22,7 @@
     Player *player_;
     CCSpriteBatchNode *spriteSheet_;
     HudStickLayer *hud_;
+    MarioContactListener *contactListener_;
     
     CCAction *marios_runFastL;
     CCAction *marios_runFastR;
@@ -60,15 +65,14 @@
     CCSpriteFrame *mariol_stopL;
     CCSpriteFrame *mariol_jumpR;
     CCSpriteFrame *mariol_jumpL;
+    CCSpriteFrame *ironBrick_;
     
     CCAction *goldBrickFlash_;
+    CCAction *flowerFlash_;
+    int pushUpTimes_;
+    int faceWallTimes_;
     
     float totalPressTime_;
-    BOOL isMarioStop_;
-    BOOL isMarioMovingRight_;
-    BOOL isMoveFast_;
-    BOOL isJump_;
-    BOOL readyToJump_;
     MarioStatus mario_status;
 }
 

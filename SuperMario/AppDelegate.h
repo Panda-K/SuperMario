@@ -16,7 +16,7 @@
 #import "GameConfig.h"
 
 @class MainGameScene;
-@class GameOverLayer;
+@class GameInfoScene;
 @class SelectScene;
 @class Level;
 

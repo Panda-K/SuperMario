@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38040FDC184619840097A198 /* PipeAndRock.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38040FDB184619840097A198 /* PipeAndRock.mm */; };
 		384C7E10183717A500CF720A /* gameInfoLayerSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 384C7E0D183717A500CF720A /* gameInfoLayerSheet.plist */; };
 		384C7E11183717A500CF720A /* gameInfoLayerSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 384C7E0E183717A500CF720A /* gameInfoLayerSheet.png */; };
 		384C7E12183717A500CF720A /* smb_jumpsmall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 384C7E0F183717A500CF720A /* smb_jumpsmall.wav */; };
@@ -38,6 +39,8 @@
 		385A9E161834885F00F9188C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385A9E151834885E00F9188C /* CoreData.framework */; };
 		385A9E181834886C00F9188C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 385A9E171834886C00F9188C /* libsqlite3.dylib */; };
 		385A9E1F18348E2B00F9188C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 385A9E1D18348E2A00F9188C /* Model.xcdatamodeld */; };
+		3867493F1841DF5600510193 /* MarioContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3867493E1841DF5500510193 /* MarioContactListener.mm */; };
+		3867494218424BE300510193 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3867494118424BE300510193 /* libstdc++.dylib */; };
 		38977D46183E5A730095D9E0 /* world1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 38977D44183E5A730095D9E0 /* world1-1.png */; };
 		38977D47183E5A730095D9E0 /* world1-1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 38977D45183E5A730095D9E0 /* world1-1.tmx */; };
 		38B439BD1837CC76004ACA2A /* Player.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38B439BC1837CC76004ACA2A /* Player.mm */; };
@@ -216,6 +219,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38040FDA184619840097A198 /* PipeAndRock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PipeAndRock.h; sourceTree = "<group>"; };
+		38040FDB184619840097A198 /* PipeAndRock.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PipeAndRock.mm; sourceTree = "<group>"; };
 		384C7E0D183717A500CF720A /* gameInfoLayerSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = gameInfoLayerSheet.plist; path = Resources/gameInfoLayerSheet.plist; sourceTree = "<group>"; };
 		384C7E0E183717A500CF720A /* gameInfoLayerSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gameInfoLayerSheet.png; path = Resources/gameInfoLayerSheet.png; sourceTree = "<group>"; };
 		384C7E0F183717A500CF720A /* smb_jumpsmall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = smb_jumpsmall.wav; path = Resources/smb_jumpsmall.wav; sourceTree = "<group>"; };
@@ -259,6 +264,9 @@
 		385A9E151834885E00F9188C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		385A9E171834886C00F9188C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		385A9E1E18348E2B00F9188C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		3867493D1841DF5500510193 /* MarioContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarioContactListener.h; sourceTree = "<group>"; };
+		3867493E1841DF5500510193 /* MarioContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarioContactListener.mm; sourceTree = "<group>"; };
+		3867494118424BE300510193 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/gcc/arm-apple-darwin10/4.0.1/libstdc++.dylib"; sourceTree = SDKROOT; };
 		38977D44183E5A730095D9E0 /* world1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "world1-1.png"; sourceTree = "<group>"; };
 		38977D45183E5A730095D9E0 /* world1-1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "world1-1.tmx"; sourceTree = "<group>"; };
 		38B439BB1837CC75004ACA2A /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -627,6 +635,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3867494218424BE300510193 /* libstdc++.dylib in Frameworks */,
 				384C7E1B183724E200CF720A /* libz.dylib in Frameworks */,
 				385A9E181834886C00F9188C /* libsqlite3.dylib in Frameworks */,
 				385A9E161834885F00F9188C /* CoreData.framework in Frameworks */,
@@ -674,6 +683,7 @@
 		38C9D1D018290B88007709D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3867494118424BE300510193 /* libstdc++.dylib */,
 				384C7E1A183724E200CF720A /* libz.dylib */,
 				385A9E171834886C00F9188C /* libsqlite3.dylib */,
 				385A9E151834885E00F9188C /* CoreData.framework */,
@@ -696,6 +706,8 @@
 				385A9DDE183470F200F9188C /* GameConfig.h */,
 				38C9D3EE18290B8B007709D0 /* AppDelegate.h */,
 				38C9D3EF18290B8B007709D0 /* AppDelegate.mm */,
+				3867493D1841DF5500510193 /* MarioContactListener.h */,
+				3867493E1841DF5500510193 /* MarioContactListener.mm */,
 				385A9DE1183470F200F9188C /* HudStickLayer.h */,
 				385A9DE2183470F200F9188C /* HudStickLayer.mm */,
 				385A9DE5183470F200F9188C /* MainGameLayer.h */,
@@ -710,6 +722,8 @@
 				38C9D3F518290B8B007709D0 /* IntroLayer.mm */,
 				384C7E13183717DE00CF720A /* GameObject.h */,
 				384C7E14183717DE00CF720A /* GameObject.mm */,
+				38040FDA184619840097A198 /* PipeAndRock.h */,
+				38040FDB184619840097A198 /* PipeAndRock.mm */,
 				38B439BB1837CC75004ACA2A /* Player.h */,
 				38B439BC1837CC76004ACA2A /* Player.mm */,
 				385A9DE3183470F200F9188C /* Level.h */,
@@ -1534,6 +1548,8 @@
 				384C7E261837253900CF720A /* SneakyJoystick.m in Sources */,
 				384C7E271837253900CF720A /* SneakyJoystickSkinnedBase.m in Sources */,
 				38B439BD1837CC76004ACA2A /* Player.mm in Sources */,
+				3867493F1841DF5600510193 /* MarioContactListener.mm in Sources */,
+				38040FDC184619840097A198 /* PipeAndRock.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1590,6 +1606,10 @@
 				GCC_PREFIX_HEADER = SuperMario/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"SuperMario/libs/kazmath/include\"";
 				INFOPLIST_FILE = SuperMario/Resources/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/usr/lib/gcc/arm-apple-darwin10/4.0.1\"",
+				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -1609,6 +1629,10 @@
 				GCC_PREFIX_HEADER = SuperMario/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"SuperMario/libs/kazmath/include\"";
 				INFOPLIST_FILE = SuperMario/Resources/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/usr/lib/gcc/arm-apple-darwin10/4.0.1\"",
+				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",

@@ -107,11 +107,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SuperMario/MainGameLayer.h"
-         timestampString = "406920556.674205"
+         timestampString = "407350339.84574"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "88"
-         endingLineNumber = "88"
+         startingLineNumber = "92"
+         endingLineNumber = "92"
          landmarkName = "@interface MainGameScene"
          landmarkType = "2">
       </FileBreakpoint>
@@ -198,20 +198,6 @@
          endingLineNumber = "122"
          landmarkName = "-init"
          landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "SuperMario/GameObject.mm"
-         timestampString = "406718103.635003"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "24"
-         endingLineNumber = "24"
-         landmarkName = "@implementation GameObject"
-         landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

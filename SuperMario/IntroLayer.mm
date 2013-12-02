@@ -80,7 +80,7 @@
     
     [self schedule:@selector(flashPoint) interval:0.075 repeat:45 delay:0];
 	
-	[self scheduleOnce:@selector(makeTransition:) delay:3];
+	[self scheduleOnce:@selector(makeTransition:) delay:4];
 }
 
 -(void) makeTransition:(ccTime)dt
