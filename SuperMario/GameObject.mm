@@ -49,8 +49,8 @@
     p_body = world->CreateBody(&collideObjBodyDef);
           
     b2PolygonShape polygonShape;
-    b2Vec2 vec[] = {b2Vec2((-size.x/4)/PTM_RATIO, -size.y/2/PTM_RATIO), 
-                    b2Vec2((size.x/4)/PTM_RATIO, -size.y/2/PTM_RATIO), 
+    b2Vec2 vec[] = {b2Vec2((-size.x*3.0/8)/PTM_RATIO, -size.y/2/PTM_RATIO), 
+                    b2Vec2((size.x*3.0/8)/PTM_RATIO, -size.y/2/PTM_RATIO), 
                     b2Vec2((size.x/2)/PTM_RATIO, size.y*3.0/8/PTM_RATIO), 
                     b2Vec2((size.x/2)/PTM_RATIO, size.y/2/PTM_RATIO), 
                     b2Vec2(-size.x/2/PTM_RATIO, size.y/2/PTM_RATIO), 
@@ -64,10 +64,22 @@
     p_polygonFixture = p_body->CreateFixture(&fixtureDef1);
     
     b2EdgeShape edgeShape;
-    edgeShape.Set(b2Vec2((size.x/4-0.5)/PTM_RATIO, -size.y/2/PTM_RATIO), 
-                  b2Vec2((-size.x/4+0.5)/PTM_RATIO, -size.y/2/PTM_RATIO));
+    edgeShape.Set(b2Vec2((size.x*3.0/8-0.2)/PTM_RATIO, -size.y/2/PTM_RATIO), 
+                  b2Vec2((-size.x*3.0/8+0.2)/PTM_RATIO, -size.y/2/PTM_RATIO));
     p_bottomFixture = p_body->CreateFixture(&edgeShape, 0);
     p_bottomFixture->SetFriction(0);
+    
+    b2EdgeShape edgeShape1;
+    edgeShape1.Set(b2Vec2((size.x/2)/PTM_RATIO, size.y*3.0/8/PTM_RATIO), 
+                   b2Vec2((size.x*3.0/8)/PTM_RATIO, -size.y/2/PTM_RATIO));
+    b2Fixture *topRight = p_body->CreateFixture(&edgeShape1, 0);
+    topRight->SetFriction(0);
+    
+    b2EdgeShape edgeShape2;
+    edgeShape2.Set(b2Vec2(-size.x/2/PTM_RATIO, size.y*3.0/8/PTM_RATIO), 
+                   b2Vec2((-size.x*3.0/8)/PTM_RATIO, -size.y/2/PTM_RATIO));
+    b2Fixture *topleft = p_body->CreateFixture(&edgeShape2, 0);
+    topleft->SetFriction(0);
     
     b2EdgeShape edgeShape3;
     edgeShape3.Set(b2Vec2((-size.x/2)/PTM_RATIO, (size.y/2)/PTM_RATIO), 

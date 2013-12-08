@@ -10,6 +10,7 @@
 #import "GLES-Render.h"
 #import "Player.h"
 #import "PipeAndRock.h"
+#import "MoveRectObject.h"
 #import "MarioContactListener.h"
 #import <vector>
 #import <algorithm>
@@ -67,13 +68,24 @@
     CCSpriteFrame *mariol_jumpL;
     CCSpriteFrame *ironBrick_;
     
+    CCAction *mariol_fireL;
+    CCAction *mariol_fireR;
+    
     CCAction *goldBrickFlash_;
     CCAction *flowerFlash_;
+    CCAction *coinUp_;
+    CCAction *fireBallRotate_;
+    CCAction *fireBallExplode_;
+    
+    CCAction *enemy1_walk;
+    
     int pushUpTimes_;
     int faceWallTimes_;
     
     float totalPressTime_;
-    MarioStatus mario_status;
+    
+    float totalPressTimeA_;
+    float fireDelta_;
 }
 
 @property (nonatomic, retain) HudStickLayer *hud;

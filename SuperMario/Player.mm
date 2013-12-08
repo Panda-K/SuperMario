@@ -16,7 +16,9 @@
 @synthesize isJump = isJump_;
 @synthesize readyToJump = readyToJump_;
 @synthesize isFaceWall = isFaceWall_;
+@synthesize isFireing = isFireing_;
 @synthesize stkHead = stkHead_;
+@synthesize marioStatus = p_mario_status;
 
 - (id)init {
     if (self = [super init]) {
@@ -47,6 +49,124 @@
     p_body->ApplyLinearImpulse(impulse, p_body->GetWorldCenter());
 }
 
+- (void) generateFixtureOfSize:(CGPoint)size 
+                       density:(float)dens 
+                      friction:(float)f 
+                   restitution:(long)rest 
+{
+    if (p_mario_status == kMarioSmall) {
+        b2PolygonShape polygonShape;
+        b2Vec2 vec[] = {b2Vec2(-size.x/2/PTM_RATIO, -size.y/2/PTM_RATIO), 
+            b2Vec2(size.x/2/PTM_RATIO, -size.y/2/PTM_RATIO), 
+            b2Vec2(size.x/2/PTM_RATIO, -size.y*3.0/8/PTM_RATIO), 
+            b2Vec2(size.x*3.0/8/PTM_RATIO, size.y/2/PTM_RATIO), 
+            b2Vec2(-size.x*3.0/8/PTM_RATIO, size.y/2/PTM_RATIO), 
+            b2Vec2(-size.x/2/PTM_RATIO, -size.y*3.0/8/PTM_RATIO)};
+        polygonShape.Set(vec, 6);
+        b2FixtureDef fixtureDef1;
+        fixtureDef1.shape = &polygonShape;
+        fixtureDef1.density = dens;
+        fixtureDef1.friction = f;
+        fixtureDef1.restitution = rest;
+        p_polygonFixture = p_body->CreateFixture(&fixtureDef1);
+        
+        b2EdgeShape edgeShape;
+        edgeShape.Set(b2Vec2((size.x/2-0.3)/PTM_RATIO, -size.y/2/PTM_RATIO), 
+                      b2Vec2((-size.x/2+0.3)/PTM_RATIO, -size.y/2/PTM_RATIO));
+        p_bottomFixture = p_body->CreateFixture(&edgeShape, 0);
+        
+        b2EdgeShape edgeShape1;
+        edgeShape1.Set(b2Vec2(size.x/2/PTM_RATIO, (-size.y*3.0/8-0.5)/PTM_RATIO), 
+                       b2Vec2(size.x/2/PTM_RATIO, (-size.y/2+0.5)/PTM_RATIO));
+        
+        p_rightFixture = p_body->CreateFixture(&edgeShape1, 0);
+        p_rightFixture->SetRestitution(0);
+        p_rightFixture->SetFriction(0);
+        
+        b2EdgeShape edgeShape2;
+        edgeShape2.Set(b2Vec2(-size.x/2/PTM_RATIO, (-size.y*3.0/8-0.5)/PTM_RATIO), 
+                       b2Vec2(-size.x/2/PTM_RATIO, (-size.y/2+0.5)/PTM_RATIO));
+        
+        p_leftFixture = p_body->CreateFixture(&edgeShape2, 0);
+        p_leftFixture->SetRestitution(0);
+        p_leftFixture->SetFriction(0);
+        
+        b2EdgeShape edgeShape3;
+//        edgeShape3.Set(b2Vec2((size.x*3.0/8+0.2)/PTM_RATIO, (size.y/2-7*0.2*size.y/size.x)/PTM_RATIO), 
+//                       b2Vec2((size.x/2-0.2)/PTM_RATIO, (-size.y*3.0/8+7*0.2*size.y/size.x)/PTM_RATIO));
+        edgeShape3.Set(b2Vec2((size.x*3.0/8)/PTM_RATIO, (size.y/2)/PTM_RATIO), 
+                       b2Vec2((size.x/2-0.2)/PTM_RATIO, (-size.y*3.0/8+7*0.2*size.y/size.x)/PTM_RATIO));
+        p_topRightFixture = p_body->CreateFixture(&edgeShape3, 0);
+        p_topRightFixture->SetRestitution(0);
+        p_topRightFixture->SetFriction(0);
+        
+        b2EdgeShape edgeShape4;
+//        edgeShape4.Set(b2Vec2((-size.x*3.0/8-0.2)/PTM_RATIO, (size.y/2-7*0.2*size.y/size.x)/PTM_RATIO), 
+//                       b2Vec2((-size.x/2+0.2)/PTM_RATIO, (-size.y*3.0/8+7*0.2*size.y/size.x)/PTM_RATIO));
+        edgeShape4.Set(b2Vec2((-size.x*3.0/8)/PTM_RATIO, (size.y/2)/PTM_RATIO), 
+                       b2Vec2((-size.x/2+0.2)/PTM_RATIO, (-size.y*3.0/8+7*0.2*size.y/size.x)/PTM_RATIO));
+        p_topLeftFixture = p_body->CreateFixture(&edgeShape4, 0);
+        p_topLeftFixture->SetRestitution(0);
+        p_topLeftFixture->SetFriction(0);
+    }
+    
+    if (p_mario_status == kMarioLarge || p_mario_status == kMarioCanFire) {
+        b2PolygonShape polygonShape;
+        b2Vec2 vec[] = {b2Vec2(-size.x/2/PTM_RATIO, -size.y/2/PTM_RATIO), 
+            b2Vec2(size.x/2/PTM_RATIO, -size.y/2/PTM_RATIO), 
+            b2Vec2(size.x/2/PTM_RATIO, -size.y*3.0/8/PTM_RATIO), 
+            b2Vec2(size.x/4/PTM_RATIO, size.y/2/PTM_RATIO), 
+            b2Vec2(-size.x/4/PTM_RATIO, size.y/2/PTM_RATIO), 
+            b2Vec2(-size.x/2/PTM_RATIO, -size.y*3.0/8/PTM_RATIO)};
+        polygonShape.Set(vec, 6);
+        b2FixtureDef fixtureDef1;
+        fixtureDef1.shape = &polygonShape;
+        fixtureDef1.density = dens;
+        fixtureDef1.friction = f;
+        fixtureDef1.restitution = rest;
+        p_polygonFixture = p_body->CreateFixture(&fixtureDef1);
+        
+        b2EdgeShape edgeShape;
+        edgeShape.Set(b2Vec2((size.x/2-0.3)/PTM_RATIO, -size.y/2/PTM_RATIO), 
+                      b2Vec2((-size.x/2+0.3)/PTM_RATIO, -size.y/2/PTM_RATIO));
+        p_bottomFixture = p_body->CreateFixture(&edgeShape, 0);
+        
+        b2EdgeShape edgeShape1;
+        edgeShape1.Set(b2Vec2(size.x/2/PTM_RATIO, (-size.y*3.0/8-0.5)/PTM_RATIO), 
+                       b2Vec2(size.x/2/PTM_RATIO, (-size.y/2+0.5)/PTM_RATIO));
+        
+        p_rightFixture = p_body->CreateFixture(&edgeShape1, 0);
+        p_rightFixture->SetRestitution(0);
+        p_rightFixture->SetFriction(0);
+        
+        b2EdgeShape edgeShape2;
+        edgeShape2.Set(b2Vec2(-size.x/2/PTM_RATIO, (-size.y*3.0/8-0.5)/PTM_RATIO), 
+                       b2Vec2(-size.x/2/PTM_RATIO, (-size.y/2+0.5)/PTM_RATIO));
+        
+        p_leftFixture = p_body->CreateFixture(&edgeShape2, 0);
+        p_leftFixture->SetRestitution(0);
+        p_leftFixture->SetFriction(0);
+        
+        b2EdgeShape edgeShape3;
+        edgeShape3.Set(b2Vec2((size.x/4+0.2)/PTM_RATIO, (size.y/2-3.5*0.2*size.y/size.x)/PTM_RATIO), 
+                       b2Vec2((size.x/2-0.2)/PTM_RATIO, (-size.y*3.0/8+3.5*0.2*size.y/size.x)/PTM_RATIO));
+//        edgeShape3.Set(b2Vec2((size.x/4)/PTM_RATIO, (size.y/2)/PTM_RATIO), 
+//                       b2Vec2((size.x/2-0.2)/PTM_RATIO, (-size.y*3.0/8+3.5*0.2*size.y/size.x)/PTM_RATIO));
+        p_topRightFixture = p_body->CreateFixture(&edgeShape3, 0);
+        p_topRightFixture->SetRestitution(0);
+        p_topRightFixture->SetFriction(0);
+        
+        b2EdgeShape edgeShape4;
+        edgeShape4.Set(b2Vec2((-size.x/4-0.2)/PTM_RATIO, (size.y/2-3.5*0.2*size.y/size.x)/PTM_RATIO), 
+                       b2Vec2((-size.x/2+0.2)/PTM_RATIO, (-size.y*3.0/8+3.5*0.2*size.y/size.x)/PTM_RATIO));
+//        edgeShape4.Set(b2Vec2((-size.x/4)/PTM_RATIO, (size.y/2)/PTM_RATIO), 
+//                       b2Vec2((-size.x/2+0.2)/PTM_RATIO, (-size.y*3.0/8+3.5*0.2*size.y/size.x)/PTM_RATIO));
+        p_topLeftFixture = p_body->CreateFixture(&edgeShape4, 0);
+        p_topLeftFixture->SetRestitution(0);
+        p_topLeftFixture->SetFriction(0);
+    }
+}
+
 - (void)createPhisicsBody:(b2World *)world 
                   postion:(CGPoint)pos 
                      size:(CGPoint)size 
@@ -66,55 +186,24 @@
     
     p_body = world->CreateBody(&collideObjBodyDef);
     
-    b2PolygonShape polygonShape;
-    b2Vec2 vec[] = {b2Vec2(-size.x/2/PTM_RATIO, -size.y/2/PTM_RATIO), 
-                    b2Vec2(size.x/2/PTM_RATIO, -size.y/2/PTM_RATIO), 
-                    b2Vec2(size.x/2/PTM_RATIO, -size.y*3.0/8/PTM_RATIO), 
-                    b2Vec2(size.x/4/PTM_RATIO, size.y/2/PTM_RATIO), 
-                    b2Vec2(-size.x/4/PTM_RATIO, size.y/2/PTM_RATIO), 
-                    b2Vec2(-size.x/2/PTM_RATIO, -size.y*3.0/8/PTM_RATIO)};
-    polygonShape.Set(vec, 6);
-    b2FixtureDef fixtureDef1;
-    fixtureDef1.shape = &polygonShape;
-    fixtureDef1.density = dens;
-    fixtureDef1.friction = f;
-    fixtureDef1.restitution = rest;
-    p_polygonFixture = p_body->CreateFixture(&fixtureDef1);
+    [self generateFixtureOfSize:size density:dens friction:f restitution:rest];
+}
+
+- (void) resizeBodyAtPositon:(CGPoint)pos 
+                        size:(CGPoint)size
+                    friction:(float)f 
+                     density:(float)dens 
+                 restitution:(float)rest
+{
+    p_body->DestroyFixture(p_polygonFixture);
+    p_body->DestroyFixture(p_bottomFixture);
+    p_body->DestroyFixture(p_rightFixture);
+    p_body->DestroyFixture(p_leftFixture);
+    p_body->DestroyFixture(p_topRightFixture);
+    p_body->DestroyFixture(p_topLeftFixture);
     
-    b2EdgeShape edgeShape;
-    edgeShape.Set(b2Vec2((size.x/2-0.3)/PTM_RATIO, -size.y/2/PTM_RATIO), 
-                  b2Vec2((-size.x/2+0.3)/PTM_RATIO, -size.y/2/PTM_RATIO));
-    p_bottomFixture = p_body->CreateFixture(&edgeShape, 0);
-    
-    b2EdgeShape edgeShape1;
-    edgeShape1.Set(b2Vec2(size.x/2/PTM_RATIO, (-size.y*3.0/8-0.5)/PTM_RATIO), 
-                   b2Vec2(size.x/2/PTM_RATIO, (-size.y/2+0.5)/PTM_RATIO));
-    
-    p_rightFixture = p_body->CreateFixture(&edgeShape1, 0);
-    p_rightFixture->SetRestitution(0);
-    p_rightFixture->SetFriction(0);
-    
-    b2EdgeShape edgeShape2;
-    edgeShape2.Set(b2Vec2(-size.x/2/PTM_RATIO, (-size.y*3.0/8-0.5)/PTM_RATIO), 
-                   b2Vec2(-size.x/2/PTM_RATIO, (-size.y/2+0.5)/PTM_RATIO));
-    
-    p_leftFixture = p_body->CreateFixture(&edgeShape2, 0);
-    p_leftFixture->SetRestitution(0);
-    p_leftFixture->SetFriction(0);
-    
-    b2EdgeShape edgeShape3;
-    edgeShape3.Set(b2Vec2((size.x/4+0.2)/PTM_RATIO, (size.y/2-3.5*0.2*size.y/size.x)/PTM_RATIO), 
-                   b2Vec2((size.x/2-0.2)/PTM_RATIO, (-size.y*3.0/8+3.5*0.2*size.y/size.x)/PTM_RATIO));
-    p_topRightFixture = p_body->CreateFixture(&edgeShape3, 0);
-    p_topRightFixture->SetRestitution(0);
-    p_topRightFixture->SetFriction(0);
-    
-    b2EdgeShape edgeShape4;
-    edgeShape4.Set(b2Vec2((-size.x/4-0.2)/PTM_RATIO, (size.y/2-3.5*0.2*size.y/size.x)/PTM_RATIO), 
-                   b2Vec2((-size.x/2+0.2)/PTM_RATIO, (-size.y*3.0/8+3.5*0.2*size.y/size.x)/PTM_RATIO));
-    p_topLeftFixture = p_body->CreateFixture(&edgeShape4, 0);
-    p_topLeftFixture->SetRestitution(0);
-    p_topLeftFixture->SetFriction(0);
+    p_body->SetTransform(b2Vec2(pos.x/PTM_RATIO, pos.y/PTM_RATIO), p_body->GetAngle());
+    [self generateFixtureOfSize:size density:dens friction:f restitution:rest];
 }
 
 @end

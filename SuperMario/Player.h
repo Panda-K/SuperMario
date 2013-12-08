@@ -18,7 +18,9 @@
     BOOL isJump_;
     BOOL readyToJump_;
     BOOL isFaceWall_;
+    BOOL isFireing_;
     StickHeading stkHead_;
+    MarioStatus p_mario_status;
 }
 
 @property (nonatomic, readwrite) b2Fixture *topRightFixture;
@@ -29,7 +31,9 @@
 @property (nonatomic, readwrite) BOOL isJump;
 @property (nonatomic, readwrite) BOOL readyToJump;
 @property (nonatomic, readwrite) BOOL isFaceWall;
+@property (nonatomic, readwrite) BOOL isFireing;
 @property (nonatomic, readwrite) StickHeading stkHead;
+@property (nonatomic, readwrite) MarioStatus marioStatus;
 
 - (void) moveRight;
 - (void) moveLeft;
@@ -43,5 +47,10 @@
                   density:(float)dens 
               restitution:(long)rest 
                     boxId:(int)id;
+- (void) resizeBodyAtPositon:(CGPoint)pos 
+                        size:(CGPoint)size
+                    friction:(float)f 
+                     density:(float)dens 
+                 restitution:(float)rest;
 
 @end

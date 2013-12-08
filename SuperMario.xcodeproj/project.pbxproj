@@ -41,8 +41,7 @@
 		385A9E1F18348E2B00F9188C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 385A9E1D18348E2A00F9188C /* Model.xcdatamodeld */; };
 		3867493F1841DF5600510193 /* MarioContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3867493E1841DF5500510193 /* MarioContactListener.mm */; };
 		3867494218424BE300510193 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3867494118424BE300510193 /* libstdc++.dylib */; };
-		38977D46183E5A730095D9E0 /* world1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 38977D44183E5A730095D9E0 /* world1-1.png */; };
-		38977D47183E5A730095D9E0 /* world1-1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 38977D45183E5A730095D9E0 /* world1-1.tmx */; };
+		389E476018529E5B001F3EC0 /* MoveRectObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 389E475F18529E5B001F3EC0 /* MoveRectObject.mm */; };
 		38B439BD1837CC76004ACA2A /* Player.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38B439BC1837CC76004ACA2A /* Player.mm */; };
 		38C9D1D218290B88007709D0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D118290B88007709D0 /* QuartzCore.framework */; };
 		38C9D1D418290B88007709D0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D318290B88007709D0 /* OpenGLES.framework */; };
@@ -216,6 +215,8 @@
 		38C9D3F618290B8B007709D0 /* IntroLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38C9D3F518290B8B007709D0 /* IntroLayer.mm */; };
 		38C9D3F918290B8B007709D0 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38C9D3F818290B8B007709D0 /* GLES-Render.mm */; };
 		38C9D3FE18290B8B007709D0 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C9D3FD18290B8B007709D0 /* blocks.png */; };
+		38D9C132185489F300F0993F /* world1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D9C130185489F300F0993F /* world1-1.png */; };
+		38D9C133185489F300F0993F /* world1-1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 38D9C131185489F300F0993F /* world1-1.tmx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -267,8 +268,8 @@
 		3867493D1841DF5500510193 /* MarioContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarioContactListener.h; sourceTree = "<group>"; };
 		3867493E1841DF5500510193 /* MarioContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarioContactListener.mm; sourceTree = "<group>"; };
 		3867494118424BE300510193 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/gcc/arm-apple-darwin10/4.0.1/libstdc++.dylib"; sourceTree = SDKROOT; };
-		38977D44183E5A730095D9E0 /* world1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "world1-1.png"; sourceTree = "<group>"; };
-		38977D45183E5A730095D9E0 /* world1-1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "world1-1.tmx"; sourceTree = "<group>"; };
+		389E475E18529E5B001F3EC0 /* MoveRectObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveRectObject.h; sourceTree = "<group>"; };
+		389E475F18529E5B001F3EC0 /* MoveRectObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveRectObject.mm; sourceTree = "<group>"; };
 		38B439BB1837CC75004ACA2A /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		38B439BC1837CC76004ACA2A /* Player.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Player.mm; sourceTree = "<group>"; };
 		38C9D1CD18290B88007709D0 /* SuperMario.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperMario.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -628,6 +629,8 @@
 		38C9D3F718290B8B007709D0 /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		38C9D3F818290B8B007709D0 /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		38C9D3FD18290B8B007709D0 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		38D9C130185489F300F0993F /* world1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "world1-1.png"; sourceTree = "<group>"; };
+		38D9C131185489F300F0993F /* world1-1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "world1-1.tmx"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -722,6 +725,8 @@
 				38C9D3F518290B8B007709D0 /* IntroLayer.mm */,
 				384C7E13183717DE00CF720A /* GameObject.h */,
 				384C7E14183717DE00CF720A /* GameObject.mm */,
+				389E475E18529E5B001F3EC0 /* MoveRectObject.h */,
+				389E475F18529E5B001F3EC0 /* MoveRectObject.mm */,
 				38040FDA184619840097A198 /* PipeAndRock.h */,
 				38040FDB184619840097A198 /* PipeAndRock.mm */,
 				38B439BB1837CC75004ACA2A /* Player.h */,
@@ -740,8 +745,8 @@
 		38C9D1E418290B88007709D0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				38977D44183E5A730095D9E0 /* world1-1.png */,
-				38977D45183E5A730095D9E0 /* world1-1.tmx */,
+				38D9C130185489F300F0993F /* world1-1.png */,
+				38D9C131185489F300F0993F /* world1-1.tmx */,
 				384C7E0D183717A500CF720A /* gameInfoLayerSheet.plist */,
 				384C7E0E183717A500CF720A /* gameInfoLayerSheet.png */,
 				384C7E0F183717A500CF720A /* smb_jumpsmall.wav */,
@@ -1358,8 +1363,8 @@
 				384C7E10183717A500CF720A /* gameInfoLayerSheet.plist in Resources */,
 				384C7E11183717A500CF720A /* gameInfoLayerSheet.png in Resources */,
 				384C7E12183717A500CF720A /* smb_jumpsmall.wav in Resources */,
-				38977D46183E5A730095D9E0 /* world1-1.png in Resources */,
-				38977D47183E5A730095D9E0 /* world1-1.tmx in Resources */,
+				38D9C132185489F300F0993F /* world1-1.png in Resources */,
+				38D9C133185489F300F0993F /* world1-1.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1550,6 +1555,7 @@
 				38B439BD1837CC76004ACA2A /* Player.mm in Sources */,
 				3867493F1841DF5600510193 /* MarioContactListener.mm in Sources */,
 				38040FDC184619840097A198 /* PipeAndRock.mm in Sources */,
+				389E476018529E5B001F3EC0 /* MoveRectObject.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

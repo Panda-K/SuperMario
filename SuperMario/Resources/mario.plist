@@ -954,7 +954,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>mariol_firel.png</key>
+		<key>mariol_firel2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>
@@ -973,7 +973,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>mariol_firel2.png</key>
+		<key>mariol_firel1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>
@@ -992,7 +992,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>mariol_firer1.png</key>
+		<key>mariol_firer2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>
@@ -1011,7 +1011,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>mariol_firer2.png</key>
+		<key>mariol_firer1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>
