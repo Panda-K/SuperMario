@@ -38,7 +38,7 @@
   <object name="brick15" type="brick" x="1472" y="96" width="16" height="16"/>
   <object name="brick16" type="brick" x="1488" y="96" width="16" height="16"/>
   <object name="coin5" type="goldBrick" x="1504" y="96" width="16" height="16"/>
-  <object name="coin6" type="multiCoinInGoldBrick" x="1504" y="160" width="16" height="16"/>
+  <object name="coin6" type="multiCoinBrick1" x="1504" y="160" width="16" height="16"/>
   <object name="enemy1_5" type="enemy1" x="1278" y="77" width="16" height="16"/>
   <object name="enemy1_6" type="enemy1" x="1312" y="77" width="16" height="16"/>
   <object name="enemy1_7" type="enemy1" x="1616" y="205" width="16" height="16"/>
@@ -49,7 +49,7 @@
   <object name="enemy1_12" type="enemy1" x="2072" y="205" width="16" height="16"/>
   <object name="enemy1_13" type="enemy1" x="2120" y="205" width="16" height="16"/>
   <object name="brick17" type="brick" x="1600" y="160" width="16" height="16"/>
-  <object name="coin7" type="starInGoldBrick" x="1616" y="160" width="16" height="16"/>
+  <object name="coin7" type="starBrick1" x="1616" y="160" width="16" height="16"/>
   <object name="coin9" type="goldBrick" x="1696" y="160" width="16" height="16"/>
   <object name="coin10" type="goldBrick" x="1744" y="160" width="16" height="16"/>
   <object name="coin11" type="goldBrick" x="1792" y="160" width="16" height="16"/>

@@ -46,6 +46,7 @@
     delegate.curLives = 3;
     delegate.curLevelNum = item.tag;
     delegate.marioStatus = kMarioSmall;
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
     [delegate loadGameInfoScene];
 }
 
@@ -327,7 +328,12 @@
     [self panForTranslation:ccp(translation.x, 0)];  
 }
 
+-(void)onExit {
+    [spriteSheet_ removeAllChildrenWithCleanup:YES];
+}
+
 - (void)dealloc {
+    
     [super dealloc];
     [menu1_ release];
     [menu2_ release];
@@ -352,6 +358,10 @@
         [self addChild:layer];
     }
     return self;
+}
+
+-(void)dealloc {
+    [super dealloc];
 }
 
 @end

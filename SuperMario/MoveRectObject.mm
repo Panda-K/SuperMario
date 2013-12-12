@@ -11,6 +11,13 @@
 @implementation MoveRectObject
 @synthesize isMoving = isMoving_;
 
+- (void) setFilter:(b2Fixture *)fixture {
+    b2Filter filter;
+    filter.categoryBits = 0x0001;
+    filter.maskBits = 0x0003;
+    fixture->SetFilterData(filter);
+}
+
 - (void)createPhisicsBody:(b2World *)world 
                   postion:(CGPoint)pos 
                      size:(CGPoint)size 
@@ -65,6 +72,12 @@
     p_bottomFixture = p_body->CreateFixture(&edgeShape4, 0);
     p_bottomFixture->SetFriction(0);
     p_bottomFixture->SetRestitution(1);
+    
+    [self setFilter:p_polygonFixture];
+    [self setFilter:p_bottomFixture];
+    [self setFilter:p_rightFixture];
+    [self setFilter:p_leftFixture];
+    [self setFilter:p_topFixture];
 }
 
 - (void)dealloc {

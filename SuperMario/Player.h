@@ -19,6 +19,8 @@
     BOOL readyToJump_;
     BOOL isFaceWall_;
     BOOL isFireing_;
+    BOOL isCollidable_;
+    BOOL isInvincible_;
     StickHeading stkHead_;
     MarioStatus p_mario_status;
 }
@@ -34,6 +36,10 @@
 @property (nonatomic, readwrite) BOOL isFireing;
 @property (nonatomic, readwrite) StickHeading stkHead;
 @property (nonatomic, readwrite) MarioStatus marioStatus;
+@property (nonatomic, readwrite) BOOL isCollidable;
+@property (nonatomic, readwrite) BOOL isInvincible;
+
++ (id)spriteWithSpriteFrame:(CCSpriteFrame *)spriteFrame;
 
 - (void) moveRight;
 - (void) moveLeft;

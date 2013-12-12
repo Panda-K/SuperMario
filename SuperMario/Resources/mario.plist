@@ -954,7 +954,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>mariol_firel2.png</key>
+		<key>mariol_firel1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>
@@ -973,7 +973,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>mariol_firel1.png</key>
+		<key>mariol_firel2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>
@@ -1064,7 +1064,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{216, 26}, {16, 32}}</string>
+			<string>{{248, 94}, {16, 32}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>

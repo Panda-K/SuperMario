@@ -67,6 +67,14 @@
     return self;
 }
 
+-(void)onExit {
+    [self removeAllChildrenWithCleanup:YES];
+}
+
+-(void)dealloc {
+    [super dealloc];
+}
+
 @end
 
 @implementation StartScene
@@ -78,6 +86,10 @@
         [self addChild:layer z:0];
     }
     return self;
+}
+
+-(void)dealloc {
+    [super dealloc];
 }
 
 @end

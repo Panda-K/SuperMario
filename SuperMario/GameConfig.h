@@ -18,6 +18,8 @@
 
 #define BIAS_IMPULSE 3.0
 
+#define MARIO_RUNACTION_TAG 10
+
 #define IS_PLAYER(x, y) (x.type == kGameObjectPlayer || y.type == kGameObjectPlayer)
 #define IS_BRICK(x, y) (x.type == kGameObjectBrick || y.type == kGameObjectBrick)
 #define IS_MUSHROOM(x, y) (x.type == kGameObjectMushRoom || y.type == kGameObjectMushRoom)
@@ -27,6 +29,7 @@
 #define IS_IRONBRICK(x, y) (x.type == kGameObjectIronBrick || y.type == kGameObjectIronBrick)
 #define IS_FIREBALL(x, y) (x.type == kGameObjectFireBall || y.type == kGameObjectFireBall)
 #define IS_ENEMY1(x, y) (x.type == kGameObjectEnemy1 || y.type == kGameObjectEnemy1)
+#define IS_STAR(x, y) (x.type == kGameObjectStar || y.type == kGameObjectStar)
 
 typedef enum {
     kGameObjectNone,
@@ -36,10 +39,13 @@ typedef enum {
     kGameObjectFireBall,
     kGameObjectMushRoom,
     kGameObjectFlower,
+    kGameObjectStar,
     kGameObjectBrick,
     kGameObjectIronBrick,
     kGameObjectGoldBrick,
     kGameObjectMushBrick,
+    kGameObjectMultiCoinBrick,
+    kGameObjectStarBrick,
     kGameObjectPipe,
     kGameObjectRock,
     kGameObjectPlatform

@@ -17,23 +17,29 @@
 @synthesize readyToJump = readyToJump_;
 @synthesize isFaceWall = isFaceWall_;
 @synthesize isFireing = isFireing_;
+@synthesize isCollidable = isCollidable_;
 @synthesize stkHead = stkHead_;
 @synthesize marioStatus = p_mario_status;
+@synthesize isInvincible = isInvincible_;
 
-- (id)init {
-    if (self = [super init]) {
-        type_ = kGameObjectPlayer;
-        isMarioStop_ = YES;
-        isMarioMovingRight_ = YES;
-        isMoveFast_ = NO;
-        isJump_ = NO;
-        readyToJump_ = NO;
-        isFaceWall_ = NO;
++ (id) spriteWithSpriteFrame:(CCSpriteFrame *)spriteFrame {
+    Player *mario = nil;
+    if ((mario = [super spriteWithSpriteFrame:spriteFrame])) {
+        mario.type = kGameObjectPlayer;
+        mario.isMarioStop = YES;
+        mario.isMarioMovingRight = YES;
+        mario.isMoveFast = NO;
+        mario.isJump = NO;
+        mario.readyToJump = NO;
+        mario.isFaceWall = NO;
+        mario.isCollidable = YES;
+        mario.isInvincible = NO;
     }
-    return self;
+    
+    return mario;
 }
 
-- (void)moveRight {
+- (void) moveRight {
     b2Vec2 impulse = b2Vec2(10.0, 0.0);
     p_body->ApplyLinearImpulse(impulse, p_body->GetWorldCenter());
     
@@ -47,6 +53,13 @@
 - (void)jump {
     b2Vec2 impulse = b2Vec2(0.0, 15.0);
     p_body->ApplyLinearImpulse(impulse, p_body->GetWorldCenter());
+}
+
+- (void) setFilter:(b2Fixture *)fixture {
+    b2Filter filter;
+    filter.categoryBits = 0x0001;
+    filter.maskBits = 0x0003;
+    fixture->SetFilterData(filter);
 }
 
 - (void) generateFixtureOfSize:(CGPoint)size 
@@ -75,6 +88,7 @@
                       b2Vec2((-size.x/2+0.3)/PTM_RATIO, -size.y/2/PTM_RATIO));
         p_bottomFixture = p_body->CreateFixture(&edgeShape, 0);
         
+        
         b2EdgeShape edgeShape1;
         edgeShape1.Set(b2Vec2(size.x/2/PTM_RATIO, (-size.y*3.0/8-0.5)/PTM_RATIO), 
                        b2Vec2(size.x/2/PTM_RATIO, (-size.y/2+0.5)/PTM_RATIO));
@@ -82,6 +96,7 @@
         p_rightFixture = p_body->CreateFixture(&edgeShape1, 0);
         p_rightFixture->SetRestitution(0);
         p_rightFixture->SetFriction(0);
+        
         
         b2EdgeShape edgeShape2;
         edgeShape2.Set(b2Vec2(-size.x/2/PTM_RATIO, (-size.y*3.0/8-0.5)/PTM_RATIO), 
@@ -92,8 +107,6 @@
         p_leftFixture->SetFriction(0);
         
         b2EdgeShape edgeShape3;
-//        edgeShape3.Set(b2Vec2((size.x*3.0/8+0.2)/PTM_RATIO, (size.y/2-7*0.2*size.y/size.x)/PTM_RATIO), 
-//                       b2Vec2((size.x/2-0.2)/PTM_RATIO, (-size.y*3.0/8+7*0.2*size.y/size.x)/PTM_RATIO));
         edgeShape3.Set(b2Vec2((size.x*3.0/8)/PTM_RATIO, (size.y/2)/PTM_RATIO), 
                        b2Vec2((size.x/2-0.2)/PTM_RATIO, (-size.y*3.0/8+7*0.2*size.y/size.x)/PTM_RATIO));
         p_topRightFixture = p_body->CreateFixture(&edgeShape3, 0);
@@ -101,13 +114,18 @@
         p_topRightFixture->SetFriction(0);
         
         b2EdgeShape edgeShape4;
-//        edgeShape4.Set(b2Vec2((-size.x*3.0/8-0.2)/PTM_RATIO, (size.y/2-7*0.2*size.y/size.x)/PTM_RATIO), 
-//                       b2Vec2((-size.x/2+0.2)/PTM_RATIO, (-size.y*3.0/8+7*0.2*size.y/size.x)/PTM_RATIO));
         edgeShape4.Set(b2Vec2((-size.x*3.0/8)/PTM_RATIO, (size.y/2)/PTM_RATIO), 
                        b2Vec2((-size.x/2+0.2)/PTM_RATIO, (-size.y*3.0/8+7*0.2*size.y/size.x)/PTM_RATIO));
         p_topLeftFixture = p_body->CreateFixture(&edgeShape4, 0);
         p_topLeftFixture->SetRestitution(0);
         p_topLeftFixture->SetFriction(0);
+        
+        [self setFilter:p_polygonFixture];
+        [self setFilter:p_bottomFixture];
+        [self setFilter:p_rightFixture];
+        [self setFilter:p_leftFixture];
+        [self setFilter:p_topLeftFixture];
+        [self setFilter:p_topRightFixture];
     }
     
     if (p_mario_status == kMarioLarge || p_mario_status == kMarioCanFire) {
@@ -150,8 +168,6 @@
         b2EdgeShape edgeShape3;
         edgeShape3.Set(b2Vec2((size.x/4+0.2)/PTM_RATIO, (size.y/2-3.5*0.2*size.y/size.x)/PTM_RATIO), 
                        b2Vec2((size.x/2-0.2)/PTM_RATIO, (-size.y*3.0/8+3.5*0.2*size.y/size.x)/PTM_RATIO));
-//        edgeShape3.Set(b2Vec2((size.x/4)/PTM_RATIO, (size.y/2)/PTM_RATIO), 
-//                       b2Vec2((size.x/2-0.2)/PTM_RATIO, (-size.y*3.0/8+3.5*0.2*size.y/size.x)/PTM_RATIO));
         p_topRightFixture = p_body->CreateFixture(&edgeShape3, 0);
         p_topRightFixture->SetRestitution(0);
         p_topRightFixture->SetFriction(0);
@@ -159,11 +175,16 @@
         b2EdgeShape edgeShape4;
         edgeShape4.Set(b2Vec2((-size.x/4-0.2)/PTM_RATIO, (size.y/2-3.5*0.2*size.y/size.x)/PTM_RATIO), 
                        b2Vec2((-size.x/2+0.2)/PTM_RATIO, (-size.y*3.0/8+3.5*0.2*size.y/size.x)/PTM_RATIO));
-//        edgeShape4.Set(b2Vec2((-size.x/4)/PTM_RATIO, (size.y/2)/PTM_RATIO), 
-//                       b2Vec2((-size.x/2+0.2)/PTM_RATIO, (-size.y*3.0/8+3.5*0.2*size.y/size.x)/PTM_RATIO));
         p_topLeftFixture = p_body->CreateFixture(&edgeShape4, 0);
         p_topLeftFixture->SetRestitution(0);
         p_topLeftFixture->SetFriction(0);
+        
+        [self setFilter:p_polygonFixture];
+        [self setFilter:p_bottomFixture];
+        [self setFilter:p_rightFixture];
+        [self setFilter:p_leftFixture];
+        [self setFilter:p_topLeftFixture];
+        [self setFilter:p_topRightFixture];
     }
 }
 

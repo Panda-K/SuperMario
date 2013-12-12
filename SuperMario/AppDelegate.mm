@@ -204,12 +204,13 @@
 }
 
 - (void) loadMainGameScene {
-    mainGameScene_ = [[MainGameScene scene] retain];
+    mainGameScene_ = [MainGameScene scene];
     [mainGameScene_.gameLayer reset];
     [[CCDirector sharedDirector] replaceScene:mainGameScene_];
 }
 
 - (void) nextLevel {
+    mainGameScene_ = [MainGameScene scene];
     [mainGameScene_.gameLayer reset];
     [[CCDirector sharedDirector] replaceScene:mainGameScene_];
 }
@@ -294,7 +295,7 @@
     [coreDataContext_ release];
     [sharedPsc_ release];
     [levelIndexInCoreData_ release];
-    [mainGameScene_ release];
+//    [mainGameScene_ release];
     
 	[super dealloc];
 }

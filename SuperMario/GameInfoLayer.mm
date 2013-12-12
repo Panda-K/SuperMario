@@ -41,6 +41,7 @@
 
 - (void) moveToNextScene {
     AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
     if (delegate.curLives <= 0) {
         [delegate loadSelectScene];
     }
@@ -132,6 +133,7 @@
 }
 
 - (void)dealloc {
+    [self removeAllChildrenWithCleanup:YES];
     [super dealloc];
     [m_run release];
     [m_marioJumpR release];
@@ -153,6 +155,11 @@
     [scene.hudLayer setStickVisible:NO];
     [scene addChild:scene.hudLayer z:1];
     return scene;
+}
+
+-(void)dealloc {
+    [super dealloc];
+    self.layer = nil;
 }
 
 @end

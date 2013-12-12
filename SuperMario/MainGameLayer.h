@@ -76,6 +76,7 @@
     CCAction *coinUp_;
     CCAction *fireBallRotate_;
     CCAction *fireBallExplode_;
+    CCAction *starFlash_;
     
     CCAction *enemy1_walk;
     
@@ -86,6 +87,9 @@
     
     float totalPressTimeA_;
     float fireDelta_;
+    
+    NSDate *multiCoinBrickStart_;
+    int multiCoinBrickPushUpTimes_;
 }
 
 @property (nonatomic, retain) HudStickLayer *hud;
