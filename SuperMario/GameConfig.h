@@ -19,6 +19,9 @@
 #define BIAS_IMPULSE 3.0
 
 #define MARIO_RUNACTION_TAG 10
+#define STARMARIO_JUMPACTION_TAG 11
+#define STARMARIO_STOPACTION_TAG 12
+#define STARMARIO_STANDACTION_TAG 13
 
 #define IS_PLAYER(x, y) (x.type == kGameObjectPlayer || y.type == kGameObjectPlayer)
 #define IS_BRICK(x, y) (x.type == kGameObjectBrick || y.type == kGameObjectBrick)

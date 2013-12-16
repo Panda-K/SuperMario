@@ -79,7 +79,111 @@ using namespace std;
     [delegate loadGameInfoScene];
 }
 
+- (id) starMarioRunAnimateOne:(CCAction *)walk1 two:(CCAction *)walk2 three:(CCAction *)walk3 interval:(float)dt {
+    return [CCRepeatForever actionWithAction:
+             [CCSequence actions:[[walk1 copy] autorelease], 
+                                  [CCDelayTime actionWithDuration:dt], 
+                                  [[walk2 copy] autorelease], 
+                                  [CCDelayTime actionWithDuration:dt], 
+                                  [[walk3 copy] autorelease],
+                                  [CCDelayTime actionWithDuration:dt], 
+                                  nil]];
+}
+
 - (void)generateAction {
+    
+    
+    flashMarioL_WalkR1 = [[self createFrameActionByName:@"starl%d_walkr1.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    flashMarioL_WalkR2 = [[self createFrameActionByName:@"starl%d_walkr2.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    flashMarioL_WalkR3 = [[self createFrameActionByName:@"starl%d_walkr3.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    
+    flashMarioL_WalkL1 = [[self createFrameActionByName:@"starl%d_walkl1.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    flashMarioL_WalkL2 = [[self createFrameActionByName:@"starl%d_walkl2.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    flashMarioL_WalkL3 = [[self createFrameActionByName:@"starl%d_walkl3.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    
+    starMarioL_standR = [[self createFrameActionByName:@"starl%d_standr.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    starMarioL_standL = [[self createFrameActionByName:@"starl%d_standl.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    starMarioL_jumpR = [[self createFrameActionByName:@"starl%d_jumpr.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    starMarioL_jumpL = [[self createFrameActionByName:@"starl%d_jumpl.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    starMarioL_stopL = [[self createFrameActionByName:@"starl%d_stopl.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    starMarioL_stopR = [[self createFrameActionByName:@"starl%d_stopr.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    
+    
+    starMarioL_runSlowR = [[self starMarioRunAnimateOne:flashMarioL_WalkR1 
+                                                   two:flashMarioL_WalkR2 
+                                                 three:flashMarioL_WalkR3 
+                                              interval:2.0/60] retain];
+    
+    starMarioL_runMediumR = [[self starMarioRunAnimateOne:flashMarioL_WalkR1 
+                                                     two:flashMarioL_WalkR2 
+                                                   three:flashMarioL_WalkR3 
+                                                interval:1.0/60] retain];
+    
+    starMarioL_runFastR = [[self starMarioRunAnimateOne:flashMarioL_WalkR1 
+                                                   two:flashMarioL_WalkR2 
+                                                 three:flashMarioL_WalkR3 
+                                              interval:0] retain];
+    
+    starMarioL_runSlowL = [[self starMarioRunAnimateOne:flashMarioL_WalkL1 
+                                                    two:flashMarioL_WalkL2 
+                                                  three:flashMarioL_WalkL3 
+                                               interval:2.0/60] retain];
+    
+    starMarioL_runMediumL = [[self starMarioRunAnimateOne:flashMarioL_WalkL1 
+                                                      two:flashMarioL_WalkL2 
+                                                    three:flashMarioL_WalkL3 
+                                                 interval:1.0/60] retain];
+    starMarioL_runFastL = [[self starMarioRunAnimateOne:flashMarioL_WalkL1 
+                                                    two:flashMarioL_WalkL2 
+                                                  three:flashMarioL_WalkL3 
+                                               interval:0] retain];
+    
+    flashMarioS_WalkR1 = [[self createFrameActionByName:@"stars%d_walkr1.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    flashMarioS_WalkR2 = [[self createFrameActionByName:@"stars%d_walkr2.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    flashMarioS_WalkR3 = [[self createFrameActionByName:@"stars%d_walkr3.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    
+    flashMarioS_WalkL1 = [[self createFrameActionByName:@"stars%d_walkl1.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    flashMarioS_WalkL2 = [[self createFrameActionByName:@"stars%d_walkl2.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    flashMarioS_WalkL3 = [[self createFrameActionByName:@"stars%d_walkl3.png" frameNum:3 interval:1.0/60 repeat:1] retain];
+    
+    starMarioS_standR = [[self createFrameActionByName:@"stars%d_standr.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    starMarioS_standL = [[self createFrameActionByName:@"stars%d_standl.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    starMarioS_jumpR = [[self createFrameActionByName:@"stars%d_jumpr.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    starMarioS_jumpL = [[self createFrameActionByName:@"stars%d_jumpl.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    starMarioS_stopL = [[self createFrameActionByName:@"stars%d_stopl.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    starMarioS_stopR = [[self createFrameActionByName:@"stars%d_stopr.png" frameNum:3 interval:1.0/60 repeat:0] retain];
+    
+    
+    starMarioS_runSlowR = [[self starMarioRunAnimateOne:flashMarioS_WalkR1 
+                                                    two:flashMarioS_WalkR2 
+                                                  three:flashMarioS_WalkR3 
+                                               interval:2.0/60] retain];
+    
+    starMarioS_runMediumR = [[self starMarioRunAnimateOne:flashMarioS_WalkR1 
+                                                      two:flashMarioS_WalkR2 
+                                                    three:flashMarioS_WalkR3 
+                                                 interval:1.0/60] retain];
+    
+    starMarioS_runFastR = [[self starMarioRunAnimateOne:flashMarioS_WalkR1 
+                                                    two:flashMarioS_WalkR2 
+                                                  three:flashMarioS_WalkR3 
+                                               interval:0] retain];
+    
+    starMarioS_runSlowL = [[self starMarioRunAnimateOne:flashMarioS_WalkL1 
+                                                    two:flashMarioS_WalkL2 
+                                                  three:flashMarioS_WalkL3 
+                                               interval:2.0/60] retain];
+    
+    starMarioS_runMediumL = [[self starMarioRunAnimateOne:flashMarioS_WalkL1 
+                                                      two:flashMarioS_WalkL2 
+                                                    three:flashMarioS_WalkL3 
+                                                 interval:1.0/60] retain];
+    
+    starMarioS_runFastL = [[self starMarioRunAnimateOne:flashMarioS_WalkL1 
+                                                    two:flashMarioS_WalkL2 
+                                                  three:flashMarioS_WalkL3 
+                                               interval:0] retain];
+    
     marios_runFastL = [[self createFrameActionByName:@"marios_walkl%d.png" frameNum:3 interval:0.03 repeat:0] retain];
     marios_runFastR = [[self createFrameActionByName:@"marios_walkr%d.png" frameNum:3 interval:0.03 repeat:0] retain];
     marios_runMediumL = [[self createFrameActionByName:@"marios_walkl%d.png" frameNum:3 interval:0.05 repeat:0] retain];
@@ -154,6 +258,7 @@ using namespace std;
 }
 
 - (void) drawCollideObject {
+    AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
     CCTMXObjectGroup *objects = [tileMap_ objectGroupNamed:@"sprite"];
     NSMutableDictionary *objPoint;
     
@@ -171,31 +276,53 @@ using namespace std;
         BOOL isDynamic;
         
         if (objType && [objType compare:@"hero"] == NSOrderedSame) {
-            if (player_.marioStatus == kMarioSmall) {
+            if (delegate.marioStatus == kMarioSmall) {
                 _point = ccp(x, y+10.0);
                 player_ = [self getPlayerByName:@"marios_standr.png"];
+                player_.position = _point;
+                player_.type = kGameObjectPlayer;
+                [spriteSheet_ addChild:player_];
+                [player_ createPhisicsBody:world_ 
+                                   postion:_point 
+                                      size:_size 
+                                   dynamic:YES 
+                                  friction:1 
+                                   density:5.6 
+                               restitution:0 
+                                     boxId:-1];
             }
-            else if (player_.marioStatus == kMarioLarge) {
+            else if (delegate.marioStatus == kMarioLarge) {
                 player_ = [self getPlayerByName:@"mariom_standr.png"];
                 _point = ccp(x+8.0, y+26.0);
-                _size = ccp(16.0, 32.0);
+                _size = ccp(mariom_standR.originalSize.width-2.0, mariom_standR.originalSize.height);
+                player_.position = _point;
+                player_.type = kGameObjectPlayer;
+                [spriteSheet_ addChild:player_];
+                [player_ createPhisicsBody:world_ 
+                                   postion:_point 
+                                      size:_size 
+                                   dynamic:YES 
+                                  friction:1 
+                                   density:3.8 
+                               restitution:0 
+                                     boxId:-1];
             }
             else {
                 player_ = [self getPlayerByName:@"mariol_standr.png"];
                 _point = ccp(x+8.0, y+26.0);
-                _size = ccp(16.0, 32.0);
+                _size = ccp(mariol_standR.originalSize.width-2.0, mariol_standR.originalSize.height);
+                player_.position = _point;
+                player_.type = kGameObjectPlayer;
+                [spriteSheet_ addChild:player_];
+                [player_ createPhisicsBody:world_ 
+                                   postion:_point 
+                                      size:_size 
+                                   dynamic:YES 
+                                  friction:1 
+                                   density:3.8 
+                               restitution:0 
+                                     boxId:-1];
             }
-            player_.position = _point;
-            player_.type = kGameObjectPlayer;
-            [spriteSheet_ addChild:player_];
-            [player_ createPhisicsBody:world_ 
-                               postion:_point 
-                                  size:_size 
-                               dynamic:YES 
-                              friction:1 
-                               density:5.6 
-                           restitution:0 
-                                 boxId:-1];
         }
         else if (objType && [objType compare:@"ground"] == NSOrderedSame) {
             PipeAndRock *ground = [self getFixedObjByName:@"other.png"];
@@ -214,7 +341,8 @@ using namespace std;
         }
         else if (objType && 
                  ([objType compare:@"brick"] == NSOrderedSame || 
-                  [objType compare:@"multiCoinBrick2"] == NSOrderedSame)) {
+                  [objType compare:@"multiCoinBrick1"] == NSOrderedSame || 
+                  [objType compare:@"starBrick1"] == NSOrderedSame)) {
             sprite = [self getSpriteByName:@"brick1.png"];
             sprite.position = _point;
             isDynamic = NO;
@@ -222,28 +350,21 @@ using namespace std;
              if ([objType compare:@"brick"] == NSOrderedSame) {
                  sprite.type = kGameObjectBrick;
              }
-             if ([objType compare:@"multiCoinBrick2"] == NSOrderedSame) {
-                 sprite.type = kGameObjectMultiCoinBrick;
-             }
-            [spriteSheet_ addChild:sprite];
-        }
-        else if (objType && 
-                 ([objType compare:@"goldBrick"] == NSOrderedSame || 
-                  [objType compare:@"multiCoinBrick1"] == NSOrderedSame || 
-                  [objType compare:@"starBrick1"] == NSOrderedSame)) {
-                     
-            sprite = [self getSpriteByName:@"goldBrick1_1.png"];
-            sprite.position = _point;
-            isDynamic = NO;
-             if ([objType compare:@"goldBrick"] == NSOrderedSame) {
-                 sprite.type = kGameObjectGoldBrick;
-             }
              if ([objType compare:@"multiCoinBrick1"] == NSOrderedSame) {
                  sprite.type = kGameObjectMultiCoinBrick;
              }
              if ([objType compare:@"starBrick1"] == NSOrderedSame) {
                  sprite.type = kGameObjectStarBrick;
              }
+            [spriteSheet_ addChild:sprite];
+        }
+        else if (objType && ([objType compare:@"goldBrick"] == NSOrderedSame)) {
+                     
+            sprite = [self getSpriteByName:@"goldBrick1_1.png"];
+            sprite.position = _point;
+            isDynamic = NO;
+            sprite.type = kGameObjectGoldBrick;
+             
             [spriteSheet_ addChild:sprite];
             [sprite runAction:[[goldBrickFlash_ copy] autorelease]];
         }
@@ -534,7 +655,7 @@ using namespace std;
                        density:0 
                    restitution:0 
                          boxId:-1];
-        obj.body->SetLinearVelocity(b2Vec2(7.0, 7.0));
+        obj.body->SetLinearVelocity(b2Vec2(3.0, 5.0));
     }
 }
 
@@ -595,8 +716,10 @@ using namespace std;
     vector<MyContact>::iterator pos;
     BOOL marioWillLarger = NO;
     BOOL marioWillSmaller = NO;
-    BOOL marioCollideEnemyTimes = 0;
-    BOOL fireBallCollisionTimes = 0;
+    int marioCollideEnemyTimes = 0;
+    int fireBallCollisionTimes = 0;
+    int marioCollideStarTimes = 0;
+    int marioCollideFlowerTimes = 0;
     
     for (b2ContactEdge *ce = player_.body->GetContactList(); ce; ce = ce->next) {
         if (ce->contact->GetFixtureA() != player_.leftFixture && 
@@ -675,7 +798,7 @@ using namespace std;
         }
         
         //判断Mario是否和花相撞
-        if (IS_PLAYER(obj1, obj2) && IS_FLOWER(obj1, obj2)) {
+        if (IS_PLAYER(obj1, obj2) && IS_FLOWER(obj1, obj2) && marioCollideFlowerTimes == 0) {
             
             if (player_.marioStatus == kMarioSmall) {
                 if (obj1.type == kGameObjectPlayer) {
@@ -725,6 +848,7 @@ using namespace std;
             [self bounceUpScore:@"1000" atPos:ccp(player_.position.x, 
                                                   player_.position.y+(32.0/320)*winSize.height)];
             [self setHudLabelScore:1000];
+            marioCollideFlowerTimes++;
         }
         
         //判断火球是否和敌人碰撞
@@ -823,40 +947,14 @@ using namespace std;
                 }
                 if (obj1.bottomFixture == contact.fixtureA) {
                     if (obj1.body->GetLinearVelocity().x > 0) {
-                        obj1.body->SetLinearVelocity(b2Vec2(8.0, 6.5));
+                        obj1.body->SetLinearVelocity(b2Vec2(8.0, 5.5));
                     }
                     else {
-                        obj1.body->SetLinearVelocity(b2Vec2(-8.0, 6.5));
+                        obj1.body->SetLinearVelocity(b2Vec2(-8.0, 5.5));
                     }
                 }
                 
-//                if ((obj2.type == kGameObjectEnemy1 || obj2.type == kGameObjectEnemy2) && 
-//                    fireBallCollisionTimes == 0) {
-//                    if (find(toDestroy.begin(), toDestroy.end(), body2) == toDestroy.end()) {
-//                        toDestroy.push_back(body2);
-//                    }
-//                    MoveRectObject *deadEnemy = nil;
-//                    
-//                    switch (obj2.type) {
-//                        case kGameObjectEnemy1:
-//                            deadEnemy = [self getMoveObjByName:@"enemy1_1.png"];
-//                            break;
-//                        case kGameObjectEnemy2:
-//                            deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
-//                            break;
-//                        default:
-//                            break;
-//                    }
-//                    deadEnemy.position = ccp(obj2.position.x, obj2.position.y);
-//                    [spriteSheet_ addChild:deadEnemy];
-//                    
-//                    [self enemyGoDie:deadEnemy];
-//                    [self bounceUpScore:@"200" 
-//                                  atPos:ccp(obj2.position.x, obj2.position.y+(32.0/320)*winSize.height)];
-//                    [self setHudLabelScore:200];
-//                    
-//                    fireBallCollisionTimes++;
-//                }
+
             }
             if (obj2.type == kGameObjectFireBall) { 
                 if(obj2.leftFixture == contact.fixtureB || 
@@ -881,33 +979,7 @@ using namespace std;
                         obj2.body->SetLinearVelocity(b2Vec2(-8.0, 6.5));
                     }
                 }
-                
-//                if ((obj1.type == kGameObjectEnemy1 || obj1.type == kGameObjectEnemy2) && 
-//                    fireBallCollisionTimes == 0) {
-//                    if (find(toDestroy.begin(), toDestroy.end(), body1) == toDestroy.end()) {
-//                        toDestroy.push_back(body1);
-//                    }
-//                    MoveRectObject *deadEnemy = nil;
-//                    
-//                    switch (obj1.type) {
-//                        case kGameObjectEnemy1:
-//                            deadEnemy = [self getMoveObjByName:@"enemy1_1.png"];
-//                            break;
-//                        case kGameObjectEnemy2:
-//                            deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
-//                            break;
-//                        default:
-//                            break;
-//                    }
-//                    deadEnemy.position = ccp(obj1.position.x, obj1.position.y);
-//                    [spriteSheet_ addChild:deadEnemy];
-//                    
-//                    [self enemyGoDie:obj1];
-//                    [self bounceUpScore:@"200" 
-//                                  atPos:ccp(obj1.position.x, obj1.position.y+(32.0/320)*winSize.height)];
-//                    [self setHudLabelScore:200];
-//                    fireBallCollisionTimes++;
-//                }
+
             }
             
         }
@@ -940,37 +1012,63 @@ using namespace std;
                 if (marioCollideEnemyTimes == 0) {
                     CCLOG(@"<==The distance between player and enemy is : %f ==>", obj1.position.y-obj2.position.y);
                     
-                    if (obj1.position.y-obj2.position.y <= obj1.contentSize.height/2+obj2.contentSize.height && 
-                        obj1.position.y-obj2.position.y >= obj1.contentSize.height/2+obj2.contentSize.height/2-5) {
+                    if (player_.isInvincible == YES) {
                         if (find(toDestroy.begin(), toDestroy.end(), body2) == toDestroy.end()) {
                             toDestroy.push_back(body2);
                         }
-                        MoveRectObject *deadEnemy1 = [self getMoveObjByName:@"enemy1_die.png"];
-                        deadEnemy1.position = ccp(obj2.position.x, 
-                                                  obj2.position.y-(obj2.contentSize.height/2-deadEnemy1.contentSize.height/2));
-                        [spriteSheet_ addChild:deadEnemy1];
-                        [deadEnemy1 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0], 
-                                                                  [CCCallFuncN actionWithTarget:self 
-                                                                                       selector:@selector(destroySprite:)], 
-                                                                  nil]];
-                        obj1.body->SetLinearVelocity(b2Vec2(obj1.body->GetLinearVelocity().x, 5.0));
-                        [self bounceUpScore:@"100" atPos:ccp(deadEnemy1.position.x, 
-                                                             deadEnemy1.position.y+(32.0/320)*winSize.height)];
-                        [self setHudLabelScore:100];
+                        MoveRectObject *deadEnemy = nil;
                         
+                        switch (obj2.type) {
+                            case kGameObjectEnemy1:
+                                deadEnemy = [self getMoveObjByName:@"enemy1_1.png"];
+                                break;
+                            case kGameObjectEnemy2:
+                                deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
+                                break;
+                            default:
+                                break;
+                        }
+                        deadEnemy.position = ccp(obj2.position.x, obj2.position.y);
+                        [spriteSheet_ addChild:deadEnemy];
+                        
+                        [self enemyGoDie:deadEnemy];
+                        [self bounceUpScore:@"200" 
+                                      atPos:ccp(obj2.position.x, obj2.position.y+(32.0/320)*winSize.height)];
+                        [self setHudLabelScore:200];
                     }
-                    else {                        
-                        if (player_.marioStatus == kMarioSmall) {
-                            [self pauseSchedulerAndActions];
-                            [player_ setVisible:NO];
-                            delegate.curLives--;
-                            [self marioGoDie];
+                    else {
+                        if (obj1.position.y-obj2.position.y <= obj1.contentSize.height/2+obj2.contentSize.height/2+0.5 && 
+                            obj1.position.y-obj2.position.y >= obj1.contentSize.height/2+obj2.contentSize.height/2-4.5) {
+                            if (find(toDestroy.begin(), toDestroy.end(), body2) == toDestroy.end()) {
+                                toDestroy.push_back(body2);
+                            }
+                            MoveRectObject *deadEnemy1 = [self getMoveObjByName:@"enemy1_die.png"];
+                            deadEnemy1.position = ccp(obj2.position.x, 
+                                                      obj2.position.y-(obj2.contentSize.height/2-deadEnemy1.contentSize.height/2));
+                            [spriteSheet_ addChild:deadEnemy1];
+                            [deadEnemy1 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0], 
+                                                   [CCCallFuncN actionWithTarget:self 
+                                                                        selector:@selector(destroySprite:)], 
+                                                   nil]];
+                            obj1.body->SetLinearVelocity(b2Vec2(obj1.body->GetLinearVelocity().x, 5.0));
+                            [self bounceUpScore:@"100" atPos:ccp(deadEnemy1.position.x, 
+                                                                 deadEnemy1.position.y+(32.0/320)*winSize.height)];
+                            [self setHudLabelScore:100];
+                            
                         }
-                        if (player_.marioStatus == kMarioLarge || player_.marioStatus == kMarioCanFire) {
-                            marioWillSmaller = YES;
-                            player_.marioStatus = kMarioSmall;
+                        else {                        
+                            if (player_.marioStatus == kMarioSmall) {
+                                [self pauseSchedulerAndActions];
+                                [player_ setVisible:NO];
+                                delegate.curLives--;
+                                [self marioGoDie];
+                            }
+                            if (player_.marioStatus == kMarioLarge || player_.marioStatus == kMarioCanFire) {
+                                marioWillSmaller = YES;
+                                player_.marioStatus = kMarioSmall;
+                            }
+                            
                         }
-                        
                     }
                     marioCollideEnemyTimes++;
                 }
@@ -978,36 +1076,63 @@ using namespace std;
             
             if (obj2.type == kGameObjectPlayer) {
                 if (marioCollideEnemyTimes == 0) {
+                    CCLOG(@"<==The distance between player and enemy is : %f ==>", obj2.position.y-obj1.position.y);
                     
-                    if (obj2.position.y-obj1.position.y <= obj1.contentSize.height/2+obj2.contentSize.height/2 && 
-                        obj2.position.y-obj1.position.y >= obj1.contentSize.height/2+obj2.contentSize.height/2-4.5) {
+                    if (player_.isInvincible == YES) {
                         if (find(toDestroy.begin(), toDestroy.end(), body1) == toDestroy.end()) {
                             toDestroy.push_back(body1);
                         }
-                        MoveRectObject *deadEnemy1 = [self getMoveObjByName:@"enemy1_die.png"];
-                        deadEnemy1.position = ccp(obj1.position.x, 
-                                                  obj1.position.y-(obj1.contentSize.height/2-deadEnemy1.contentSize.height/2));
-                        [spriteSheet_ addChild:deadEnemy1];
-                        [deadEnemy1 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0], 
-                                               [CCCallFuncN actionWithTarget:self 
-                                                                    selector:@selector(destroySprite:)], 
-                                               nil]];
-                        obj2.body->SetLinearVelocity(b2Vec2(obj2.body->GetLinearVelocity().x, 5.0));
-                        [self bounceUpScore:@"100" atPos:ccp(deadEnemy1.position.x, 
-                                                             deadEnemy1.position.y+(32.0/320)*winSize.height)];
-                        [self setHudLabelScore:100];
+                        MoveRectObject *deadEnemy = nil;
                         
-                    }
-                    else {                        
-                        if (player_.marioStatus == kMarioSmall) {
-                            [player_ setVisible:NO];
-                            delegate.curLives--;
-                            [self marioGoDie];
+                        switch (obj1.type) {
+                            case kGameObjectEnemy1:
+                                deadEnemy = [self getMoveObjByName:@"enemy1_1.png"];
+                                break;
+                            case kGameObjectEnemy2:
+                                deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
+                                break;
+                            default:
+                                break;
                         }
-                        if (player_.marioStatus == kMarioLarge || player_.marioStatus == kMarioCanFire) {
-                            marioWillSmaller = YES;
-                            player_.isCollidable = NO;
-                            player_.marioStatus = kMarioSmall;
+                        deadEnemy.position = ccp(obj1.position.x, obj1.position.y);
+                        [spriteSheet_ addChild:deadEnemy];
+                        
+                        [self enemyGoDie:deadEnemy];
+                        [self bounceUpScore:@"200" 
+                                      atPos:ccp(obj1.position.x, obj1.position.y+(32.0/320)*winSize.height)];
+                        [self setHudLabelScore:200];
+                    }
+                    else {
+                        if (obj2.position.y-obj1.position.y <= obj1.contentSize.height/2+obj2.contentSize.height/2+0.5 && 
+                            obj2.position.y-obj1.position.y >= obj1.contentSize.height/2+obj2.contentSize.height/2-4.5) {
+                            if (find(toDestroy.begin(), toDestroy.end(), body1) == toDestroy.end()) {
+                                toDestroy.push_back(body1);
+                            }
+                            MoveRectObject *deadEnemy1 = [self getMoveObjByName:@"enemy1_die.png"];
+                            deadEnemy1.position = ccp(obj1.position.x, 
+                                                      obj1.position.y-(obj1.contentSize.height/2-deadEnemy1.contentSize.height/2));
+                            [spriteSheet_ addChild:deadEnemy1];
+                            [deadEnemy1 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0], 
+                                                   [CCCallFuncN actionWithTarget:self 
+                                                                        selector:@selector(destroySprite:)], 
+                                                   nil]];
+                            obj2.body->SetLinearVelocity(b2Vec2(obj2.body->GetLinearVelocity().x, 5.0));
+                            [self bounceUpScore:@"100" atPos:ccp(deadEnemy1.position.x, 
+                                                                 deadEnemy1.position.y+(32.0/320)*winSize.height)];
+                            [self setHudLabelScore:100];
+                            
+                        }
+                        else {                        
+                            if (player_.marioStatus == kMarioSmall) {
+                                [player_ setVisible:NO];
+                                delegate.curLives--;
+                                [self marioGoDie];
+                            }
+                            if (player_.marioStatus == kMarioLarge || player_.marioStatus == kMarioCanFire) {
+                                marioWillSmaller = YES;
+                                player_.isCollidable = NO;
+                                player_.marioStatus = kMarioSmall;
+                            }
                         }
                     }
                     marioCollideEnemyTimes++;
@@ -1018,11 +1143,49 @@ using namespace std;
         //star碰撞
         if (IS_STAR(obj1, obj2)) {
             if (obj1.type == kGameObjectStar) {
+                if (contact.fixtureA == obj1.bottomFixture) {
+                    obj1.body->SetLinearVelocity(b2Vec2(3.5, 8.0));
+                }
+                if (contact.fixtureA == obj1.leftFixture) {
+                    obj1.body->SetLinearVelocity(b2Vec2(3.5, obj1.body->GetLinearVelocity().y));
+                }
+                if (contact.fixtureA == obj1.rightFixture) {
+                    obj1.body->SetLinearVelocity(b2Vec2(-3.5, obj1.body->GetLinearVelocity().y));
+                }
                 
+                if (obj2.type == kGameObjectPlayer && marioCollideStarTimes == 0) {
+                    Player *mario = (Player *)obj2;
+                    if (find(toDestroy.begin(), toDestroy.end(), body1) == toDestroy.end()) {
+                        toDestroy.push_back(body1);
+                    }
+                    mario.isInvincible = YES;
+                    starMarioStart_ = [[NSDate date] retain];
+                    
+                    marioCollideStarTimes++;
+                }
             }
             
             if (obj2.type == kGameObjectStar) {
-                <#statements#>
+                if (contact.fixtureB == obj2.bottomFixture) {
+                    obj2.body->SetLinearVelocity(b2Vec2(3.5, 8.0));
+                }
+                if (contact.fixtureB == obj2.leftFixture) {
+                    obj2.body->SetLinearVelocity(b2Vec2(3.5, obj2.body->GetLinearVelocity().y));
+                }
+                if (contact.fixtureB == obj2.rightFixture) {
+                    obj2.body->SetLinearVelocity(b2Vec2(-3.5, obj2.body->GetLinearVelocity().y));
+                }
+                
+                if (obj1.type == kGameObjectPlayer && marioCollideStarTimes == 0) {
+                    Player *mario = (Player *)obj1;
+                    if (find(toDestroy.begin(), toDestroy.end(), body2) == toDestroy.end()) {
+                        toDestroy.push_back(body2);
+                    }
+                    mario.isInvincible = YES;
+                    starMarioStart_ = [[NSDate date] retain];
+                    
+                    marioCollideStarTimes++;
+                }
             }
         }
         
@@ -1231,6 +1394,7 @@ using namespace std;
                 star.position = ccp(obj1.position.x, obj1.position.y+(10.0/320)*winSize.height);
                 star.type = kGameObjectStar;
                 [spriteSheet_ addChild:star z:1];
+                [star runAction:[[starFlash_ copy] autorelease]];
                 [star runAction:[CCSequence actions:[CCMoveBy actionWithDuration:0.5 position:ccp(0, (8.0/320)*winSize.height)], 
                                                      [CCCallFuncN actionWithTarget:self 
                                                                           selector:@selector(generateBodyOfSprite:)], 
@@ -1246,13 +1410,16 @@ using namespace std;
                 
                 [self coinBrickToIronBrick:obj2];
                 [self brickRunPushUpAction:obj2 height:(10.0/320)*winSize.height];
-                CCSprite *coin = [self getSpriteByName:@"coinUp1.png"];
-                coin.position = ccp(obj2.position.x, obj2.position.y+obj2.contentSize.height/2+coin.contentSize.height/2);
-                [spriteSheet_ addChild:coin z:1];
-                [self coinFlyUp:coin];
+                MoveRectObject *star = [self getMoveObjByName:@"star1.png"];
+                star.position = ccp(obj2.position.x, obj2.position.y+(10.0/320)*winSize.height);
+                star.type = kGameObjectStar;
+                [spriteSheet_ addChild:star z:1];
+                [star runAction:[[starFlash_ copy] autorelease]];
+                [star runAction:[CCSequence actions:[CCMoveBy actionWithDuration:0.5 position:ccp(0, (8.0/320)*winSize.height)], 
+                                 [CCCallFuncN actionWithTarget:self 
+                                                      selector:@selector(generateBodyOfSprite:)], 
+                                 nil]];
                 
-                [self setHudLabelCoin:1];
-                [self setHudLabelScore:200];
                 pushUpTimes_++;
             }
         }
@@ -1260,20 +1427,28 @@ using namespace std;
     }
     if (onGround == 0) {
         player_.isJump = YES;
-        while ([player_ getActionByTag:MARIO_RUNACTION_TAG]) {
-            [player_ stopActionByTag:MARIO_RUNACTION_TAG];
+        [self playerStopAllMoveAction];
+        
+        if (player_.isInvincible) {
+            
         }
+        
         player_.isMarioStop = NO;
         faceWallTimes_ = 0;
+    }
+    
+    //mario贴墙的时候，方便处理动画
+    if (player_.stkHead == kStickHeadingZero) {
+        player_.isFaceWall = NO;
     }
     
     if (marioWillLarger) {
         CGPoint _pos = ccp(player_.position.x, player_.position.y);
         
         [player_ resizeBodyAtPositon:ccp(_pos.x, _pos.y+(8.0/320)*winSize.height) 
-                                size:ccp(mariom_standR.originalSize.width, mariom_standR.originalSize.height) 
+                                size:ccp(mariom_standR.originalSize.width-2.0, mariom_standR.originalSize.height) 
                             friction:1.0 
-                             density:3.2 
+                             density:3.8 
                          restitution:0];
         [player_ setDisplayFrame:mariom_standR];
     }
@@ -1281,7 +1456,7 @@ using namespace std;
     if (marioWillSmaller) {
         CGPoint _pos = ccp(player_.position.x, player_.position.y);
         [player_ resizeBodyAtPositon:_pos 
-                                size:ccp(marios_standR.originalSize.width, marios_standR.originalSize.height) 
+                                size:ccp(marios_standR.originalSize.width-2.0, marios_standR.originalSize.height) 
                             friction:1.0 
                              density:5.6 
                          restitution:0];
@@ -1318,6 +1493,51 @@ using namespace std;
     }
 }
 
+- (void) playerRunAction:(CCAction *)action1 second:(CCAction *)action2 third:(CCAction *)action3 tag:(int)tag {
+    if (player_.marioStatus == kMarioSmall) {
+        CCAction *tmpAction = [[action1 copy] autorelease];
+        tmpAction.tag = tag;
+        [player_ runAction:tmpAction];
+    }
+    else if (player_.marioStatus == kMarioLarge) {
+        CCAction *tmpAction = [[action2 copy] autorelease];
+        tmpAction.tag = tag;
+        [player_ runAction:tmpAction];
+    }
+    else {
+        CCAction *tmpAction = [[action3 copy] autorelease];
+        tmpAction.tag = tag;
+        [player_ runAction:tmpAction];
+    }
+}
+
+- (void) playerSetActionFrameOne:(CCSpriteFrame *)frame1 two:(CCSpriteFrame *)frame2 three:(CCSpriteFrame *)frame3 {
+    if (player_.marioStatus == kMarioSmall) {
+        [player_ setDisplayFrame:frame1];
+    }
+    else if (player_.marioStatus == kMarioLarge) {
+        [player_ setDisplayFrame:frame2];
+    }
+    else {
+        [player_ setDisplayFrame:frame3];
+    }
+}
+
+- (void) playerStopAllMoveAction {
+    while ([player_ getActionByTag:MARIO_RUNACTION_TAG]) {
+        [player_ stopActionByTag:MARIO_RUNACTION_TAG];
+    }
+    while ([player_ getActionByTag:STARMARIO_STOPACTION_TAG]) {
+        [player_ stopActionByTag:STARMARIO_STOPACTION_TAG];
+    }
+    while ([player_ getActionByTag:STARMARIO_STANDACTION_TAG]) {
+        [player_ stopActionByTag:STARMARIO_STANDACTION_TAG];
+    }
+    while ([player_ getActionByTag:STARMARIO_JUMPACTION_TAG]) {
+        [player_ stopActionByTag:STARMARIO_JUMPACTION_TAG];
+    }
+}
+
 - (void) checkoutJump:(ccTime) dt {
     if (player_.isJump == NO) {
         if (hud_.btnB.active == YES) {
@@ -1327,31 +1547,24 @@ using namespace std;
                 totalPressTime_ = 0.1;
                 player_.body->ApplyLinearImpulse(b2Vec2(0, (300.0+2000*totalPressTime_)/PTM_RATIO), 
                                                  player_.body->GetWorldCenter());
-                while ([player_ getActionByTag:MARIO_RUNACTION_TAG]) {
-                    [player_ stopActionByTag:MARIO_RUNACTION_TAG];
-                }
+                [self playerStopAllMoveAction];
+                
                 if (player_.isMarioMovingRight) {
                     
-                    if (player_.marioStatus == kMarioSmall) {
-                        [player_ setDisplayFrame:marios_jumpR];
-                    }
-                    else if (player_.marioStatus == kMarioLarge) {
-                        [player_ setDisplayFrame:mariom_jumpR];
+                    if (player_.isInvincible == NO) {
+                        [self playerSetActionFrameOne:marios_jumpR two:mariom_jumpR three:mariol_jumpR];
                     }
                     else {
-                        [player_ setDisplayFrame:mariol_jumpR];
+                        [self playerRunAction:starMarioS_jumpR second:starMarioL_jumpR third:starMarioL_jumpR tag:STARMARIO_JUMPACTION_TAG];
                     }
                 }
                 else {
                     
-                    if (player_.marioStatus == kMarioSmall) {
-                        [player_ setDisplayFrame:marios_jumpL];
-                    }
-                    else if (player_.marioStatus == kMarioLarge) {
-                        [player_ setDisplayFrame:mariom_jumpL];
+                    if (player_.isInvincible == NO) {
+                        [self playerSetActionFrameOne:marios_jumpL two:mariom_jumpL three:mariol_jumpL];
                     }
                     else {
-                        [player_ setDisplayFrame:mariol_jumpL];
+                        [self playerRunAction:starMarioS_jumpL second:starMarioL_jumpL third:starMarioL_jumpL tag:STARMARIO_JUMPACTION_TAG];
                     }
                 }
                 totalPressTime_ = 0;
@@ -1361,54 +1574,29 @@ using namespace std;
         else if (player_.readyToJump) {
             player_.body->ApplyLinearImpulse(b2Vec2(0, (300+2000*(totalPressTime_))/PTM_RATIO), 
                                              player_.body->GetWorldCenter());
-            while ([player_ getActionByTag:MARIO_RUNACTION_TAG]) {
-                [player_ stopActionByTag:MARIO_RUNACTION_TAG];
-            }
+            [self playerStopAllMoveAction];
+            
             if (player_.isMarioMovingRight) {
                 
-                if (player_.marioStatus == kMarioSmall) {
-                    [player_ setDisplayFrame:marios_jumpR];
-                }
-                else if (player_.marioStatus == kMarioLarge) {
-                    [player_ setDisplayFrame:mariom_jumpR];
+                if (player_.isInvincible == NO) {
+                    [self playerSetActionFrameOne:marios_jumpR two:mariom_jumpR three:mariol_jumpR];
                 }
                 else {
-                    [player_ setDisplayFrame:mariol_jumpR];
+                    [self playerRunAction:starMarioS_jumpR second:starMarioL_jumpR third:starMarioL_jumpR tag:STARMARIO_JUMPACTION_TAG];
                 }
             }
             else {
                 
-                if (player_.marioStatus == kMarioSmall) {
-                    [player_ setDisplayFrame:marios_jumpL];
-                }
-                else if (player_.marioStatus == kMarioLarge) {
-                    [player_ setDisplayFrame:mariom_jumpL];
+                if (player_.isInvincible == NO) {
+                    [self playerSetActionFrameOne:marios_jumpL two:mariom_jumpL three:mariol_jumpL];
                 }
                 else {
-                    [player_ setDisplayFrame:mariol_jumpL];
+                    [self playerRunAction:starMarioS_jumpL second:starMarioL_jumpL third:starMarioL_jumpL tag:STARMARIO_JUMPACTION_TAG];
                 }
             }
             player_.readyToJump = NO;
             totalPressTime_ = 0;
         }
-    }
-}
-
-- (void) playerRunAction:(CCAction *)action1 second:(CCAction *)action2 third:(CCAction *)action3 {
-    if (player_.marioStatus == kMarioSmall) {
-        CCAction *tmpAction = [[action1 copy] autorelease];
-        tmpAction.tag = MARIO_RUNACTION_TAG;
-        [player_ runAction:tmpAction];
-    }
-    else if (player_.marioStatus == kMarioLarge) {
-        CCAction *tmpAction = [[action2 copy] autorelease];
-        tmpAction.tag = MARIO_RUNACTION_TAG;
-        [player_ runAction:tmpAction];
-    }
-    else {
-        CCAction *tmpAction = [[action3 copy] autorelease];
-        tmpAction.tag = MARIO_RUNACTION_TAG;
-        [player_ runAction:tmpAction];
     }
 }
 
@@ -1488,6 +1676,17 @@ using namespace std;
     
     CGPoint stkPos = hud_.stick.stickPosition;
     
+    double starMarioPersistence = 0;
+    if (starMarioStart_) {
+        starMarioPersistence = [[NSDate date] timeIntervalSinceDate:starMarioStart_];
+    }
+    
+    if (starMarioPersistence > 10) {
+        player_.isInvincible = NO;
+        [starMarioStart_ release];
+        starMarioStart_ = nil;
+    }
+    
     if (player_.isJump) {
         player_.isMoveFast = NO;
     }
@@ -1511,10 +1710,14 @@ using namespace std;
     if (player_.stkHead == kStickHeadingRight && player_.isJump == NO) {
         
         if (player_.isFaceWall && faceWallTimes_ == 0) {
-            while ([player_ getActionByTag:MARIO_RUNACTION_TAG]) {
-                [player_ stopActionByTag:MARIO_RUNACTION_TAG];
+            
+            [self playerStopAllMoveAction];
+            if (player_.isInvincible == NO) {
+                [self playerRunAction:marios_runSlowR second:mariom_runSlowR third:mariol_runSlowR tag:MARIO_RUNACTION_TAG];
             }
-            [self playerRunAction:marios_runSlowR second:mariom_runSlowR third:mariol_runSlowR];
+            else {
+                [self playerRunAction:starMarioS_runSlowR second:starMarioL_runSlowR third:starMarioL_runSlowR tag:MARIO_RUNACTION_TAG];
+            }
             faceWallTimes_++;
         }
         
@@ -1524,10 +1727,14 @@ using namespace std;
             
             if ((player_.isMarioStop == YES || player_.isMarioMovingRight == NO) && 
                 player_.isFaceWall == NO) {
-                while ([player_ getActionByTag:MARIO_RUNACTION_TAG]) {
-                    [player_ stopActionByTag:MARIO_RUNACTION_TAG];
+                
+                [self playerStopAllMoveAction];
+                if (player_.isInvincible == NO) {
+                    [self playerRunAction:marios_runFastR second:mariom_runFastR third:mariol_runFastR tag:MARIO_RUNACTION_TAG];
                 }
-                [self playerRunAction:marios_runFastR second:mariom_runFastR third:mariol_runFastR];
+                else {
+                    [self playerRunAction:starMarioS_runFastR second:starMarioL_runFastR third:starMarioL_runFastR tag:MARIO_RUNACTION_TAG];
+                }
                 player_.isMarioStop = NO;
                 player_.isMarioMovingRight = YES;
             }
@@ -1541,15 +1748,25 @@ using namespace std;
             player_.body->SetLinearDamping(0.5);
             if ((player_.isMarioStop == YES || player_.isMarioMovingRight == NO || player_.isMoveFast == NO) && 
                 player_.isFaceWall == NO) {
-                while ([player_ getActionByTag:MARIO_RUNACTION_TAG]) {
-                    [player_ stopActionByTag:MARIO_RUNACTION_TAG];
-                }
+                
+                [self playerStopAllMoveAction];
                 if (player_.body->GetLinearVelocity().x >= 0 && player_.body->GetLinearVelocity().x <= 1) {
-                    [self playerRunAction:marios_runSlowR second:mariom_runSlowR third:mariol_runSlowR];
+                    if (player_.isInvincible == NO) {
+                        [self playerRunAction:marios_runSlowR second:mariom_runSlowR third:mariol_runSlowR tag:MARIO_RUNACTION_TAG];
+                    }
+                    else {
+                        [self playerRunAction:starMarioS_runSlowR second:starMarioL_runSlowR third:starMarioL_runSlowR tag:MARIO_RUNACTION_TAG];
+                    }
+                    
                     player_.isMoveFast = NO;
                 }
                 else if (player_.body->GetLinearVelocity().x > 1 && player_.body->GetLinearVelocity().x <= 5) {
-                    [self playerRunAction:marios_runMediumR second:mariom_runMediumR third:mariol_runMediumR];
+                    if (player_.isInvincible == NO) {
+                        [self playerRunAction:marios_runMediumR second:mariom_runMediumR third:mariol_runMediumR tag:MARIO_RUNACTION_TAG];
+                    }
+                    else {
+                        [self playerRunAction:starMarioS_runMediumR second:starMarioL_runMediumR third:starMarioL_runMediumR tag:MARIO_RUNACTION_TAG];
+                    }
                     player_.isMoveFast = YES;
                 }
                 player_.isMarioStop = NO;
@@ -1563,14 +1780,12 @@ using namespace std;
         
         if (player_.body->GetLinearVelocity().x < -2) {
             
-            if (player_.marioStatus == kMarioSmall) {
-                [player_ setDisplayFrame:marios_stopR];
-            }
-            else if (player_.marioStatus == kMarioLarge) {
-                [player_ setDisplayFrame:mariom_stopR];
+            if (player_.isInvincible == NO) {
+            
+                [self playerSetActionFrameOne:marios_stopR two:mariom_stopR three:mariol_stopR];
             }
             else {
-                [player_ setDisplayFrame:mariol_stopR];
+                [self playerRunAction:starMarioS_stopR second:starMarioL_stopR third:starMarioL_stopR tag:STARMARIO_STOPACTION_TAG];
             }
         }
         
@@ -1578,10 +1793,14 @@ using namespace std;
     else if (player_.stkHead == kStickHeadingLeft && player_.isJump == NO) {
         
         if (player_.isFaceWall && faceWallTimes_ == 0) {
-            while ([player_ getActionByTag:MARIO_RUNACTION_TAG]) {
-                [player_ stopActionByTag:MARIO_RUNACTION_TAG];
+            
+            [self playerStopAllMoveAction];
+            if (player_.isInvincible == NO) {
+                [self playerRunAction:marios_runSlowL second:mariom_runSlowL third:mariol_runSlowL tag:MARIO_RUNACTION_TAG];
             }
-            [self playerRunAction:marios_runSlowL second:mariom_runSlowL third:mariol_runSlowL];
+            else {
+                [self playerRunAction:starMarioS_runSlowL second:starMarioL_runSlowL third:starMarioL_runSlowL tag:MARIO_RUNACTION_TAG];
+            }
             faceWallTimes_++;
         }
         
@@ -1591,11 +1810,16 @@ using namespace std;
             
             if ((player_.isMarioStop == YES || player_.isMarioMovingRight == YES) && 
                 player_.isFaceWall == NO) {
-                while ([player_ getActionByTag:MARIO_RUNACTION_TAG]) {
-                    [player_ stopActionByTag:MARIO_RUNACTION_TAG];
+                
+                [self playerStopAllMoveAction];
+                
+                if (player_.isInvincible == NO) {
+                    [self playerRunAction:marios_runFastL second:mariom_runFastL third:mariol_runFastL tag:MARIO_RUNACTION_TAG];
+                }
+                else {
+                    [self playerRunAction:starMarioS_runFastL second:starMarioL_runFastL third:starMarioL_runFastL tag:MARIO_RUNACTION_TAG];
                 }
                 
-                [self playerRunAction:marios_runFastL second:mariom_runFastL third:mariol_runFastL];
                 player_.isMarioStop = NO;
                 player_.isMarioMovingRight = NO;
             }
@@ -1610,15 +1834,24 @@ using namespace std;
             
             if ((player_.isMarioStop == YES || player_.isMarioMovingRight == YES || player_.isMoveFast == NO) && 
                 player_.isFaceWall == NO) {      
-                while ([player_ getActionByTag:MARIO_RUNACTION_TAG]) {
-                    [player_ stopActionByTag:MARIO_RUNACTION_TAG];
-                }
+                
+                [self playerStopAllMoveAction];
                 if (player_.body->GetLinearVelocity().x <= 0 && player_.body->GetLinearVelocity().x >= -1) {
-                    [self playerRunAction:marios_runSlowL second:mariom_runSlowL third:mariol_runSlowL];
+                    if (player_.isInvincible == NO) {
+                        [self playerRunAction:marios_runSlowL second:mariom_runSlowL third:mariol_runSlowL tag:MARIO_RUNACTION_TAG];
+                    }
+                    else {
+                        [self playerRunAction:starMarioS_runSlowL second:starMarioL_runSlowL third:starMarioL_runSlowL tag:MARIO_RUNACTION_TAG];
+                    }
                     player_.isMoveFast = NO;
                 }
                 else if (player_.body->GetLinearVelocity().x < -1 && player_.body->GetLinearVelocity().x >= -5) {
-                    [self playerRunAction:marios_runMediumL second:mariom_runMediumL third:mariol_runMediumL];
+                    if (player_.isInvincible == NO) {
+                        [self playerRunAction:marios_runMediumL second:mariom_runMediumL third:mariol_runMediumL tag:MARIO_RUNACTION_TAG];
+                    }
+                    else {
+                        [self playerRunAction:starMarioS_runMediumL second:starMarioL_runMediumL third:starMarioL_runMediumL tag:MARIO_RUNACTION_TAG];
+                    }
                     player_.isMoveFast = YES;
                 }
                 player_.isMarioStop = NO;
@@ -1633,14 +1866,12 @@ using namespace std;
         
         if (player_.body->GetLinearVelocity().x > 2) {
             
-            if (player_.marioStatus == kMarioSmall) {
-                [player_ setDisplayFrame:marios_stopL];
-            }
-            else if (player_.marioStatus == kMarioLarge) {
-                [player_ setDisplayFrame:mariom_stopL];
+            if (player_.isInvincible == NO) {
+
+                [self playerSetActionFrameOne:marios_stopL two:mariom_stopL three:mariol_stopL];
             }
             else {
-                [player_ setDisplayFrame:mariol_stopL];
+                [self playerRunAction:starMarioS_stopL second:starMarioL_stopL third:starMarioL_stopL tag:STARMARIO_STOPACTION_TAG];
             }
         }
         
@@ -1654,41 +1885,41 @@ using namespace std;
         abs(player_.body->GetLinearVelocity().y) < 0.3 && 
         player_.isJump == NO) {
         
-        if (player_.stkHead != kStickHeadingLeft &&
+        if (player_.stkHead != kStickHeadingLeft && 
             player_.stkHead != kStickHeadingRight && 
-            player_.isFireing == NO) {
+            //player_.stkHead != kStickHeadingDown && 
+            player_.isFireing == NO && 
+            player_.isMarioStop == NO) {
             
             faceWallTimes_ = 0;
-            while ([player_ getActionByTag:MARIO_RUNACTION_TAG]) {
-                [player_ stopActionByTag:MARIO_RUNACTION_TAG];
-            }
+            [self playerStopAllMoveAction];
+            
             if (player_.isMarioMovingRight) {
                 
-                if (player_.marioStatus == kMarioSmall) {
-                    [player_ setDisplayFrame:marios_standR];
-                }
-                else if (player_.marioStatus == kMarioLarge) {
-                    [player_ setDisplayFrame:mariom_standR];
+                if (player_.isInvincible == NO) {
+
+                    [self playerSetActionFrameOne:marios_standR two:mariom_standR three:mariol_standR];
                 }
                 else {
-                    [player_ setDisplayFrame:mariol_standR];
+                    [self playerRunAction:starMarioS_standR second:starMarioL_standR third:starMarioL_standR tag:STARMARIO_STANDACTION_TAG];
                 }
             }
             else {
-                
-                if (player_.marioStatus == kMarioSmall) {
-                    [player_ setDisplayFrame:marios_standL];
-                }
-                else if (player_.marioStatus == kMarioLarge) {
-                    [player_ setDisplayFrame:mariom_standL];
+                if (player_.isInvincible == NO) {
+                    
+                    [self playerSetActionFrameOne:marios_standL two:mariom_standL three:mariol_standL];
                 }
                 else {
-                    [player_ setDisplayFrame:mariol_standL];
+                    [self playerRunAction:starMarioS_standL second:starMarioL_standL third:starMarioL_standL tag:STARMARIO_STANDACTION_TAG];
                 }
             }
         }
         player_.isMarioStop = YES;
         player_.isMoveFast = NO;
+        
+        if (player_.isFaceWall) {
+            player_.isMarioStop = NO;
+        }
     }
     
     player_.position = CGPointMake(player_.body->GetPosition().x*PTM_RATIO, 
@@ -1723,10 +1954,11 @@ using namespace std;
         totalPressTimeA_ = 0;
         fireDelta_ = 0;
         multiCoinBrickPushUpTimes_ = 0;
+        starMarioStart_ = NULL;
         
         player_.marioStatus = delegate.marioStatus;
         
-        tileMap_  = [CCTMXTiledMap node];
+        tileMap_ = [CCTMXTiledMap node];
         tileMap_ = delegate.currentLevel.p_bg;
         tileMap_.anchorPoint = ccp(0, 0);
 
@@ -1793,6 +2025,48 @@ using namespace std;
     [mariol_stopR release];
     [mariol_jumpL release];
     [mariol_jumpR release];
+    
+    [flashMarioS_WalkR1 release];
+    [flashMarioS_WalkR2 release];
+    [flashMarioS_WalkR3 release];
+    
+    [flashMarioS_WalkL1 release];
+    [flashMarioS_WalkL2 release];
+    [flashMarioS_WalkL3 release];
+    
+    [flashMarioL_WalkR1 release];
+    [flashMarioL_WalkR2 release];
+    [flashMarioL_WalkR3 release];
+    
+    [flashMarioL_WalkL1 release];
+    [flashMarioL_WalkL2 release];
+    [flashMarioL_WalkL3 release];
+    
+    [starMarioL_standR release];
+    [starMarioL_standL release];
+    [starMarioL_stopR release];
+    [starMarioL_stopL release];
+    [starMarioL_jumpR release];
+    [starMarioL_jumpL release];
+    [starMarioL_runFastL release];
+    [starMarioL_runFastR release];
+    [starMarioL_runMediumR release];
+    [starMarioL_runMediumL release];
+    [starMarioL_runSlowR release];
+    [starMarioL_runSlowL release];
+    
+    [starMarioS_standR release];
+    [starMarioS_standL release];
+    [starMarioS_stopR release];
+    [starMarioS_stopL release];
+    [starMarioS_jumpR release];
+    [starMarioS_jumpL release];
+    [starMarioS_runFastL release];
+    [starMarioS_runFastR release];
+    [starMarioS_runMediumR release];
+    [starMarioS_runMediumL release];
+    [starMarioS_runSlowR release];
+    [starMarioS_runSlowL release];
     
     [ironBrick_ release];
     [goldBrickFlash_ release];

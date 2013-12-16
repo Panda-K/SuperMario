@@ -28,8 +28,6 @@
 		385A9E041834718100F9188C /* enemy1_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DF71834717F00F9188C /* enemy1_2.png */; };
 		385A9E051834718100F9188C /* flashPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DF81834717F00F9188C /* flashPoint.png */; };
 		385A9E061834718100F9188C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DF91834718000F9188C /* logo.png */; };
-		385A9E071834718100F9188C /* mario.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DFA1834718000F9188C /* mario.plist */; };
-		385A9E081834718100F9188C /* mario.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DFB1834718000F9188C /* mario.png */; };
 		385A9E091834718100F9188C /* Overworld_piano.mid in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DFC1834718000F9188C /* Overworld_piano.mid */; };
 		385A9E0A1834718100F9188C /* selectLayerSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DFD1834718000F9188C /* selectLayerSheet.plist */; };
 		385A9E0B1834718100F9188C /* selectLayerSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DFE1834718000F9188C /* selectLayerSheet.png */; };
@@ -43,6 +41,8 @@
 		3867494218424BE300510193 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3867494118424BE300510193 /* libstdc++.dylib */; };
 		389E476018529E5B001F3EC0 /* MoveRectObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 389E475F18529E5B001F3EC0 /* MoveRectObject.mm */; };
 		38B439BD1837CC76004ACA2A /* Player.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38B439BC1837CC76004ACA2A /* Player.mm */; };
+		38C6B09D185B07ED000C982B /* mario.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38C6B09B185B07ED000C982B /* mario.plist */; };
+		38C6B09E185B07ED000C982B /* mario.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C6B09C185B07ED000C982B /* mario.png */; };
 		38C9D1D218290B88007709D0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D118290B88007709D0 /* QuartzCore.framework */; };
 		38C9D1D418290B88007709D0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D318290B88007709D0 /* OpenGLES.framework */; };
 		38C9D1D618290B88007709D0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D518290B88007709D0 /* OpenAL.framework */; };
@@ -253,8 +253,6 @@
 		385A9DF71834717F00F9188C /* enemy1_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enemy1_2.png; path = Resources/enemy1_2.png; sourceTree = "<group>"; };
 		385A9DF81834717F00F9188C /* flashPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flashPoint.png; path = Resources/flashPoint.png; sourceTree = "<group>"; };
 		385A9DF91834718000F9188C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/logo.png; sourceTree = "<group>"; };
-		385A9DFA1834718000F9188C /* mario.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = mario.plist; path = Resources/mario.plist; sourceTree = "<group>"; };
-		385A9DFB1834718000F9188C /* mario.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mario.png; path = Resources/mario.png; sourceTree = "<group>"; };
 		385A9DFC1834718000F9188C /* Overworld_piano.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = Overworld_piano.mid; path = Resources/Overworld_piano.mid; sourceTree = "<group>"; };
 		385A9DFD1834718000F9188C /* selectLayerSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = selectLayerSheet.plist; path = Resources/selectLayerSheet.plist; sourceTree = "<group>"; };
 		385A9DFE1834718000F9188C /* selectLayerSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selectLayerSheet.png; path = Resources/selectLayerSheet.png; sourceTree = "<group>"; };
@@ -272,6 +270,8 @@
 		389E475F18529E5B001F3EC0 /* MoveRectObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveRectObject.mm; sourceTree = "<group>"; };
 		38B439BB1837CC75004ACA2A /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		38B439BC1837CC76004ACA2A /* Player.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Player.mm; sourceTree = "<group>"; };
+		38C6B09B185B07ED000C982B /* mario.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mario.plist; sourceTree = "<group>"; };
+		38C6B09C185B07ED000C982B /* mario.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mario.png; sourceTree = "<group>"; };
 		38C9D1CD18290B88007709D0 /* SuperMario.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperMario.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C9D1D118290B88007709D0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		38C9D1D318290B88007709D0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -745,6 +745,8 @@
 		38C9D1E418290B88007709D0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				38C6B09B185B07ED000C982B /* mario.plist */,
+				38C6B09C185B07ED000C982B /* mario.png */,
 				38D9C130185489F300F0993F /* world1-1.png */,
 				38D9C131185489F300F0993F /* world1-1.tmx */,
 				384C7E0D183717A500CF720A /* gameInfoLayerSheet.plist */,
@@ -756,8 +758,6 @@
 				385A9DF71834717F00F9188C /* enemy1_2.png */,
 				385A9DF81834717F00F9188C /* flashPoint.png */,
 				385A9DF91834718000F9188C /* logo.png */,
-				385A9DFA1834718000F9188C /* mario.plist */,
-				385A9DFB1834718000F9188C /* mario.png */,
 				385A9DFC1834718000F9188C /* Overworld_piano.mid */,
 				385A9DFD1834718000F9188C /* selectLayerSheet.plist */,
 				385A9DFE1834718000F9188C /* selectLayerSheet.png */,
@@ -1353,8 +1353,6 @@
 				385A9E041834718100F9188C /* enemy1_2.png in Resources */,
 				385A9E051834718100F9188C /* flashPoint.png in Resources */,
 				385A9E061834718100F9188C /* logo.png in Resources */,
-				385A9E071834718100F9188C /* mario.plist in Resources */,
-				385A9E081834718100F9188C /* mario.png in Resources */,
 				385A9E091834718100F9188C /* Overworld_piano.mid in Resources */,
 				385A9E0A1834718100F9188C /* selectLayerSheet.plist in Resources */,
 				385A9E0B1834718100F9188C /* selectLayerSheet.png in Resources */,
@@ -1365,6 +1363,8 @@
 				384C7E12183717A500CF720A /* smb_jumpsmall.wav in Resources */,
 				38D9C132185489F300F0993F /* world1-1.png in Resources */,
 				38D9C133185489F300F0993F /* world1-1.tmx in Resources */,
+				38C6B09D185B07ED000C982B /* mario.plist in Resources */,
+				38C6B09E185B07ED000C982B /* mario.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

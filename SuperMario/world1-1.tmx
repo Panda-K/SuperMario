@@ -22,7 +22,7 @@
   <object name="enemy1_2" type="enemy1" x="680" y="205" width="16" height="16"/>
   <object name="enemy1_3" type="enemy1" x="832" y="205" width="16" height="16"/>
   <object name="enemy1_4" type="enemy1" x="856" y="205" width="16" height="16"/>
-  <object name="hide" type="lifeBrick" x="1024" y="144" width="16" height="16"/>
+  <object name="hide" type="hideLifeBrick" x="1024" y="144" width="16" height="16"/>
   <object name="brick4" type="brick" x="1232" y="160" width="16" height="16"/>
   <object name="coin4" type="mushBrick" x="1248" y="160" width="16" height="16"/>
   <object name="brick5" type="brick" x="1264" y="160" width="16" height="16"/>
@@ -109,6 +109,6 @@
   <object name="enemy1_14" type="enemy1" x="2752" y="205" width="16" height="16"/>
   <object name="enemy1_15" type="enemy1" x="2776" y="205" width="16" height="16"/>
   <object name="hide2" x="3040" y="160" width="16" height="16"/>
-  <object name="enemy2_1" type="enemy2" x="1744" y="197" width="16" height="24"/>
+  <object name="enemy2_1" type="enemy2" x="1744" y="197" width="16" height="16"/>
  </objectgroup>
 </map>

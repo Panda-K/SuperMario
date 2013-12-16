@@ -71,6 +71,48 @@
     CCAction *mariol_fireL;
     CCAction *mariol_fireR;
     
+    CCAction *flashMarioS_WalkR1;
+    CCAction *flashMarioS_WalkR2;
+    CCAction *flashMarioS_WalkR3;
+    
+    CCAction *flashMarioS_WalkL1;
+    CCAction *flashMarioS_WalkL2;
+    CCAction *flashMarioS_WalkL3;
+    
+    CCAction *flashMarioL_WalkR1;
+    CCAction *flashMarioL_WalkR2;
+    CCAction *flashMarioL_WalkR3;
+    
+    CCAction *flashMarioL_WalkL1;
+    CCAction *flashMarioL_WalkL2;
+    CCAction *flashMarioL_WalkL3;
+    
+    CCAction *starMarioL_standR;
+    CCAction *starMarioL_standL;
+    CCAction *starMarioL_stopR;
+    CCAction *starMarioL_stopL;
+    CCAction *starMarioL_jumpR;
+    CCAction *starMarioL_jumpL;
+    CCAction *starMarioL_runFastL;
+    CCAction *starMarioL_runFastR;
+    CCAction *starMarioL_runMediumR;
+    CCAction *starMarioL_runMediumL;
+    CCAction *starMarioL_runSlowR;
+    CCAction *starMarioL_runSlowL;
+    
+    CCAction *starMarioS_standR;
+    CCAction *starMarioS_standL;
+    CCAction *starMarioS_stopR;
+    CCAction *starMarioS_stopL;
+    CCAction *starMarioS_jumpR;
+    CCAction *starMarioS_jumpL;
+    CCAction *starMarioS_runFastL;
+    CCAction *starMarioS_runFastR;
+    CCAction *starMarioS_runMediumR;
+    CCAction *starMarioS_runMediumL;
+    CCAction *starMarioS_runSlowR;
+    CCAction *starMarioS_runSlowL;
+    
     CCAction *goldBrickFlash_;
     CCAction *flowerFlash_;
     CCAction *coinUp_;
@@ -90,6 +132,7 @@
     
     NSDate *multiCoinBrickStart_;
     int multiCoinBrickPushUpTimes_;
+    NSDate *starMarioStart_;
 }
 
 @property (nonatomic, retain) HudStickLayer *hud;
