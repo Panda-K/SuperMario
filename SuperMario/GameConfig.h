@@ -32,13 +32,19 @@
 #define IS_IRONBRICK(x, y) (x.type == kGameObjectIronBrick || y.type == kGameObjectIronBrick)
 #define IS_FIREBALL(x, y) (x.type == kGameObjectFireBall || y.type == kGameObjectFireBall)
 #define IS_ENEMY1(x, y) (x.type == kGameObjectEnemy1 || y.type == kGameObjectEnemy1)
+#define IS_ENEMY2(x, y) (x.type == kGameObjectEnemy2 || y.type == kGameObjectEnemy2)
+#define IS_SHRINKENEMY2(x, y) (x.type == kGameObjectShrinkEnemy2 || y.type == kGameObjectShrinkEnemy2)
 #define IS_STAR(x, y) (x.type == kGameObjectStar || y.type == kGameObjectStar)
+#define IS_INUP_PIPE(x, y) (x.type == kGameObjectInUpPipe || y.type == kGameObjectInUpPipe)
+#define IS_INLEFT_PIPE(x, y) (x.type == kGameObjectInLeftPipe || y.type == kGameObjectInLeftPipe)
 
 typedef enum {
-    kGameObjectNone,
+    kGameObjectNone, 
+    kGameObjectCoin, 
     kGameObjectPlayer,
     kGameObjectEnemy1,
     kGameObjectEnemy2,
+    kGameObjectShrinkEnemy2, 
     kGameObjectFireBall,
     kGameObjectMushRoom,
     kGameObjectFlower,
@@ -50,6 +56,9 @@ typedef enum {
     kGameObjectMultiCoinBrick,
     kGameObjectStarBrick,
     kGameObjectPipe,
+    kGameObjectInUpPipe, 
+    kGameObjectInLeftPipe, 
+    kGameObjectOutPipe, 
     kGameObjectRock,
     kGameObjectPlatform
 } GameObjectType;

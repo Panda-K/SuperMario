@@ -1,9 +1,9 @@
 //
-//  MainGameLayer.h
+//  DownWorldLayer.h
 //  SuperMario
 //
-//  Created by jashon on 13-11-5.
-//  Copyright (c) 2013年 __Panda-K__. All rights reserved.
+//  Created by jashon on 14-1-8.
+//  Copyright (c) 2014年 __xuzhaojia__. All rights reserved.
 //
 #import "HudStickLayer.h"
 #import "Box2D.h"
@@ -15,7 +15,7 @@
 #import <vector>
 #import <algorithm>
 
-@interface MainGameLayer : CCLayer {
+@interface DownWorldLayer : CCLayer {
     CGSize winSize;
     CCTMXTiledMap *tileMap_;
     CCTMXTiledMap *downWorldTiledMap_;
@@ -123,9 +123,6 @@
     CCAction *coinFlash_;
     
     CCAction *enemy1_walk;
-    CCAction *enemy2_walkL;
-    CCAction *enemy2_walkR;
-    CCSpriteFrame *enemy2_recover;
     
     int pushUpTimes_;
     int faceWallTimes_;
@@ -140,31 +137,17 @@
     int multiCoinBrickPushUpTimes_;
     NSDate *starMarioStart_;
     NSMutableArray *coinArray_;
-    NSMutableArray *enemyArray_;
 }
-
 @property (nonatomic, retain) HudStickLayer *hud;
 
-- (void) reset;
-- (void) initOptions;
-- (void) generateAction;
-- (void) setPhysicsWorld;
-- (void) drawCollideObject;
-- (void) drawPlayer;
-- (void) startWorldStep;
-- (void) startCheckOut;
-- (void) setViewPointCenter;
 @end
 
-
-@interface MainGameScene : CCScene {
+@interface DownWorldScene : CCScene {
+    DownWorldLayer *downWorldLayer_;
     HudStickLayer *hudLayer_;
-    MainGameLayer *gameLayer_;
 }
-
+@property (nonatomic, retain) DownWorldLayer *downWorldLayer;
 @property (nonatomic, retain) HudStickLayer *hudLayer;
-@property (nonatomic, retain) MainGameLayer *gameLayer;
 
 + (id) scene;
-
 @end

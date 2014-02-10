@@ -16,6 +16,7 @@
     BOOL isMarioMovingRight_;
     BOOL isMoveFast_;
     BOOL isJump_;
+    BOOL isFall_;
     BOOL readyToJump_;
     BOOL isFaceWall_;
     BOOL isFireing_;
@@ -31,6 +32,7 @@
 @property (nonatomic, readwrite) BOOL isMarioMovingRight;
 @property (nonatomic, readwrite) BOOL isMoveFast;
 @property (nonatomic, readwrite) BOOL isJump;
+@property (nonatomic, readwrite) BOOL isFall;
 @property (nonatomic, readwrite) BOOL readyToJump;
 @property (nonatomic, readwrite) BOOL isFaceWall;
 @property (nonatomic, readwrite) BOOL isFireing;

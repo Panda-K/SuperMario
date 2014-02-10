@@ -16,7 +16,22 @@
     CCLabelTTF *p_coinNum;
     CCLabelTTF *m_timeNum;
     
+    CCMenuItem *m_stretchOut;
+    CCMenuItem *m_stretchIn;
+    CCMenuItem *m_soundOn;
+    CCMenuItem *m_soundOff;
+    
+    CCMenuItem *m_continueBtn;
+    CCMenuItem *m_contentBtn;
+    CCMenuItem *m_restartBtn;
+    CCMenuItem *m_soundBtn;
+    
+    CCSprite *m_wheelGear;
+    CCMenu *m_stretchMenu;
+    CCMenu *m_toolMenu;
+    
     BOOL isStickShow_;
+    BOOL p_isGamePause;
     
     CCSpriteBatchNode *spriteSheet_;
     
@@ -34,10 +49,13 @@
 @property (nonatomic, retain) SneakyButton *btnA;
 @property (nonatomic, retain) SneakyButton *btnB;
 @property (nonatomic, retain) SneakyJoystick *stick;
+@property (nonatomic, readwrite) BOOL isGamePause;
 
 - (void) reset;
 - (void) setScoreLabel;
 - (void) setCoinLabel;
 - (void) setStickVisible:(BOOL)show;
+- (void) changeTime:(int)time;
+- (void) setToolMenuEnable:(BOOL)enable;
 
 @end

@@ -67,7 +67,7 @@
   <object name="pipe1" type="pipe" x="448" y="192" width="32" height="32"/>
   <object name="pipe2" type="pipe" x="608" y="176" width="32" height="48"/>
   <object name="pipe3" type="pipe" x="736" y="160" width="32" height="64"/>
-  <object name="pipe4" type="inPipe" x="912" y="160" width="32" height="64"/>
+  <object name="pipe4" type="inUpPipe" x="912" y="160" width="32" height="64"/>
   <object name="ground1" type="ground" x="0" y="224" width="1104" height="96"/>
   <object name="ground2" type="ground" x="1136" y="224" width="240" height="104"/>
   <object name="ground3" type="ground" x="1424" y="224" width="1024" height="104"/>
@@ -88,7 +88,7 @@
   <object name="Object" type="rock" x="2496" y="176" width="16" height="48"/>
   <object name="Object" type="rock" x="2512" y="192" width="16" height="32"/>
   <object name="Object" type="rock" x="2528" y="208" width="16" height="16"/>
-  <object name="pipe5" type="outPipe" x="2608" y="192" width="32" height="32"/>
+  <object name="pipe5" type="outUpPipe" x="2608" y="192" width="32" height="32"/>
   <object name="pipe6" type="pipe" x="2864" y="192" width="32" height="32"/>
   <object name="brick26" type="brick" x="2688" y="160" width="16" height="16"/>
   <object name="brick27" type="brick" x="2704" y="160" width="16" height="16"/>

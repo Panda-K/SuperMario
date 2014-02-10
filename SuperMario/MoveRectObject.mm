@@ -9,12 +9,12 @@
 #import "MoveRectObject.h"
 
 @implementation MoveRectObject
-@synthesize isMoving = isMoving_;
+@synthesize isMoving = isMoving_, isShrink = isShrink_;
 
 - (void) setFilter:(b2Fixture *)fixture {
     b2Filter filter;
-    filter.categoryBits = 0x0001;
-    filter.maskBits = 0x0003;
+    filter.categoryBits = 0x0004;
+    filter.maskBits = 0x0007;
     fixture->SetFilterData(filter);
 }
 

@@ -7,13 +7,14 @@
 //
 
 #import "Player.h"
+#import "AppDelegate.h"
 
 @implementation Player
 @synthesize topLeftFixture = p_topLeftFixture, topRightFixture = p_topRightFixture;
 @synthesize isMarioStop = isMarioStop_;
 @synthesize isMarioMovingRight = isMarioMovingRight_;
 @synthesize isMoveFast = isMoveFast_;
-@synthesize isJump = isJump_;
+@synthesize isJump = isJump_, isFall = isFall_;
 @synthesize readyToJump = readyToJump_;
 @synthesize isFaceWall = isFaceWall_;
 @synthesize isFireing = isFireing_;
@@ -24,16 +25,19 @@
 
 + (id) spriteWithSpriteFrame:(CCSpriteFrame *)spriteFrame {
     Player *mario = nil;
+    AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
     if ((mario = [super spriteWithSpriteFrame:spriteFrame])) {
         mario.type = kGameObjectPlayer;
         mario.isMarioStop = YES;
         mario.isMarioMovingRight = YES;
         mario.isMoveFast = NO;
         mario.isJump = NO;
+        mario.isFall = NO;
         mario.readyToJump = NO;
         mario.isFaceWall = NO;
         mario.isCollidable = YES;
         mario.isInvincible = NO;
+        mario.marioStatus = delegate.marioStatus;
     }
     
     return mario;
@@ -57,8 +61,8 @@
 
 - (void) setFilter:(b2Fixture *)fixture {
     b2Filter filter;
-    filter.categoryBits = 0x0001;
-    filter.maskBits = 0x0003;
+    filter.categoryBits = 0x0002;
+    filter.maskBits = 0x0005;
     fixture->SetFilterData(filter);
 }
 

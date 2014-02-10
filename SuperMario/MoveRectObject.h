@@ -10,8 +10,10 @@
 
 @interface MoveRectObject : GameObject {
     BOOL isMoving_;
+    BOOL isShrink_;
 }
 @property (nonatomic, readwrite) BOOL isMoving;
+@property (nonatomic, readwrite) BOOL isShrink;
 
 - (void)createPhisicsBody:(b2World *)world 
                   postion:(CGPoint)pos 

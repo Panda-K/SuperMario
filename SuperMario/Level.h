@@ -8,8 +8,10 @@
 
 @interface Level : NSObject {
     CCTMXTiledMap *m_bg;
+    CCTMXTiledMap *m_downWorldBg;
 }
 @property (nonatomic, retain) CCTMXTiledMap *p_bg;
+@property (nonatomic, retain) CCTMXTiledMap *p_downWorldBg;
 
 - (Level *) initWithLevelNum:(int) num;
 @end

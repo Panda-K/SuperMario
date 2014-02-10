@@ -50,6 +50,12 @@
     [delegate loadGameInfoScene];
 }
 
+- (void) loadStartScene {
+    AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
+    [delegate loadStartScene];
+}
+    
 - (void) createMenu {
     AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
     NSMutableArray *menuItem1 = [NSMutableArray array];
@@ -142,6 +148,29 @@
     [spriteSheet_ addChild:upCoin3 z:1];
 }
 
+- (void) createArrow {
+    CCSprite *arrow1 = [self getSpriteByName:@"arrow1.png"];
+    arrow1.position = ccp((48.0/480)*winSize.width, (64.0/320)*winSize.height);
+    [spriteSheet_ addChild:arrow1 z:1];
+    
+    CCMenuItemSprite *arrow = [CCMenuItemSprite itemWithNormalSprite:[self getSpriteByName:@"arrow2.png"] 
+                                                      selectedSprite:nil 
+                                                              target:self 
+                                                            selector:@selector(loadStartScene)];
+    [arrow runAction:[CCRepeatForever actionWithAction:
+                        [CCSequence actions:[CCRotateTo actionWithDuration:0.7f angle:30.0], 
+                                            [CCDelayTime actionWithDuration:0.5f], 
+                                            [CCRotateTo actionWithDuration:0.7 angle:-30.0], 
+                                            [CCDelayTime actionWithDuration:0.5f], 
+                                            nil]]];
+
+    
+    CCMenu *arrowMenu = [CCMenu menuWithArray:[NSArray arrayWithObject:arrow]];
+    arrowMenu.position = ccp((45.0/480)*winSize.width, (72.0/320)*winSize.height);
+    [self addChild:arrowMenu];
+    
+}
+
 - (id)init {
     if (self = [super init]) {
         isFirstTime_ = YES;
@@ -165,6 +194,7 @@
         coinUp_ = [[self createFrameActionByName:@"coinUp%d.png" frameNum:4 interval:0.02 repeat:10] retain];
         
         [self createBottomIndex];
+        [self createArrow];
         
     }
     return self;

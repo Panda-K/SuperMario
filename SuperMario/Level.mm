@@ -10,6 +10,7 @@
 
 @implementation Level
 @synthesize p_bg = m_bg;
+@synthesize p_downWorldBg = m_downWorldBg;
 
 - (Level *)initWithLevelNum:(int)num {
     if (self = [super init]) {
@@ -17,6 +18,7 @@
         switch (num) {
             case 0:
                 m_bg = [[CCTMXTiledMap tiledMapWithTMXFile:@"world1-1.tmx"] retain];
+                m_downWorldBg = [[CCTMXTiledMap tiledMapWithTMXFile:@"world1-1_down.tmx"] retain];
                 break;
     //        case 1:
     //            m_bg = [CCTMXTiledMap tiledMapWithTMXFile:@"world1-2.tmx"];
@@ -122,6 +124,7 @@
 - (void)dealloc {
     [super dealloc];
     [m_bg release];
+    [m_downWorldBg release];
 }
 
 @end

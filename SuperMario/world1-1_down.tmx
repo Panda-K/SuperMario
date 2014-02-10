@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="60" height="40" tilewidth="8" tileheight="8">
+ <tileset name="world1-1_down" firstgid="1" tilewidth="8" tileheight="8">
+  <image source="world1-1_down.png"/>
+ </tileset>
+ <layer name="backGround" width="60" height="40">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <objectgroup name="sprite" width="0" height="0">
+  <object name="rock1" type="rock" x="0" y="48" width="128" height="176"/>
+  <object name="rock2" type="rock" x="352" y="16" width="128" height="208"/>
+  <object name="rock3" type="rock" x="0" y="224" width="488" height="96"/>
+  <object name="rock4" type="rock" x="176" y="176" width="112" height="48"/>
+  <object name="rock5" type="rock" x="176" y="48" width="112" height="16"/>
+  <object name="coin1" type="coin" x="192" y="96" width="16" height="16"/>
+  <object name="coin2" type="coin" x="208" y="96" width="16" height="16"/>
+  <object name="coin3" type="coin" x="224" y="96" width="16" height="16"/>
+  <object name="coin4" type="coin" x="240" y="96" width="16" height="16"/>
+  <object name="coin5" type="coin" x="256" y="96" width="16" height="16"/>
+  <object name="coin6" type="coin" x="176" y="128" width="16" height="16"/>
+  <object name="coin7" type="coin" x="192" y="128" width="16" height="16"/>
+  <object name="coin8" type="coin" x="208" y="128" width="16" height="16"/>
+  <object name="coin9" type="coin" x="224" y="128" width="16" height="16"/>
+  <object name="coin10" type="coin" x="240" y="128" width="16" height="16"/>
+  <object name="coin11" type="coin" x="256" y="128" width="16" height="16"/>
+  <object name="coin12" type="coin" x="272" y="128" width="16" height="16"/>
+  <object name="coin13" type="coin" x="176" y="160" width="16" height="16"/>
+  <object name="coin14" type="coin" x="192" y="160" width="16" height="16"/>
+  <object name="coin15" type="coin" x="208" y="160" width="16" height="16"/>
+  <object name="coin16" type="coin" x="224" y="160" width="16" height="16"/>
+  <object name="coin17" type="coin" x="240" y="160" width="16" height="16"/>
+  <object name="coin18" type="coin" x="256" y="160" width="16" height="16"/>
+  <object name="coin19" type="coin" x="272" y="160" width="16" height="16"/>
+  <object name="pipe" type="inLeftPipe" x="320" y="192" width="32" height="32"/>
+  <object name="mario" type="hero" x="144" y="24" width="8" height="8"/>
+ </objectgroup>
+</map>

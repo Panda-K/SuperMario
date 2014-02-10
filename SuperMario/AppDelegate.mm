@@ -11,11 +11,13 @@
 
 @synthesize window=window_, navController=navController_, director=director_;
 @synthesize startScene = startScene_, selectScene = selectScene_, gameInfoScene = gameInfoScene_;
-@synthesize mainGameScene = mainGameScene_;
+@synthesize mainGameScene = mainGameScene_, downWorldScene = downWorldScene_;
 @synthesize curCoinNum = curCoinNum_, curLevelNum = curLevelNum_, curLives = curLives_, curScore = curScore_;
+@synthesize timer = timer_;
 @synthesize levels = levels_, coreDataContext = coreDataContext_, sharedPsc = sharedPsc_;
 @synthesize levelIndexInCoreData = levelIndexInCoreData_;
 @synthesize soundEngin = soundEngin_, marioStatus = marioStatus_;
+@synthesize isMarioDownWorld = isMarioDownWorld_, isSoundOn = isSoundOn_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -109,7 +111,10 @@
     self.curScore = 0;
     self.curLives = 3;
     self.curCoinNum = 0;
+    self.timer = 400;
     self.marioStatus = kMarioSmall;
+    self.isMarioDownWorld = NO;
+    self.isSoundOn = YES;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self sharedPersistentStoreCoordinator];
@@ -207,6 +212,11 @@
     mainGameScene_ = [MainGameScene scene];
     [mainGameScene_.gameLayer reset];
     [[CCDirector sharedDirector] replaceScene:mainGameScene_];
+}
+
+- (void)loadDownWorldScene {
+    downWorldScene_ = [DownWorldScene scene];
+    [[CCDirector sharedDirector] replaceScene:downWorldScene_];
 }
 
 - (void) nextLevel {

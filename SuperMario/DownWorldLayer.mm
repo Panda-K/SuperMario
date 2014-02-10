@@ -1,20 +1,21 @@
 //
-//  MainGameLayer.m
+//  DownWorldLayer.m
 //  SuperMario
 //
-//  Created by jashon on 13-11-5.
-//  Copyright (c) 2013年 __Panda-K__. All rights reserved.
+//  Created by jashon on 14-1-8.
+//  Copyright (c) 2014年 __MyCompanyName__. All rights reserved.
 //
 
-#import "MainGameLayer.h"
+#import "DownWorldLayer.h"
 #import "AppDelegate.h"
 
-@implementation MainGameLayer
+@implementation DownWorldLayer
+
 using namespace std;
 @synthesize hud = hud_;
 
 - (void) reset {
-
+    
 }
 
 - (CCSpriteFrame *) getFrameByName: (NSString *)name {
@@ -111,8 +112,8 @@ using namespace std;
     AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
     
     CGPoint _point = ccp(mario.position.x, mario.position.y);
-    CGPoint _size = ccp(mario.contentSize.width-2.0, mario.contentSize.height);
-
+    CGPoint _size = ccp(mario.contentSize.width, mario.contentSize.height);
+    
     if (delegate.marioStatus == kMarioSmall) {
         player_ = [self getPlayerByName:@"marios_standr.png"];
         player_.position = _point;
@@ -152,8 +153,6 @@ using namespace std;
                        restitution:0 
                              boxId:-1];
     }
-    [self startWorldStep];
-    [self startCheckOut];
 }
 
 - (void) createOutPipeMarioWithName:(NSString *)name atPos:(CGPoint)position {
@@ -170,13 +169,13 @@ using namespace std;
 
 - (id) starMarioRunAnimateOne:(CCAction *)walk1 two:(CCAction *)walk2 three:(CCAction *)walk3 interval:(float)dt {
     return [CCRepeatForever actionWithAction:
-             [CCSequence actions:[[walk1 copy] autorelease], 
-                                  [CCDelayTime actionWithDuration:dt], 
-                                  [[walk2 copy] autorelease], 
-                                  [CCDelayTime actionWithDuration:dt], 
-                                  [[walk3 copy] autorelease],
-                                  [CCDelayTime actionWithDuration:dt], 
-                                  nil]];
+            [CCSequence actions:[[walk1 copy] autorelease], 
+                                 [CCDelayTime actionWithDuration:dt], 
+                                 [[walk2 copy] autorelease], 
+                                 [CCDelayTime actionWithDuration:dt], 
+                                 [[walk3 copy] autorelease],
+                                 [CCDelayTime actionWithDuration:dt], 
+                                 nil]];
 }
 
 - (void)generateAction {
@@ -199,19 +198,19 @@ using namespace std;
     
     
     starMarioL_runSlowR = [[self starMarioRunAnimateOne:flashMarioL_WalkR1 
-                                                   two:flashMarioL_WalkR2 
-                                                 three:flashMarioL_WalkR3 
-                                              interval:2.0/60] retain];
+                                                    two:flashMarioL_WalkR2 
+                                                  three:flashMarioL_WalkR3 
+                                               interval:2.0/60] retain];
     
     starMarioL_runMediumR = [[self starMarioRunAnimateOne:flashMarioL_WalkR1 
-                                                     two:flashMarioL_WalkR2 
-                                                   three:flashMarioL_WalkR3 
-                                                interval:1.0/60] retain];
+                                                      two:flashMarioL_WalkR2 
+                                                    three:flashMarioL_WalkR3 
+                                                 interval:1.0/60] retain];
     
     starMarioL_runFastR = [[self starMarioRunAnimateOne:flashMarioL_WalkR1 
-                                                   two:flashMarioL_WalkR2 
-                                                 three:flashMarioL_WalkR3 
-                                              interval:0] retain];
+                                                    two:flashMarioL_WalkR2 
+                                                  three:flashMarioL_WalkR3 
+                                               interval:0] retain];
     
     starMarioL_runSlowL = [[self starMarioRunAnimateOne:flashMarioL_WalkL1 
                                                     two:flashMarioL_WalkL2 
@@ -286,7 +285,7 @@ using namespace std;
     marios_stopR = [[self getFrameByName:@"marios_stopr.png"] retain];
     marios_jumpL = [[self getFrameByName:@"marios_jumpl.png"] retain];
     marios_jumpR = [[self getFrameByName:@"marios_jumpr.png"] retain];
-
+    
     mariom_runFastL = [[self createFrameActionByName:@"mariom_walkl%d.png" frameNum:3 interval:0.03 repeat:0] retain];
     mariom_runFastR = [[self createFrameActionByName:@"mariom_walkr%d.png" frameNum:3 interval:0.03 repeat:0] retain];
     mariom_runMediumL = [[self createFrameActionByName:@"mariom_walkl%d.png" frameNum:3 interval:0.05 repeat:0] retain];
@@ -329,9 +328,6 @@ using namespace std;
     coinFlash_ = [[self createFrameActionByName:@"coin1_%d.png" frameNum:9 interval:0.1 repeat:0] retain];
     
     enemy1_walk = [[self createFrameActionByName:@"enemy1_%d.png" frameNum:2 interval:0.2 repeat:0] retain];
-    enemy2_walkL = [[self createFrameActionByName:@"enemy2_l_%d.png" frameNum:2 interval:0.2 repeat:0] retain];
-    enemy2_walkR = [[self createFrameActionByName:@"enemy2_r_%d.png" frameNum:2 interval:0.2 repeat:0] retain];
-    enemy2_recover = [[self createFrameActionByName:@"enemy2_s%d.png" frameNum:2 interval:0.2 repeat:4] retain];
 }
 
 - (void) setViewPointCenter:(CGPoint)pos {
@@ -412,8 +408,6 @@ using namespace std;
                                    restitution:0 
                                          boxId:-1];
                 }
-                [self startWorldStep];
-                [self startCheckOut];
                 return;
             }
         }
@@ -421,9 +415,6 @@ using namespace std;
     else {
         for (GameObject *obj in spriteSheet_.children) {
             if (obj.type == kGameObjectOutPipe) {
-                
-                [self setViewPointCenter:ccp(obj.position.x, obj.position.y)];
-                
                 if (delegate.marioStatus == kMarioSmall) {
                     [self createOutPipeMarioWithName:@"marios_standr.png" atPos:ccp(obj.position.x, obj.position.y)];
                 }
@@ -433,7 +424,8 @@ using namespace std;
                 else if (delegate.marioStatus == kMarioCanFire) {
                     [self createOutPipeMarioWithName:@"mariol_standr.png" atPos:ccp(obj.position.x, obj.position.y)];
                 }
-              
+                
+                [self setViewPointCenter:ccp(obj.position.x, obj.position.y)];
                 delegate.isMarioDownWorld = NO;
                 return;
             }
@@ -466,40 +458,40 @@ using namespace std;
             ground.type = kGameObjectPlatform;
             [spriteSheet_ addChild:ground];
             [ground createPhisicsBody:world_ 
-                            postion:_point 
-                               size:_size 
-                            dynamic:NO 
-                           friction:1 
-                            density:5.0 
-                        restitution:0 
-                              boxId:-1];
+                              postion:_point 
+                                 size:_size 
+                              dynamic:NO 
+                             friction:1 
+                              density:5.0 
+                          restitution:0 
+                                boxId:-1];
         }
         else if (objType && 
                  ([objType compare:@"brick"] == NSOrderedSame || 
                   [objType compare:@"multiCoinBrick1"] == NSOrderedSame || 
                   [objType compare:@"starBrick1"] == NSOrderedSame)) {
-            sprite = [self getSpriteByName:@"brick1.png"];
-            sprite.position = _point;
-            isDynamic = NO;
-            
-             if ([objType compare:@"brick"] == NSOrderedSame) {
-                 sprite.type = kGameObjectBrick;
-             }
-             if ([objType compare:@"multiCoinBrick1"] == NSOrderedSame) {
-                 sprite.type = kGameObjectMultiCoinBrick;
-             }
-             if ([objType compare:@"starBrick1"] == NSOrderedSame) {
-                 sprite.type = kGameObjectStarBrick;
-             }
-            [spriteSheet_ addChild:sprite];
-        }
-        else if (objType && ([objType compare:@"goldBrick"] == NSOrderedSame)) {
+                     sprite = [self getSpriteByName:@"brick1.png"];
+                     sprite.position = _point;
+                     isDynamic = NO;
                      
+                     if ([objType compare:@"brick"] == NSOrderedSame) {
+                         sprite.type = kGameObjectBrick;
+                     }
+                     if ([objType compare:@"multiCoinBrick1"] == NSOrderedSame) {
+                         sprite.type = kGameObjectMultiCoinBrick;
+                     }
+                     if ([objType compare:@"starBrick1"] == NSOrderedSame) {
+                         sprite.type = kGameObjectStarBrick;
+                     }
+                     [spriteSheet_ addChild:sprite];
+                 }
+        else if (objType && ([objType compare:@"goldBrick"] == NSOrderedSame)) {
+            
             sprite = [self getSpriteByName:@"goldBrick1_1.png"];
             sprite.position = _point;
             isDynamic = NO;
             sprite.type = kGameObjectGoldBrick;
-             
+            
             [spriteSheet_ addChild:sprite];
             [sprite runAction:[[goldBrickFlash_ copy] autorelease]];
         }
@@ -593,7 +585,6 @@ using namespace std;
             enemy1.type = kGameObjectEnemy1;
             enemy1.isMoving = NO;
             [spriteSheet_ addChild:enemy1];
-            [enemyArray_ addObject:enemy1];
             [enemy1 createPhisicsBody:world_ 
                               postion:_point 
                                  size:_size 
@@ -604,26 +595,6 @@ using namespace std;
                                 boxId:-1];
             enemy1.topFixture->SetRestitution(0.5);
             enemy1.bottomFixture->SetRestitution(0);
-        }
-        else if (objType && [objType compare:@"enemy2"] == NSOrderedSame) {
-            MoveRectObject *enemy2 = [self getMoveObjByName:@"enemy2_r_1.png"];
-            enemy2.size = _size;
-            enemy2.position = ccp(_point.x, _point.y+(enemy2.contentSize.height/2-_size.y/2));
-            enemy2.type = kGameObjectEnemy2;
-            enemy2.isMoving = NO;
-            enemy2.isShrink = NO;
-            [spriteSheet_ addChild:enemy2];
-            [enemyArray_ addObject:enemy2];
-            [enemy2 createPhisicsBody:world_ 
-                              postion:_point 
-                                 size:_size 
-                              dynamic:YES 
-                             friction:0 
-                              density:0 
-                          restitution:0 
-                                boxId:-1];
-            enemy2.topFixture->SetRestitution(0.5);
-            enemy2.bottomFixture->SetRestitution(0);
         }
         else if (objType && [objType compare:@"coin"] == NSOrderedSame) {
             GameObject *spt = [self getSpriteByName:@"coin1_1.png"];
@@ -679,7 +650,7 @@ using namespace std;
 
 - (void) destroySprite: (id)sender {
     CCSprite *sprite = (CCSprite *)sender;
-
+    
     [sprite removeFromParentAndCleanup:YES];
 }
 
@@ -708,13 +679,13 @@ using namespace std;
     scoreLabel.color = ccc3(255, 255, 255);
     [self addChild:scoreLabel];
     [scoreLabel runAction:[CCSequence actions:[CCMoveBy actionWithDuration:1.0f position:ccp(0, (25.0/320)*winSize.height)], 
-                                              [CCCallFuncN actionWithTarget:self selector:@selector(destroySprite:)], nil]];
+                           [CCCallFuncN actionWithTarget:self selector:@selector(destroySprite:)], nil]];
 }
 
 - (void) objRunDieAction:(GameObject *)obj toPos:(CGPoint)pos jumpHeight:(float)height {
     [obj runAction:[CCSequence actions:[CCJumpTo actionWithDuration:0.6f position:pos height:height jumps:1], 
-                                        [CCCallFuncN actionWithTarget:self selector:@selector(destroySprite:)], 
-                                        nil]];
+                    [CCCallFuncN actionWithTarget:self selector:@selector(destroySprite:)], 
+                    nil]];
 }
 
 - (void) destroyBody: (b2Body *)body alsoSprite:(BOOL)value {
@@ -750,6 +721,92 @@ using namespace std;
     [self objRunDieAction:smallBrick2 toPos:ccp(obj1.position.x+40, -10) jumpHeight:100];
     [self objRunDieAction:smallBrick3 toPos:ccp(obj1.position.x-20, -10) jumpHeight:70];
     [self objRunDieAction:smallBrick4 toPos:ccp(obj1.position.x+20, -10) jumpHeight:70];
+}
+
+- (void) updateOtherObjPosition {
+    CGPoint zero = CGPointMake(0, 0);
+    CGPoint rightEdge = CGPointMake(winSize.width, 0);
+    zero = [self convertToNodeSpace:zero];
+    rightEdge = [self convertToNodeSpace:rightEdge];
+    
+    NSMutableArray *objToDelete = [NSMutableArray array];
+    
+    for (GameObject *obj in spriteSheet_.children) {
+        
+        if (obj.type == kGameObjectMushRoom && obj.body != NULL) {
+            obj.position = ccp(obj.body->GetPosition().x*PTM_RATIO, 
+                               obj.body->GetPosition().y*PTM_RATIO);
+        }
+        
+        if (obj.type == kGameObjectFireBall && obj.body != NULL) {
+            obj.position = ccp(obj.body->GetPosition().x*PTM_RATIO,
+                               obj.body->GetPosition().y*PTM_RATIO);
+            
+            if (obj.position.x > rightEdge.x+obj.contentSize.width/2 || 
+                obj.position.x < zero.x-obj.contentSize.width/2 || 
+                obj.position.y < zero.y-obj.contentSize.height/2) {
+                [objToDelete addObject:obj];
+            }
+        }
+        
+        if (obj.type == kGameObjectEnemy1 && obj.body != NULL) {
+            MoveRectObject *enemy1 = (MoveRectObject *)obj;
+            if (enemy1.position.x - player_.position.x < winSize.width/2+(20.0/480)*winSize.width && 
+                enemy1.isMoving == NO) {
+                [enemy1 runAction:[[enemy1_walk copy] autorelease]];
+                enemy1.body->SetLinearVelocity(b2Vec2(-1.0, 0));
+                enemy1.isMoving = YES;
+            }
+            enemy1.position = ccp(enemy1.body->GetPosition().x*PTM_RATIO, 
+                                  enemy1.body->GetPosition().y*PTM_RATIO);
+            
+            if (enemy1.position.x < zero.x-enemy1.contentSize.width/2 || 
+                enemy1.position.y < zero.y-enemy1.contentSize.height/2) {
+                [objToDelete addObject:obj];
+            }
+        }
+        
+        if (obj.type == kGameObjectStar && obj.body != NULL) {
+            obj.position = ccp(obj.body->GetPosition().x*PTM_RATIO, 
+                               obj.body->GetPosition().y*PTM_RATIO);
+            if (obj.position.x > rightEdge.x+obj.contentSize.width/2 || 
+                obj.position.x < zero.x-obj.contentSize.width/2 || 
+                obj.position.y < zero.y-obj.contentSize.height/2) {
+                [objToDelete addObject:obj];
+            }
+        }
+    }
+    
+    for (GameObject *obj in objToDelete) {
+        if (obj.body != NULL) {
+            world_->DestroyBody(obj.body);
+            [spriteSheet_ removeChild:obj cleanup:YES];
+        }
+        [objToDelete removeObject:obj];
+    }
+    
+    //mario吃金币
+    NSMutableArray *coinToDelete = [[NSMutableArray alloc] init];
+    for (GameObject *coin in coinArray_) {
+        if (CGRectIntersectsRect(CGRectMake(player_.position.x - player_.contentSize.width/2, 
+                                            player_.position.y - player_.contentSize.height/2, 
+                                            player_.contentSize.width, 
+                                            player_.contentSize.height), 
+                                 CGRectMake(coin.position.x - coin.contentSize.width/2, 
+                                            coin.position.y - coin.contentSize.height/2, 
+                                            coin.contentSize.width, 
+                                            coin.contentSize.height))) {
+                                     
+                                     [coinToDelete addObject:coin];
+                                 }
+    }
+    for (GameObject *obj in coinToDelete) {
+        [spriteSheet_ removeChild:obj cleanup:YES];
+        [self setHudLabelCoin:1];
+        [self setHudLabelScore:100];
+        [coinArray_ removeObject:obj];
+    }
+    [coinToDelete release];
 }
 
 - (void) generateBodyOfSprite:(id)sender {
@@ -799,63 +856,28 @@ using namespace std;
     [coinB setDisplayFrame:ironBrick_];
 }
 
-- (void) setObjectUnCollidable:(id)sender {
-    GameObject *obj = (GameObject *)sender;
+- (void) setPlayerUnCollidable {
+    player_.isCollidable = NO;
     b2Filter filter;
-    if (obj.type == kGameObjectPlayer) {
-        filter.categoryBits = 0x0008;
-        filter.maskBits = 0x0005;
-        filter.groupIndex = 0;
-        player_.isCollidable = NO;
-    }
-    if (obj.type == kGameObjectShrinkEnemy2) {
-        filter.categoryBits = 0x0008;
-        filter.maskBits = 0x0003;
-        filter.groupIndex = 0;
-    }
-    for (b2Fixture *f = obj.body->GetFixtureList(); f; f = f->GetNext()) {
+    filter.categoryBits = 0x0004;
+    filter.maskBits = 0x0003;
+    filter.groupIndex = 0;
+    
+    for (b2Fixture *f = player_.body->GetFixtureList(); f; f = f->GetNext()) {
         f->SetFilterData(filter);
     }
 }
 
-- (void) setObjectCollidable:(id)sender {
-    GameObject *obj = (GameObject *)sender;
+- (void) setPlayerCollidable {
+    player_.isCollidable = YES;
     b2Filter filter;
-    if (obj.type == kGameObjectPlayer) {
-        filter.categoryBits = 0x0002;
-        filter.maskBits = 0x0005;
-        filter.groupIndex = 0;
-        player_.isCollidable = YES;
-    }
-    if (obj.type == kGameObjectShrinkEnemy2) {
-        filter.categoryBits = 0x0004;
-        filter.maskBits = 0x0007;
-        filter.groupIndex = 0;
-    }
+    filter.categoryBits = 0x0001;
+    filter.maskBits = 0x0003;
+    filter.groupIndex = 0;
     
-    for (b2Fixture *f = obj.body->GetFixtureList(); f; f = f->GetNext()) {
+    for (b2Fixture *f = player_.body->GetFixtureList(); f; f = f->GetNext()) {
         f->SetFilterData(filter);
     }
-}
-
-- (void) marioTransformSmall {
-    CGPoint _pos = ccp(player_.position.x, player_.position.y);
-    [player_ resizeBodyAtPositon:_pos 
-                            size:ccp(marios_standR.originalSize.width-2.0, marios_standR.originalSize.height) 
-                        friction:1.0 
-                         density:6.3 
-                     restitution:0];
-    [player_ setDisplayFrame:marios_standR];
-    
-    [player_ runAction:[CCSequence actions:[CCCallFuncN actionWithTarget:self 
-                                                                selector:@selector(setObjectUnCollidable:)], 
-                        [CCFadeTo actionWithDuration:0.01 opacity:100], 
-                        [CCDelayTime actionWithDuration:3.0], 
-                        [CCFadeTo actionWithDuration:0.01 opacity:255], 
-                        [CCCallFuncN actionWithTarget:self 
-                                             selector:@selector(setObjectCollidable:)], 
-                        nil]];
-    player_.marioStatus = kMarioSmall;
 }
 
 - (void) marioGoDie {
@@ -866,9 +888,9 @@ using namespace std;
                                                                  position:ccp(player_.position.x, -(16.0/320)*winSize.height) 
                                                                    height:(80.0/320)*winSize.height 
                                                                     jumps:1], 
-                                             [CCCallFunc actionWithTarget:self 
-                                                                 selector:@selector(showGameInfoScene)], 
-                                             nil]];
+                          [CCCallFunc actionWithTarget:self 
+                                              selector:@selector(showGameInfoScene)], 
+                          nil]];
 }
 
 - (void) enemyGoDie:(GameObject *)enemy {
@@ -876,228 +898,6 @@ using namespace std;
     [self objRunDieAction:enemy 
                     toPos:ccp(enemy.position.x, -(16.0/320)*winSize.height) 
                jumpHeight:(80.0/320)*winSize.height];
-}
-
-- (void) updateOtherObjPosition {
-    
-    AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
-    CGPoint zero = CGPointMake(0, 0);
-    CGPoint rightEdge = CGPointMake(winSize.width, 0);
-    zero = [self convertToNodeSpace:zero];
-    rightEdge = [self convertToNodeSpace:rightEdge];
-    
-    NSMutableArray *objToDelete = [NSMutableArray array];
-    
-    for (GameObject *obj in spriteSheet_.children) {
-        
-        if (obj.type == kGameObjectMushRoom && obj.body != NULL) {
-            obj.position = ccp(obj.body->GetPosition().x*PTM_RATIO, 
-                               obj.body->GetPosition().y*PTM_RATIO);
-        }
-        
-        if (obj.type == kGameObjectFireBall && obj.body != NULL) {
-            obj.position = ccp(obj.body->GetPosition().x*PTM_RATIO,
-                               obj.body->GetPosition().y*PTM_RATIO);
-            
-            if (obj.position.x > rightEdge.x+obj.contentSize.width/2 || 
-                obj.position.x < zero.x-obj.contentSize.width/2 || 
-                obj.position.y < zero.y-obj.contentSize.height/2) {
-                [objToDelete addObject:obj];
-            }
-        }
-        
-        if (obj.type == kGameObjectEnemy1 && obj.body != NULL) {
-            MoveRectObject *enemy1 = (MoveRectObject *)obj;
-            if (enemy1.position.x - player_.position.x < winSize.width/2+(20.0/480)*winSize.width && 
-                enemy1.isMoving == NO) {
-                [enemy1 runAction:[[enemy1_walk copy] autorelease]];
-                enemy1.body->SetLinearVelocity(b2Vec2(-1.0, 0));
-                enemy1.isMoving = YES;
-            }
-            enemy1.position = ccp(enemy1.body->GetPosition().x*PTM_RATIO, 
-                                  enemy1.body->GetPosition().y*PTM_RATIO);
-            
-            if (enemy1.position.x < zero.x-enemy1.contentSize.width/2 || 
-                enemy1.position.y < zero.y-enemy1.contentSize.height/2) {
-                [objToDelete addObject:obj];
-            }
-        }
-        
-        if ((obj.type == kGameObjectEnemy2 || obj.type == kGameObjectShrinkEnemy2) && 
-            obj.body != NULL) {
-            MoveRectObject *enemy2 = (MoveRectObject *)obj;
-            if (enemy2.position.x - player_.position.x < winSize.width/2+(20.0/480)*winSize.width && 
-                enemy2.isMoving == NO) {
-                [enemy2 runAction:[[enemy2_walkL copy] autorelease]];
-                enemy2.body->SetLinearVelocity(b2Vec2(-1.0, 0));
-                enemy2.isMoving = YES;
-            }
-            enemy2.position = ccp(enemy2.body->GetPosition().x*PTM_RATIO, 
-                                  enemy2.body->GetPosition().y*PTM_RATIO+enemy2.contentSize.height/2-enemy2.size.y/2);
-            
-            if (enemy2.position.x < zero.x-enemy2.contentSize.width/2 || 
-                enemy2.position.y < zero.y-enemy2.contentSize.height/2) {
-                [objToDelete addObject:obj];
-            }
-            
-            if (enemy2.type == kGameObjectShrinkEnemy2 && 
-                enemy2.position.x > zero.x+winSize.width+enemy2.contentSize.width/2) {
-                [objToDelete addObject:obj];
-            }
-        }
-        
-        if (obj.type == kGameObjectStar && obj.body != NULL) {
-            obj.position = ccp(obj.body->GetPosition().x*PTM_RATIO, 
-                               obj.body->GetPosition().y*PTM_RATIO);
-            if (obj.position.x > rightEdge.x+obj.contentSize.width/2 || 
-                obj.position.x < zero.x-obj.contentSize.width/2 || 
-                obj.position.y < zero.y-obj.contentSize.height/2) {
-                [objToDelete addObject:obj];
-            }
-        }
-    }
-    
-    for (GameObject *obj in objToDelete) {
-        if (obj.body != NULL) {
-            if (obj.type == kGameObjectShrinkEnemy2 || 
-                obj.type == kGameObjectEnemy1 || 
-                obj.type == kGameObjectEnemy2) {
-                
-                [enemyArray_ removeObject:obj];
-            }
-            [obj removeFromParentAndCleanup:YES];
-            world_->DestroyBody(obj.body);
-        }
-    }
-    
-    //mario吃金币
-    NSMutableArray *coinToDelete = [[NSMutableArray alloc] init];
-    for (GameObject *coin in coinArray_) {
-        if (CGRectIntersectsRect(CGRectMake(player_.position.x - player_.contentSize.width/2, 
-                                            player_.position.y - player_.contentSize.height/2, 
-                                            player_.contentSize.width, 
-                                            player_.contentSize.height), 
-                                 CGRectMake(coin.position.x - coin.contentSize.width/2, 
-                                            coin.position.y - coin.contentSize.height/2, 
-                                            coin.contentSize.width, 
-                                            coin.contentSize.height))) {
-                                     
-                                     [coinToDelete addObject:coin];
-                                 }
-    }
-    for (GameObject *obj in coinToDelete) {
-        [spriteSheet_ removeChild:obj cleanup:YES];
-        [self setHudLabelCoin:1];
-        [self setHudLabelScore:100];
-        [coinArray_ removeObject:obj];
-    }
-    [coinToDelete release];
-    
-    //乌龟壳被推出后可以撞死其他敌人
-    NSMutableArray *enemyToDelete = [[NSMutableArray alloc] init];
-    MoveRectObject *shrinkEnemy2 = nil;
-    for (MoveRectObject *enemy in enemyArray_) {
-        if (enemy.type == kGameObjectShrinkEnemy2) {
-            
-            shrinkEnemy2 = enemy;
-        }
-    }
-    
-    for (MoveRectObject *obj in enemyArray_) {
-        if (obj != shrinkEnemy2) {
-
-            if (CGRectIntersectsRect(CGRectMake(shrinkEnemy2.position.x-shrinkEnemy2.contentSize.width/2, 
-                                                shrinkEnemy2.position.y-shrinkEnemy2.contentSize.height/2, 
-                                                shrinkEnemy2.contentSize.width, 
-                                                shrinkEnemy2.contentSize.height), 
-                                     CGRectMake(obj.position.x-obj.contentSize.width/2, 
-                                                obj.position.y-obj.contentSize.height/2, 
-                                                obj.contentSize.width, 
-                                                obj.contentSize.height)) && 
-                shrinkEnemy2.body->GetLinearVelocity().x != 0) {
-                
-                [enemyToDelete addObject:obj];
-            }
-            
-        }
-    }
-    for (MoveRectObject *obj in enemyToDelete) {
-        
-        MoveRectObject *deadEnemy = nil;
-        switch (obj.type) {
-            case kGameObjectEnemy1:
-                deadEnemy = [self getMoveObjByName:@"enemy1_1.png"];
-                break;
-            case kGameObjectEnemy2:
-                deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
-                break;
-            case kGameObjectShrinkEnemy2:
-                deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
-            default:
-                break;
-        }
-        deadEnemy.position = ccp(obj.position.x, obj.position.y);
-        [spriteSheet_ addChild:deadEnemy];
-        
-        [self enemyGoDie:deadEnemy];
-        [self bounceUpScore:@"100" 
-                      atPos:ccp(obj.position.x, obj.position.y+(32.0/320)*winSize.height)];
-        [self setHudLabelScore:100];
-        [enemyArray_ removeObject:obj];
-        [obj removeFromParentAndCleanup:YES];
-        world_->DestroyBody(obj.body);
-        
-    }
-    
-    //Mario和缩起的龟壳碰撞
-    if (CGRectIntersectsRect(CGRectMake(player_.position.x - player_.contentSize.width/2, 
-                                        player_.position.y - player_.contentSize.height/2, 
-                                        player_.contentSize.width, 
-                                        player_.contentSize.height), 
-                             CGRectMake(shrinkEnemy2.position.x-shrinkEnemy2.contentSize.width/2, 
-                                        shrinkEnemy2.position.y-shrinkEnemy2.contentSize.height/2, 
-                                        shrinkEnemy2.contentSize.width, 
-                                        shrinkEnemy2.contentSize.height)) && 
-        player_.isCollidable == YES) {
-        
-        if (shrinkEnemy2.body->GetLinearVelocity().x != 0) {
-            switch (player_.marioStatus) {
-                case kMarioSmall:
-                {
-                    [self pauseSchedulerAndActions];
-                    [player_ setVisible:NO];
-                    delegate.curLives--;
-                    [self marioGoDie];
-                }
-                    break;
-                case kMarioLarge:
-                {
-                    [self marioTransformSmall];
-                }
-                    break;
-                case kMarioCanFire:
-                {
-                    [self marioTransformSmall];
-                }
-                    break;
-                default:
-                    break;
-            }
-        }
-        else if (player_.position.x > shrinkEnemy2.position.x) {
-            shrinkEnemy2.body->SetTransform(b2Vec2((shrinkEnemy2.position.x-10.0)/PTM_RATIO, 
-                                                   shrinkEnemy2.body->GetPosition().y), 
-                                            shrinkEnemy2.body->GetAngle());
-            shrinkEnemy2.body->SetLinearVelocity(b2Vec2(-5.0, 0));
-        }
-        else if (player_.position.x <= shrinkEnemy2.position.x) {
-            shrinkEnemy2.body->SetTransform(b2Vec2((shrinkEnemy2.position.x+10.0)/PTM_RATIO, 
-                                                   shrinkEnemy2.body->GetPosition().y), 
-                                            shrinkEnemy2.body->GetAngle());
-            shrinkEnemy2.body->SetLinearVelocity(b2Vec2(5.0, 0));
-        }
-    }
-    [enemyToDelete release];
 }
 
 - (void) updateCollision {
@@ -1141,11 +941,11 @@ using namespace std;
              contact.fixtureB == obj2.topFixture && player_.body->GetLinearVelocity().y <= 0) || 
             (contact.fixtureB == player_.polygonFixture && 
              contact.fixtureA == obj1.topFixture && player_.body->GetLinearVelocity().y <= 0)) {
-            player_.isJump = NO;
-            player_.isFall = NO;
-            pushUpTimes_ = 0;
-            onGround++;
-        }
+                player_.isJump = NO;
+                player_.isFall = NO;
+                pushUpTimes_ = 0;
+                onGround++;
+            }
         
         //判断Mario是否被阻挡
         if (contact.fixtureA == player_.leftFixture || 
@@ -1154,7 +954,7 @@ using namespace std;
             contact.fixtureB == player_.rightFixture) {
             
             player_.isFaceWall = YES;
-
+            
         }
         
         //判断Mario是否跳起并碰撞到其他物体
@@ -1173,14 +973,14 @@ using namespace std;
                 player_.position.x <= obj1.position.x+10 &&
                 marioCollidePipeTimes == 0) {
                 
-                [self unschedule:@selector(updateWorldStep:)];
+                [self stopWorldStep];
                 [self stopCheckOut];
                 
                 [player_ runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.0f 
                                                                            position:ccp(obj1.position.x, obj1.position.y)], 
-                                                        [CCCallFunc actionWithTarget:self 
-                                                                            selector:@selector(showDownWorld)], 
-                                                        nil]];
+                                    [CCCallFunc actionWithTarget:self 
+                                                        selector:@selector(showDownWorld)], 
+                                    nil]];
                 
                 ++marioCollidePipeTimes;
             }
@@ -1191,7 +991,7 @@ using namespace std;
                 player_.position.x <= obj2.position.x+10 &&
                 marioCollidePipeTimes == 0) {
                 
-                [self unschedule:@selector(updateWorldStep:)];
+                [self stopWorldStep];
                 [self stopCheckOut];
                 
                 [player_ runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.0f 
@@ -1203,57 +1003,56 @@ using namespace std;
                 ++marioCollidePipeTimes;
             }
             
-//            地上世界中没有inLeftPipe，mario进入管道后的世界才有
-//            if (obj1.type == kGameObjectInLeftPipe && 
-//                player_.stkHead == kStickHeadingRight && 
-//                player_.position.y >= obj1.position.y-10 && 
-//                player_.position.y <= obj1.position.y+10 && 
-//                marioCollidePipeTimes == 0) {
-//                
-//                [self unschedule:@selector(updateWorldStep:)];
-//                [self stopCheckOut];
-//                //[self schedule:@selector(updatePlayerPositon:)];
-//                [player_ runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.0f 
-//                                                                           position:ccp(obj1.position.x, obj1.position.y)], 
-//                                                        [CCCallFunc actionWithTarget:self selector:@selector(showUpWorld)], 
-//                                                        nil]];
-//                ++marioCollidePipeTimes;
-//            }
-//            
-//            if (obj2.type == kGameObjectInLeftPipe && 
-//                player_.stkHead == kStickHeadingRight && 
-//                player_.position.y >= obj2.position.y-10 && 
-//                player_.position.y <= obj2.position.y+10 && 
-//                marioCollidePipeTimes == 0) {
-//                
-//                [self unschedule:@selector(updateWorldStep:)];
-//                [self stopCheckOut];
-//                //[self schedule:@selector(updatePlayerPositon:)];
-//                [player_ runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.0f 
-//                                                                           position:ccp(obj2.position.x, obj2.position.y)], 
-//                                                        [CCCallFunc actionWithTarget:self selector:@selector(showUpWorld)], 
-//                                                        nil]];
-//                ++marioCollidePipeTimes;
-//            }
+            if (obj1.type == kGameObjectInLeftPipe && 
+                player_.stkHead == kStickHeadingRight && 
+                player_.position.y >= obj1.position.y-10 && 
+                player_.position.y <= obj1.position.y+10 && 
+                marioCollidePipeTimes == 0) {
+                
+                [self stopWorldStep];
+                [self stopCheckOut];
+                //[self schedule:@selector(updatePlayerPositon:)];
+                [player_ runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.0f 
+                                                                           position:ccp(obj1.position.x, obj1.position.y)], 
+                                    [CCCallFunc actionWithTarget:self selector:@selector(showUpWorld)], 
+                                    nil]];
+                ++marioCollidePipeTimes;
+            }
+            
+            if (obj2.type == kGameObjectInLeftPipe && 
+                player_.stkHead == kStickHeadingRight && 
+                player_.position.y >= obj2.position.y-10 && 
+                player_.position.y <= obj2.position.y+10 && 
+                marioCollidePipeTimes == 0) {
+                
+                [self stopWorldStep];
+                [self stopCheckOut];
+                //[self schedule:@selector(updatePlayerPositon:)];
+                [player_ runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.0f 
+                                                                           position:ccp(obj2.position.x, obj2.position.y)], 
+                                    [CCCallFunc actionWithTarget:self selector:@selector(showUpWorld)], 
+                                    nil]];
+                ++marioCollidePipeTimes;
+            }
         }
         
         //判断Mario是否和蘑菇碰撞
         if (IS_PLAYER(obj1, obj2) && IS_MUSHROOM(obj1, obj2)) {
             if (player_.marioStatus == kMarioSmall) {
-
+                
                 if (obj1.type == kGameObjectPlayer) {
                     if (find(toDestroy.begin(), toDestroy.end(), body2) == toDestroy.end()) {
                         toDestroy.push_back(body2);
                     }
                     marioWillLarger = YES;
-
+                    
                 }
                 if (obj2.type == kGameObjectPlayer) {
                     if (find(toDestroy.begin(), toDestroy.end(), body1) == toDestroy.end()) {
                         toDestroy.push_back(body1);
                     }
                     marioWillLarger = YES;
-
+                    
                 }
                 [self bounceUpScore:@"1000" atPos:ccp(player_.position.x, 
                                                       player_.position.y+(32.0/320)*winSize.height)];
@@ -1317,9 +1116,7 @@ using namespace std;
         }
         
         //判断火球是否和敌人碰撞
-        if (IS_FIREBALL(obj1, obj2) && 
-            (IS_ENEMY1(obj1, obj2) || IS_ENEMY2(obj1, obj2) || IS_SHRINKENEMY2(obj1, obj2)) && 
-            fireBallCollisionTimes == 0) {
+        if (IS_FIREBALL(obj1, obj2) && IS_ENEMY1(obj1, obj2) && fireBallCollisionTimes == 0) {
             if (obj1.type == kGameObjectFireBall) {
                 if (find(toDestroy.begin(), toDestroy.end(), body1) == toDestroy.end()) {
                     toDestroy.push_back(body1);
@@ -1342,9 +1139,6 @@ using namespace std;
                         deadEnemy = [self getMoveObjByName:@"enemy1_1.png"];
                         break;
                     case kGameObjectEnemy2:
-                        deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
-                        break;
-                    case kGameObjectShrinkEnemy2:
                         deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
                         break;
                     default:
@@ -1383,9 +1177,6 @@ using namespace std;
                     case kGameObjectEnemy2:
                         deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
                         break;
-                    case kGameObjectShrinkEnemy2:
-                        deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
-                        break;
                     default:
                         break;
                 }
@@ -1414,9 +1205,9 @@ using namespace std;
                     fireBall.position = ccp(obj1.position.x, obj1.position.y);
                     [spriteSheet_ addChild:fireBall];
                     [fireBall runAction:[CCSequence actions:[[fireBallExplode_ copy] autorelease], 
-                                                            [CCCallFuncN actionWithTarget:self 
-                                                                                 selector:@selector(destroySprite:)], 
-                                                            nil]];
+                                         [CCCallFuncN actionWithTarget:self 
+                                                              selector:@selector(destroySprite:)], 
+                                         nil]];
                 }
                 if (obj1.bottomFixture == contact.fixtureA) {
                     if (obj1.body->GetLinearVelocity().x > 0) {
@@ -1427,7 +1218,7 @@ using namespace std;
                     }
                 }
                 
-
+                
             }
             if (obj2.type == kGameObjectFireBall) { 
                 if(obj2.leftFixture == contact.fixtureB || 
@@ -1440,9 +1231,9 @@ using namespace std;
                     fireBall.position = ccp(obj2.position.x, obj2.position.y);
                     [spriteSheet_ addChild:fireBall];
                     [fireBall runAction:[CCSequence actions:[[fireBallExplode_ copy] autorelease], 
-                                                             [CCCallFuncN actionWithTarget:self 
-                                                                                  selector:@selector(destroySprite:)], 
-                                                             nil]];
+                                         [CCCallFuncN actionWithTarget:self 
+                                                              selector:@selector(destroySprite:)], 
+                                         nil]];
                 }
                 if (obj2.bottomFixture == contact.fixtureB) {
                     if (obj2.body->GetLinearVelocity().x > 0) {
@@ -1452,49 +1243,34 @@ using namespace std;
                         obj2.body->SetLinearVelocity(b2Vec2(-8.0, 6.5));
                     }
                 }
-
+                
             }
             
         }
         
         //判断敌人的左右边是否撞到障碍物，改变速度方向
-
-        if (obj1.type == kGameObjectEnemy1 || obj1.type == kGameObjectEnemy2) {
-            if (obj1.rightFixture == contact.fixtureA) {
-                obj1.body->SetLinearVelocity(b2Vec2(-1, 0));
-                if (obj1.type == kGameObjectEnemy2) {
-                    [obj1 stopAllActions];
-                    [obj1 runAction:[[enemy2_walkL copy] autorelease]];
+        if (IS_ENEMY1(obj1, obj2)) {
+            if (obj1.type == kGameObjectEnemy1) {
+                if (obj1.rightFixture == contact.fixtureA) {
+                    obj1.body->SetLinearVelocity(b2Vec2(-1, 0));
+                }
+                if (obj1.leftFixture == contact.fixtureA) {
+                    obj1.body->SetLinearVelocity(b2Vec2(1, 0));
                 }
             }
-            if (obj1.leftFixture == contact.fixtureA) {
-                obj1.body->SetLinearVelocity(b2Vec2(1, 0));
-                if (obj1.type == kGameObjectEnemy2) {
-                    [obj1 stopAllActions];
-                    [obj1 runAction:[[enemy2_walkR copy] autorelease]];
+            
+            if (obj2.type == kGameObjectEnemy1) {
+                if (obj2.rightFixture == contact.fixtureB) {
+                    obj2.body->SetLinearVelocity(b2Vec2(-1, 0));
                 }
-            }
-        }
-        
-        if (obj2.type == kGameObjectEnemy1 || obj2.type == kGameObjectEnemy2) {
-            if (obj2.rightFixture == contact.fixtureB) {
-                obj2.body->SetLinearVelocity(b2Vec2(-1, 0));
-                if (obj2.type == kGameObjectEnemy2) {
-                    [obj2 stopAllActions];
-                    [obj2 runAction:[[enemy2_walkL copy] autorelease]];
-                }
-            }
-            if (obj2.leftFixture == contact.fixtureB) {
-                obj2.body->SetLinearVelocity(b2Vec2(1, 0));
-                if (obj2.type == kGameObjectEnemy2) {
-                    [obj2 stopAllActions];
-                    [obj2 runAction:[[enemy2_walkR copy] autorelease]];
+                if (obj2.leftFixture == contact.fixtureB) {
+                    obj2.body->SetLinearVelocity(b2Vec2(1, 0));
                 }
             }
         }
         
-        //Mario和enemy1,enemy2碰撞检测
-        if ((IS_ENEMY1(obj1, obj2) || IS_ENEMY2(obj1, obj2)) && IS_PLAYER(obj1, obj2)) {
+        //Mario和enemy1碰撞检测
+        if (IS_ENEMY1(obj1, obj2) && IS_PLAYER(obj1, obj2)) {
             if (obj1.type == kGameObjectPlayer) {
                 
                 if (marioCollideEnemyTimes == 0) {
@@ -1513,9 +1289,6 @@ using namespace std;
                             case kGameObjectEnemy2:
                                 deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
                                 break;
-//                            case kGameObjectShrinkEnemy2:
-//                                deadEnemy = [self getMoveObjByName:@"enemy2_s1.png"];
-//                                break;
                             default:
                                 break;
                         }
@@ -1528,145 +1301,37 @@ using namespace std;
                         [self setHudLabelScore:200];
                     }
                     else {
-                        if (obj1.position.y-obj2.body->GetPosition().y*PTM_RATIO <= obj1.contentSize.height/2+obj2.size.y/2+0.5 && 
-                            obj1.position.y-obj2.body->GetPosition().y*PTM_RATIO >= obj1.contentSize.height/2+obj2.size.y/2-4.5) {
-                            switch (obj2.type) {
-                                case kGameObjectEnemy1:
-                                {
-                                    if (find(toDestroy.begin(), toDestroy.end(), body2) == toDestroy.end()) {
-                                        toDestroy.push_back(body2);
-                                    }
-                                    MoveRectObject *deadEnemy1 = [self getMoveObjByName:@"enemy1_die.png"];
-                                    deadEnemy1.position = ccp(obj2.position.x, 
-                                                              obj2.position.y-(obj2.contentSize.height/2-deadEnemy1.contentSize.height/2));
-                                    [spriteSheet_ addChild:deadEnemy1];
-                                    [deadEnemy1 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0], 
-                                                           [CCCallFuncN actionWithTarget:self 
-                                                                                selector:@selector(destroySprite:)], 
-                                                           nil]];
-                                    obj1.body->SetLinearVelocity(b2Vec2(obj1.body->GetLinearVelocity().x, 5.0));
-                                    [self bounceUpScore:@"100" atPos:ccp(deadEnemy1.position.x, 
-                                                                         deadEnemy1.position.y+(32.0/320)*winSize.height)];
-                                    [self setHudLabelScore:100];
-                                }
-                                    break;
-                                    
-                                case kGameObjectEnemy2:
-                                {
-                                    MoveRectObject *enemy2 = (MoveRectObject *)obj2;
-                                    enemy2.type = kGameObjectShrinkEnemy2;
-                                    [self setObjectUnCollidable:enemy2];
-                                    
-                                    [enemy2 stopAllActions];
-                                    [enemy2 setDisplayFrame:[self getFrameByName:@"enemy2_s1.png"]];
-                                    enemy2.body->SetLinearVelocity(b2Vec2(0, 0));
-                                    player_.body->SetLinearVelocity(b2Vec2(player_.body->GetLinearVelocity().x, 5.0));
-                                    [self bounceUpScore:@"500" atPos:ccp(enemy2.position.x, 
-                                                                         enemy2.position.y+(32.0/320)*winSize.height)];
-                                    [self setHudLabelScore:500];
-                                    
-                                }
-                                    break;
-//                                case kGameObjectShrinkEnemy2:
-//                                {
-//                                    MoveRectObject *enemy2 = (MoveRectObject *)obj2;
-//                                    if (enemy2.body->GetLinearVelocity().x != 0) {
-//                                        enemy2.body->SetLinearVelocity(b2Vec2(0, 0));
-//                                    }
-//                                    else if (obj1.position.x <= enemy2.position.x) {
-//                                        enemy2.body->SetLinearVelocity(b2Vec2(5.0, 0));
-//                                    }
-//                                    else if (obj1.position.x > enemy2.position.x) {
-//                                        enemy2.body->SetLinearVelocity(b2Vec2(-5.0, 0));
-//                                    }
-//                                }    
-//                                    break;
-                                default:
-                                    break;
+                        if (obj1.position.y-obj2.position.y <= obj1.contentSize.height/2+obj2.contentSize.height/2+0.5 && 
+                            obj1.position.y-obj2.position.y >= obj1.contentSize.height/2+obj2.contentSize.height/2-4.5) {
+                            if (find(toDestroy.begin(), toDestroy.end(), body2) == toDestroy.end()) {
+                                toDestroy.push_back(body2);
                             }
+                            MoveRectObject *deadEnemy1 = [self getMoveObjByName:@"enemy1_die.png"];
+                            deadEnemy1.position = ccp(obj2.position.x, 
+                                                      obj2.position.y-(obj2.contentSize.height/2-deadEnemy1.contentSize.height/2));
+                            [spriteSheet_ addChild:deadEnemy1];
+                            [deadEnemy1 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0], 
+                                                   [CCCallFuncN actionWithTarget:self 
+                                                                        selector:@selector(destroySprite:)], 
+                                                   nil]];
+                            obj1.body->SetLinearVelocity(b2Vec2(obj1.body->GetLinearVelocity().x, 5.0));
+                            [self bounceUpScore:@"100" atPos:ccp(deadEnemy1.position.x, 
+                                                                 deadEnemy1.position.y+(32.0/320)*winSize.height)];
+                            [self setHudLabelScore:100];
+                            
                         }
-                        else {
+                        else {                        
                             if (player_.marioStatus == kMarioSmall) {
-                                switch (obj2.type) {
-                                    case kGameObjectEnemy1:
-                                    {
-                                        [self pauseSchedulerAndActions];
-                                        [player_ setVisible:NO];
-                                        delegate.curLives--;
-                                        [self marioGoDie];
-                                    }
-                                        break;
-                                    case kGameObjectEnemy2:
-                                    {
-                                        [self pauseSchedulerAndActions];
-                                        [player_ setVisible:NO];
-                                        delegate.curLives--;
-                                        [self marioGoDie];
-                                    }
-                                        break;
-//                                    case kGameObjectShrinkEnemy2:
-//                                    {
-//                                        MoveRectObject *enemy2 = (MoveRectObject *)obj2;
-//                                        
-//                                        if ((enemy2.body->GetLinearVelocity().x > 0 && 
-//                                            player_.position.x > enemy2.position.x) || 
-//                                            (enemy2.body->GetLinearVelocity().x < 0 && 
-//                                             player_.position.x < enemy2.position.x)) {
-//                                                
-//                                            [self pauseSchedulerAndActions];
-//                                            [player_ setVisible:NO];
-//                                            delegate.curLives--;
-//                                            [self marioGoDie];
-//                                        }
-//                                        else if (obj1.position.x <= enemy2.position.x) {
-//                                            enemy2.body->SetLinearVelocity(b2Vec2(5.0, 0));
-//                                        }
-//                                        else if (obj1.position.x > enemy2.position.x) {
-//                                            enemy2.body->SetLinearVelocity(b2Vec2(-5.0, 0));
-//                                        }
-//                                    }    
-//                                        break;
-                                    default:
-                                        break;
-                                }
+                                [self pauseSchedulerAndActions];
+                                [player_ setVisible:NO];
+                                delegate.curLives--;
+                                [self marioGoDie];
                             }
                             if (player_.marioStatus == kMarioLarge || player_.marioStatus == kMarioCanFire) {
-                                
-                                switch (obj2.type) {
-                                    case kGameObjectEnemy1:
-                                    {
-                                        marioWillSmaller = YES;
-                                    }
-                                        break;
-                                    case kGameObjectEnemy2:
-                                    {
-                                        marioWillSmaller = YES;                                       
-                                    }
-                                        break;
-//                                    case kGameObjectShrinkEnemy2:
-//                                    {
-//                                        MoveRectObject *enemy2 = (MoveRectObject *)obj2;
-//                                        
-//                                        if ((enemy2.body->GetLinearVelocity().x > 0 && 
-//                                             player_.position.x > enemy2.position.x) || 
-//                                            (enemy2.body->GetLinearVelocity().x < 0 && 
-//                                             player_.position.x < enemy2.position.x)) {
-//                                                
-//                                            marioWillSmaller = YES;
-//                                            player_.marioStatus = kMarioSmall;
-//                                        }
-//                                        else if (obj1.position.x <= enemy2.position.x) {
-//                                            enemy2.body->SetLinearVelocity(b2Vec2(5.0, 0));
-//                                        }
-//                                        else if (obj1.position.x > enemy2.position.x) {
-//                                            enemy2.body->SetLinearVelocity(b2Vec2(-5.0, 0));
-//                                        }
-//                                    }
-//                                        break;
-                                    default:
-                                        break;
-                                }
+                                marioWillSmaller = YES;
+                                player_.marioStatus = kMarioSmall;
                             }
+                            
                         }
                     }
                     marioCollideEnemyTimes++;
@@ -1702,149 +1367,43 @@ using namespace std;
                         [self setHudLabelScore:200];
                     }
                     else {
-                        if (obj2.position.y-obj1.body->GetPosition().y*PTM_RATIO <= obj1.size.y/2+obj2.contentSize.height/2+0.5 && 
-                            obj2.position.y-obj1.body->GetPosition().y*PTM_RATIO >= obj1.size.y/2+obj2.contentSize.height/2-4.5) {
-                            switch (obj1.type) {
-                                case kGameObjectEnemy1:
-                                {
-                                    if (find(toDestroy.begin(), toDestroy.end(), body1) == toDestroy.end()) {
-                                        toDestroy.push_back(body1);
-                                    }
-                                    MoveRectObject *deadEnemy1 = [self getMoveObjByName:@"enemy1_die.png"];
-                                    deadEnemy1.position = ccp(obj1.position.x, 
-                                                              obj1.position.y-(obj1.contentSize.height/2-deadEnemy1.contentSize.height/2));
-                                    [spriteSheet_ addChild:deadEnemy1];
-                                    [deadEnemy1 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0], 
-                                                           [CCCallFuncN actionWithTarget:self 
-                                                                                selector:@selector(destroySprite:)], 
-                                                           nil]];
-                                    obj1.body->SetLinearVelocity(b2Vec2(obj1.body->GetLinearVelocity().x, 5.0));
-                                    [self bounceUpScore:@"100" atPos:ccp(deadEnemy1.position.x, 
-                                                                         deadEnemy1.position.y+(32.0/320)*winSize.height)];
-                                    [self setHudLabelScore:100];
-                                }
-                                    break;
-                                case kGameObjectEnemy2:
-                                {
-                                    MoveRectObject *enemy2 = (MoveRectObject *)obj1;
-                                    enemy2.type = kGameObjectShrinkEnemy2;
-                                    [self setObjectUnCollidable:enemy2];
-                                    
-                                    [enemy2 stopAllActions];
-                                    [enemy2 setDisplayFrame:[self getFrameByName:@"enemy2_s1.png"]];
-                                    enemy2.body->SetLinearVelocity(b2Vec2(0, 0));
-                                    [self bounceUpScore:@"500" atPos:ccp(enemy2.position.x, 
-                                                                         enemy2.position.y+(32.0/320)*winSize.height)];
-                                    [self setHudLabelScore:500];
-                                    
-                                }
-                                    break;
-//                                case kGameObjectShrinkEnemy2:
-//                                {
-//                                    MoveRectObject *enemy2 = (MoveRectObject *)obj1;
-//                                    if (enemy2.body->GetLinearVelocity().x != 0) {
-//                                        enemy2.body->SetLinearVelocity(b2Vec2(0, 0));
-//                                    }
-//                                    else if (obj2.position.x <= enemy2.position.x) {
-//                                        enemy2.body->SetLinearVelocity(b2Vec2(5.0, 0));
-//                                    }
-//                                    else if (obj2.position.x > enemy2.position.x) {
-//                                        enemy2.body->SetLinearVelocity(b2Vec2(-5.0, 0));
-//                                    }
-//                                }    
-//                                    break;
-                                default:
-                                    break;
-                            }                            
+                        if (obj2.position.y-obj1.position.y <= obj1.contentSize.height/2+obj2.contentSize.height/2+0.5 && 
+                            obj2.position.y-obj1.position.y >= obj1.contentSize.height/2+obj2.contentSize.height/2-4.5) {
+                            if (find(toDestroy.begin(), toDestroy.end(), body1) == toDestroy.end()) {
+                                toDestroy.push_back(body1);
+                            }
+                            MoveRectObject *deadEnemy1 = [self getMoveObjByName:@"enemy1_die.png"];
+                            deadEnemy1.position = ccp(obj1.position.x, 
+                                                      obj1.position.y-(obj1.contentSize.height/2-deadEnemy1.contentSize.height/2));
+                            [spriteSheet_ addChild:deadEnemy1];
+                            [deadEnemy1 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0], 
+                                                   [CCCallFuncN actionWithTarget:self 
+                                                                        selector:@selector(destroySprite:)], 
+                                                   nil]];
+                            obj2.body->SetLinearVelocity(b2Vec2(obj2.body->GetLinearVelocity().x, 5.0));
+                            [self bounceUpScore:@"100" atPos:ccp(deadEnemy1.position.x, 
+                                                                 deadEnemy1.position.y+(32.0/320)*winSize.height)];
+                            [self setHudLabelScore:100];
+                            
                         }
-                        else {
+                        else {                        
                             if (player_.marioStatus == kMarioSmall) {
-                                switch (obj1.type) {
-                                    case kGameObjectEnemy1:
-                                    {
-                                        [self pauseSchedulerAndActions];
-                                        [player_ setVisible:NO];
-                                        delegate.curLives--;
-                                        [self marioGoDie];
-                                    }
-                                        break;
-                                    case kGameObjectEnemy2:
-                                    {
-                                        [self pauseSchedulerAndActions];
-                                        [player_ setVisible:NO];
-                                        delegate.curLives--;
-                                        [self marioGoDie];
-                                    }
-                                        break;
-//                                    case kGameObjectShrinkEnemy2:
-//                                    {
-//                                        MoveRectObject *enemy2 = (MoveRectObject *)obj1;
-//                                        
-//                                        if ((enemy2.body->GetLinearVelocity().x > 0 && 
-//                                             player_.position.x > enemy2.position.x) || 
-//                                            (enemy2.body->GetLinearVelocity().x < 0 && 
-//                                             player_.position.x < enemy2.position.x)) {
-//                                                
-//                                            [self pauseSchedulerAndActions];
-//                                            [player_ setVisible:NO];
-//                                            delegate.curLives--;
-//                                            [self marioGoDie];
-//                                        }
-//                                        else if (obj2.position.x <= enemy2.position.x) {
-//                                            enemy2.body->SetLinearVelocity(b2Vec2(5.0, 0));
-//                                        }
-//                                        else if (obj2.position.x > enemy2.position.x) {
-//                                            enemy2.body->SetLinearVelocity(b2Vec2(-5.0, 0));
-//                                        }
-//                                    }    
-//                                        break;
-                                    default:
-                                        break;
-                                }
+                                [player_ setVisible:NO];
+                                delegate.curLives--;
+                                [self marioGoDie];
                             }
                             if (player_.marioStatus == kMarioLarge || player_.marioStatus == kMarioCanFire) {
-                                switch (obj1.type) {
-                                    case kGameObjectEnemy1:
-                                    {
-                                        marioWillSmaller = YES;
-                                    }
-                                        break;
-                                    case kGameObjectEnemy2:
-                                    {
-                                        marioWillSmaller = YES;                                        
-                                    }
-                                        break;
-//                                    case kGameObjectShrinkEnemy2:
-//                                    {
-//                                        MoveRectObject *enemy2 = (MoveRectObject *)obj1;
-//                                        
-//                                        if ((enemy2.body->GetLinearVelocity().x > 0 && 
-//                                             player_.position.x > enemy2.position.x) || 
-//                                            (enemy2.body->GetLinearVelocity().x < 0 && 
-//                                             player_.position.x < enemy2.position.x)) {
-//                                                
-//                                            marioWillSmaller = YES;
-//                                            player_.marioStatus = kMarioSmall;
-//                                        }
-//                                        else if (obj2.position.x <= enemy2.position.x) {
-//                                            enemy2.body->SetLinearVelocity(b2Vec2(5.0, 0));
-//                                        }
-//                                        else if (obj2.position.x > enemy2.position.x) {
-//                                            enemy2.body->SetLinearVelocity(b2Vec2(-5.0, 0));
-//                                        }
-//                                    }
-//                                        break;
-                                    default:
-                                        break;
-                                }
+                                marioWillSmaller = YES;
+                                player_.isCollidable = NO;
+                                player_.marioStatus = kMarioSmall;
                             }
-                            
                         }
                     }
                     marioCollideEnemyTimes++;
                 }
             }
         }
+        
         //star碰撞
         if (IS_STAR(obj1, obj2)) {
             if (obj1.type == kGameObjectStar) {
@@ -1980,9 +1539,9 @@ using namespace std;
                     mushRoom.type = kGameObjectMushRoom;
                     [spriteSheet_ addChild:mushRoom z:1];
                     [mushRoom runAction:[CCSequence actions:[CCMoveBy actionWithDuration:0.5 position:ccp(0, (8.0/320)*winSize.height)], 
-                                                            [CCCallFuncN actionWithTarget:self 
-                                                                                 selector:@selector(generateBodyOfSprite:)], 
-                                                            nil]];
+                                         [CCCallFuncN actionWithTarget:self 
+                                                              selector:@selector(generateBodyOfSprite:)], 
+                                         nil]];
                     
                 }
                 else {
@@ -1992,9 +1551,9 @@ using namespace std;
                     [spriteSheet_ addChild:flower z:1];
                     [flower runAction:[[flowerFlash_ copy] autorelease]];
                     [flower runAction:[CCSequence actions:[CCMoveBy actionWithDuration:0.5 position:ccp(0, (6.0/320)*winSize.height)], 
-                                                            [CCCallFuncN actionWithTarget:self 
-                                                                                selector:@selector(generateBodyOfSprite:)], 
-                                                            nil]];
+                                       [CCCallFuncN actionWithTarget:self 
+                                                            selector:@selector(generateBodyOfSprite:)], 
+                                       nil]];
                     
                 }
                 pushUpTimes_++;
@@ -2101,9 +1660,9 @@ using namespace std;
                 [spriteSheet_ addChild:star z:1];
                 [star runAction:[[starFlash_ copy] autorelease]];
                 [star runAction:[CCSequence actions:[CCMoveBy actionWithDuration:0.5 position:ccp(0, (8.0/320)*winSize.height)], 
-                                                     [CCCallFuncN actionWithTarget:self 
-                                                                          selector:@selector(generateBodyOfSprite:)], 
-                                                     nil]];
+                                 [CCCallFuncN actionWithTarget:self 
+                                                      selector:@selector(generateBodyOfSprite:)], 
+                                 nil]];
                 
                 pushUpTimes_++;
             }
@@ -2131,7 +1690,7 @@ using namespace std;
         
     }
     if (onGround == 0) {
-
+        
         player_.isJump = YES;
         [self playerStopAllMoveAction];
         
@@ -2199,7 +1758,19 @@ using namespace std;
     }
     
     if (marioWillSmaller) {
-        [self marioTransformSmall];
+        CGPoint _pos = ccp(player_.position.x, player_.position.y);
+        [player_ resizeBodyAtPositon:_pos 
+                                size:ccp(marios_standR.originalSize.width-2.0, marios_standR.originalSize.height) 
+                            friction:1.0 
+                             density:6.3 
+                         restitution:0];
+        [player_ setDisplayFrame:marios_standR];
+        [player_ runAction:[CCSequence actions:[CCCallFunc actionWithTarget:self selector:@selector(setPlayerUnCollidable)], 
+                            [CCFadeTo actionWithDuration:0.01 opacity:100], 
+                            [CCDelayTime actionWithDuration:3.0],
+                            [CCFadeTo actionWithDuration:0.01 opacity:255], 
+                            [CCCallFunc actionWithTarget:self selector:@selector(setPlayerCollidable)], 
+                            nil]];
     }
     
     vector<b2Body *>::iterator pos1;
@@ -2208,12 +1779,18 @@ using namespace std;
         if (body->GetUserData() != NULL) {
             GameObject *sprite = (GameObject *) body->GetUserData();
             if (sprite != NULL) {
-                if (sprite.type == kGameObjectEnemy1 || 
-                    sprite.type == kGameObjectEnemy2) {
-                    
-                    [enemyArray_ removeObject:sprite];
+                for (GameObject *obj in self.children) {
+                    if (obj == sprite) {
+                        [self removeChild:sprite cleanup:YES];
+                        break;
+                    }
                 }
-                [sprite removeFromParentAndCleanup:YES];
+                for (GameObject *obj in spriteSheet_.children) {
+                    if (obj == sprite) {
+                        [spriteSheet_ removeChild:sprite cleanup:YES];
+                        break;
+                    }
+                }
             }
         }
         world_->DestroyBody(body);
@@ -2347,15 +1924,15 @@ using namespace std;
                 if (player_.isJump == NO) {                    
                     if (player_.isMarioMovingRight == YES) {
                         [player_ runAction:[CCSequence actions:[[mariol_fireR copy] autorelease], 
-                                                               [CCCallFunc actionWithTarget:self 
-                                                                                   selector:@selector(stopFire)], 
-                                                                nil]];
+                                            [CCCallFunc actionWithTarget:self 
+                                                                selector:@selector(stopFire)], 
+                                            nil]];
                     }
                     else {
                         [player_ runAction:[CCSequence actions:[[mariol_fireL copy] autorelease], 
-                                                                [CCCallFunc actionWithTarget:self 
-                                                                                    selector:@selector(stopFire)], 
-                                                                nil]];
+                                            [CCCallFunc actionWithTarget:self 
+                                                                selector:@selector(stopFire)], 
+                                            nil]];
                     }
                 }
                 else {
@@ -2509,7 +2086,7 @@ using namespace std;
         if (player_.body->GetLinearVelocity().x < -2) {
             
             if (player_.isInvincible == NO) {
-            
+                
                 [self playerSetActionFrameOne:marios_stopR two:mariom_stopR three:mariol_stopR];
             }
             else {
@@ -2595,7 +2172,7 @@ using namespace std;
         if (player_.body->GetLinearVelocity().x > 2) {
             
             if (player_.isInvincible == NO) {
-
+                
                 [self playerSetActionFrameOne:marios_stopL two:mariom_stopL three:mariol_stopL];
             }
             else {
@@ -2625,7 +2202,7 @@ using namespace std;
             if (player_.isMarioMovingRight) {
                 
                 if (player_.isInvincible == NO) {
-
+                    
                     [self playerSetActionFrameOne:marios_standR two:mariom_standR three:mariol_standR];
                 }
                 else {
@@ -2663,13 +2240,11 @@ using namespace std;
     
     [self setViewPointCenter:player_.position];
     
-    //非敌人碰撞死亡：1。掉落；2。时间到
     if (player_.position.y < zero.y-player_.contentSize.height/2) {
         delegate.curLives--;
-        player_.marioStatus = kMarioSmall;
         [self showGameInfoScene];
     }
-    
+
 }
 
 - (void) updateTimer {
@@ -2677,7 +2252,7 @@ using namespace std;
     
     --delegate.timer;
     [self.hud changeTime:delegate.timer];
-    
+
     if (delegate.timer <= 0) {
         player_.marioStatus = kMarioSmall;
         [self pauseSchedulerAndActions];
@@ -2713,21 +2288,19 @@ using namespace std;
     [self unschedule:@selector(updateWorldStep:)];
 }
 
-- (void) initOptions {
-    AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
-    player_ = nil;
+- (void)initOptions {
     totalPressTime_ = 0;
     totalPressTimeA_ = 0;
     fireDelta_ = 0;
     multiCoinBrickPushUpTimes_ = 0;
     starMarioStart_ = NULL;
     coinArray_ = [[NSMutableArray alloc] init];
-    enemyArray_ = [[NSMutableArray alloc] init];
+    
+    AppController *delegate = (AppController *)[[UIApplication sharedApplication] delegate];
     
     tileMap_ = [CCTMXTiledMap node];
-    tileMap_ = delegate.currentLevel.p_bg;
+    tileMap_ = delegate.currentLevel.p_downWorldBg;
     tileMap_.anchorPoint = ccp(0, 0);
-    
     [self addChild:tileMap_];
     
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"mario.plist"];
@@ -2735,10 +2308,16 @@ using namespace std;
     [tileMap_ addChild:spriteSheet_];
     
     [self generateAction];
+    
     [self setPhysicsWorld];
     
     [self drawCollideObject];
     [self drawPlayer];
+    
+    [self startWorldStep];
+    [self startCheckOut];
+    
+    delegate.isMarioDownWorld = YES;
 }
 
 - (id)init {
@@ -2752,10 +2331,6 @@ using namespace std;
 
 -(void)onExit {
     [spriteSheet_ removeAllChildrenWithCleanup:YES];
-}
-
-- (void)registerWithTouchDispatcher {
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:-128 swallowsTouches:YES];
 }
 
 - (void)dealloc {
@@ -2851,36 +2426,31 @@ using namespace std;
     [mariol_fireL release];
     
     [enemy1_walk release];
-    [enemy2_walkL release];
-    [enemy2_walkR release];
-    [enemy2_recover release];
     
     [coinArray_ release];
-    [enemyArray_ release];
     [super dealloc];
 }
 
 @end
 
 
-@implementation MainGameScene
-@synthesize gameLayer = gameLayer_, hudLayer = hudLayer_;
+@implementation DownWorldScene
+@synthesize downWorldLayer = downWorldLayer_, hudLayer = hudLayer_;
 
 + (id)scene {
-    MainGameScene *scene = [MainGameScene node];
-    scene.gameLayer = [MainGameLayer node];
-    [scene addChild:scene.gameLayer z:-1];
+    DownWorldScene *scene = [DownWorldScene node];
+    scene.downWorldLayer = [DownWorldLayer node];
+    [scene addChild:scene.downWorldLayer z:-1];
     scene.hudLayer = [HudStickLayer node];
     [scene.hudLayer setStickVisible:YES];
     [scene.hudLayer setToolMenuEnable:YES];
     [scene addChild:scene.hudLayer z:0];
-    scene.gameLayer.hud = scene.hudLayer;
+    scene.downWorldLayer.hud = scene.hudLayer;
     return scene;
 }
 
--(void)dealloc {
+- (void)dealloc {
     [super dealloc];
-    self.gameLayer = nil;
+    self.downWorldLayer = nil;
 }
-
 @end

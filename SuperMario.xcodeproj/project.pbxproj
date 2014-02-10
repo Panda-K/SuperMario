@@ -29,8 +29,6 @@
 		385A9E051834718100F9188C /* flashPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DF81834717F00F9188C /* flashPoint.png */; };
 		385A9E061834718100F9188C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DF91834718000F9188C /* logo.png */; };
 		385A9E091834718100F9188C /* Overworld_piano.mid in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DFC1834718000F9188C /* Overworld_piano.mid */; };
-		385A9E0A1834718100F9188C /* selectLayerSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DFD1834718000F9188C /* selectLayerSheet.plist */; };
-		385A9E0B1834718100F9188C /* selectLayerSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DFE1834718000F9188C /* selectLayerSheet.png */; };
 		385A9E0C1834718100F9188C /* smb_coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 385A9DFF1834718000F9188C /* smb_coin.wav */; };
 		385A9E0D1834718100F9188C /* startLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 385A9E001834718000F9188C /* startLogo.png */; };
 		385A9E10183471EC00F9188C /* GameInfoLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 385A9E0F183471EC00F9188C /* GameInfoLayer.mm */; };
@@ -40,9 +38,16 @@
 		3867493F1841DF5600510193 /* MarioContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3867493E1841DF5500510193 /* MarioContactListener.mm */; };
 		3867494218424BE300510193 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3867494118424BE300510193 /* libstdc++.dylib */; };
 		389E476018529E5B001F3EC0 /* MoveRectObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 389E475F18529E5B001F3EC0 /* MoveRectObject.mm */; };
+		389E962A188E7F4900E1B718 /* selectLayerSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 389E9628188E7F4900E1B718 /* selectLayerSheet.plist */; };
+		389E962B188E7F4900E1B718 /* selectLayerSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 389E9629188E7F4900E1B718 /* selectLayerSheet.png */; };
+		38A03A5518950679006F3B18 /* hudLayerSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A03A5318950679006F3B18 /* hudLayerSheet.plist */; };
+		38A03A5618950679006F3B18 /* hudLayerSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A03A5418950679006F3B18 /* hudLayerSheet.png */; };
+		38A52B2518606C6300680981 /* world1-1_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A52B2318606C6300680981 /* world1-1_down.png */; };
+		38A52B2618606C6300680981 /* world1-1_down.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 38A52B2418606C6300680981 /* world1-1_down.tmx */; };
+		38A52B2918606DA000680981 /* mario.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A52B2718606DA000680981 /* mario.plist */; };
+		38A52B2A18606DA000680981 /* mario.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A52B2818606DA000680981 /* mario.png */; };
+		38A9202F187D2EF6007074F7 /* DownWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38A9202E187D2EF6007074F7 /* DownWorldLayer.mm */; };
 		38B439BD1837CC76004ACA2A /* Player.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38B439BC1837CC76004ACA2A /* Player.mm */; };
-		38C6B09D185B07ED000C982B /* mario.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38C6B09B185B07ED000C982B /* mario.plist */; };
-		38C6B09E185B07ED000C982B /* mario.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C6B09C185B07ED000C982B /* mario.png */; };
 		38C9D1D218290B88007709D0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D118290B88007709D0 /* QuartzCore.framework */; };
 		38C9D1D418290B88007709D0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D318290B88007709D0 /* OpenGLES.framework */; };
 		38C9D1D618290B88007709D0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C9D1D518290B88007709D0 /* OpenAL.framework */; };
@@ -254,8 +259,6 @@
 		385A9DF81834717F00F9188C /* flashPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flashPoint.png; path = Resources/flashPoint.png; sourceTree = "<group>"; };
 		385A9DF91834718000F9188C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/logo.png; sourceTree = "<group>"; };
 		385A9DFC1834718000F9188C /* Overworld_piano.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = Overworld_piano.mid; path = Resources/Overworld_piano.mid; sourceTree = "<group>"; };
-		385A9DFD1834718000F9188C /* selectLayerSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = selectLayerSheet.plist; path = Resources/selectLayerSheet.plist; sourceTree = "<group>"; };
-		385A9DFE1834718000F9188C /* selectLayerSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selectLayerSheet.png; path = Resources/selectLayerSheet.png; sourceTree = "<group>"; };
 		385A9DFF1834718000F9188C /* smb_coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = smb_coin.wav; path = Resources/smb_coin.wav; sourceTree = "<group>"; };
 		385A9E001834718000F9188C /* startLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = startLogo.png; path = Resources/startLogo.png; sourceTree = "<group>"; };
 		385A9E0E183471EB00F9188C /* GameInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInfoLayer.h; sourceTree = "<group>"; };
@@ -268,10 +271,18 @@
 		3867494118424BE300510193 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/gcc/arm-apple-darwin10/4.0.1/libstdc++.dylib"; sourceTree = SDKROOT; };
 		389E475E18529E5B001F3EC0 /* MoveRectObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveRectObject.h; sourceTree = "<group>"; };
 		389E475F18529E5B001F3EC0 /* MoveRectObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveRectObject.mm; sourceTree = "<group>"; };
+		389E9628188E7F4900E1B718 /* selectLayerSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = selectLayerSheet.plist; sourceTree = "<group>"; };
+		389E9629188E7F4900E1B718 /* selectLayerSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectLayerSheet.png; sourceTree = "<group>"; };
+		38A03A5318950679006F3B18 /* hudLayerSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hudLayerSheet.plist; sourceTree = "<group>"; };
+		38A03A5418950679006F3B18 /* hudLayerSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hudLayerSheet.png; sourceTree = "<group>"; };
+		38A52B2318606C6300680981 /* world1-1_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "world1-1_down.png"; sourceTree = "<group>"; };
+		38A52B2418606C6300680981 /* world1-1_down.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "world1-1_down.tmx"; sourceTree = "<group>"; };
+		38A52B2718606DA000680981 /* mario.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mario.plist; sourceTree = "<group>"; };
+		38A52B2818606DA000680981 /* mario.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mario.png; sourceTree = "<group>"; };
+		38A9202D187D2EF6007074F7 /* DownWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownWorldLayer.h; sourceTree = "<group>"; };
+		38A9202E187D2EF6007074F7 /* DownWorldLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DownWorldLayer.mm; sourceTree = "<group>"; };
 		38B439BB1837CC75004ACA2A /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		38B439BC1837CC76004ACA2A /* Player.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Player.mm; sourceTree = "<group>"; };
-		38C6B09B185B07ED000C982B /* mario.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mario.plist; sourceTree = "<group>"; };
-		38C6B09C185B07ED000C982B /* mario.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mario.png; sourceTree = "<group>"; };
 		38C9D1CD18290B88007709D0 /* SuperMario.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperMario.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C9D1D118290B88007709D0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		38C9D1D318290B88007709D0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -715,6 +726,8 @@
 				385A9DE2183470F200F9188C /* HudStickLayer.mm */,
 				385A9DE5183470F200F9188C /* MainGameLayer.h */,
 				385A9DE6183470F200F9188C /* MainGameLayer.mm */,
+				38A9202D187D2EF6007074F7 /* DownWorldLayer.h */,
+				38A9202E187D2EF6007074F7 /* DownWorldLayer.mm */,
 				385A9E0E183471EB00F9188C /* GameInfoLayer.h */,
 				385A9E0F183471EC00F9188C /* GameInfoLayer.mm */,
 				385A9DE7183470F300F9188C /* SelectLayer.h */,
@@ -745,24 +758,28 @@
 		38C9D1E418290B88007709D0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				38C6B09B185B07ED000C982B /* mario.plist */,
-				38C6B09C185B07ED000C982B /* mario.png */,
+				38A03A5318950679006F3B18 /* hudLayerSheet.plist */,
+				38A03A5418950679006F3B18 /* hudLayerSheet.png */,
+				389E9628188E7F4900E1B718 /* selectLayerSheet.plist */,
+				389E9629188E7F4900E1B718 /* selectLayerSheet.png */,
+				38A52B2718606DA000680981 /* mario.plist */,
+				38A52B2818606DA000680981 /* mario.png */,
+				38A52B2318606C6300680981 /* world1-1_down.png */,
+				38A52B2418606C6300680981 /* world1-1_down.tmx */,
 				38D9C130185489F300F0993F /* world1-1.png */,
 				38D9C131185489F300F0993F /* world1-1.tmx */,
 				384C7E0D183717A500CF720A /* gameInfoLayerSheet.plist */,
 				384C7E0E183717A500CF720A /* gameInfoLayerSheet.png */,
-				384C7E0F183717A500CF720A /* smb_jumpsmall.wav */,
 				385A9DF41834717F00F9188C /* Chesterfield Regular.ttf */,
 				385A9DF51834717F00F9188C /* cloud.png */,
 				385A9DF61834717F00F9188C /* enemy1_1.png */,
 				385A9DF71834717F00F9188C /* enemy1_2.png */,
 				385A9DF81834717F00F9188C /* flashPoint.png */,
 				385A9DF91834718000F9188C /* logo.png */,
-				385A9DFC1834718000F9188C /* Overworld_piano.mid */,
-				385A9DFD1834718000F9188C /* selectLayerSheet.plist */,
-				385A9DFE1834718000F9188C /* selectLayerSheet.png */,
-				385A9DFF1834718000F9188C /* smb_coin.wav */,
 				385A9E001834718000F9188C /* startLogo.png */,
+				385A9DFC1834718000F9188C /* Overworld_piano.mid */,
+				384C7E0F183717A500CF720A /* smb_jumpsmall.wav */,
+				385A9DFF1834718000F9188C /* smb_coin.wav */,
 				38C9D1E518290B88007709D0 /* Default.png */,
 				38C9D1E718290B88007709D0 /* Default-Landscape~ipad.png */,
 				38C9D1E918290B88007709D0 /* fps_images.png */,
@@ -1354,8 +1371,6 @@
 				385A9E051834718100F9188C /* flashPoint.png in Resources */,
 				385A9E061834718100F9188C /* logo.png in Resources */,
 				385A9E091834718100F9188C /* Overworld_piano.mid in Resources */,
-				385A9E0A1834718100F9188C /* selectLayerSheet.plist in Resources */,
-				385A9E0B1834718100F9188C /* selectLayerSheet.png in Resources */,
 				385A9E0C1834718100F9188C /* smb_coin.wav in Resources */,
 				385A9E0D1834718100F9188C /* startLogo.png in Resources */,
 				384C7E10183717A500CF720A /* gameInfoLayerSheet.plist in Resources */,
@@ -1363,8 +1378,14 @@
 				384C7E12183717A500CF720A /* smb_jumpsmall.wav in Resources */,
 				38D9C132185489F300F0993F /* world1-1.png in Resources */,
 				38D9C133185489F300F0993F /* world1-1.tmx in Resources */,
-				38C6B09D185B07ED000C982B /* mario.plist in Resources */,
-				38C6B09E185B07ED000C982B /* mario.png in Resources */,
+				38A52B2518606C6300680981 /* world1-1_down.png in Resources */,
+				38A52B2618606C6300680981 /* world1-1_down.tmx in Resources */,
+				38A52B2918606DA000680981 /* mario.plist in Resources */,
+				38A52B2A18606DA000680981 /* mario.png in Resources */,
+				389E962A188E7F4900E1B718 /* selectLayerSheet.plist in Resources */,
+				389E962B188E7F4900E1B718 /* selectLayerSheet.png in Resources */,
+				38A03A5518950679006F3B18 /* hudLayerSheet.plist in Resources */,
+				38A03A5618950679006F3B18 /* hudLayerSheet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1556,6 +1577,7 @@
 				3867493F1841DF5600510193 /* MarioContactListener.mm in Sources */,
 				38040FDC184619840097A198 /* PipeAndRock.mm in Sources */,
 				389E476018529E5B001F3EC0 /* MoveRectObject.mm in Sources */,
+				38A9202F187D2EF6007074F7 /* DownWorldLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,7 +22,6 @@
     CCSprite *upCoin3;
     CCSprite *bg_;
     
-    
     BOOL inMenu1_, inMenu2_, inMenu3_;
     
     CCAction *flashBrick_;

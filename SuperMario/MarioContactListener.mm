@@ -61,7 +61,10 @@ void MarioContactListener::PreSolve(b2Contact *contact, const b2Manifold *oldMan
             obj2.type == kGameObjectRock || 
             obj2.type == kGameObjectPlatform || 
             obj2.type == kGameObjectMultiCoinBrick || 
-            obj2.type == kGameObjectStarBrick) {
+            obj2.type == kGameObjectStarBrick || 
+            obj2.type == kGameObjectInUpPipe || 
+            obj2.type == kGameObjectInLeftPipe || 
+            obj2.type == kGameObjectOutPipe) {
             
 //            polygon的摩擦系数是1，top和bottom的摩擦系数为0.5
 //            mario站在其他物体上面时，二者之间的碰撞组合有： 1。mario的bottom和物体的polygon碰撞；
@@ -119,7 +122,10 @@ void MarioContactListener::PreSolve(b2Contact *contact, const b2Manifold *oldMan
             obj1.type == kGameObjectRock || 
             obj1.type == kGameObjectPlatform || 
             obj1.type == kGameObjectMultiCoinBrick || 
-            obj1.type == kGameObjectStarBrick) { 
+            obj1.type == kGameObjectStarBrick || 
+            obj1.type == kGameObjectInUpPipe || 
+            obj1.type == kGameObjectInLeftPipe || 
+            obj1.type == kGameObjectOutPipe) { 
             
             if (contact->GetFixtureB() == player.polygonFixture && 
                 contact->GetFixtureA() == obj1.polygonFixture) {
@@ -158,11 +164,11 @@ void MarioContactListener::PostSolve(b2Contact *contact, const b2ContactImpulse 
         Player *player = (Player *)obj1;
         if (player.isJump == YES) {
             if(contact->GetFixtureA() == player.topRightFixture) { 
-                player.body->ApplyLinearImpulse(b2Vec2(10.0/PTM_RATIO, 15.0/PTM_RATIO), player.body->GetWorldCenter());
+                player.body->ApplyLinearImpulse(b2Vec2(10.0/PTM_RATIO, 10.0/PTM_RATIO), player.body->GetWorldCenter());
             }
             
             if (contact->GetFixtureA() == player.topLeftFixture) {
-                player.body->ApplyLinearImpulse(b2Vec2(-10.0/PTM_RATIO, 15.0/PTM_RATIO), player.body->GetWorldCenter());
+                player.body->ApplyLinearImpulse(b2Vec2(-10.0/PTM_RATIO, 10.0/PTM_RATIO), player.body->GetWorldCenter());
             }
             
         }
@@ -173,10 +179,10 @@ void MarioContactListener::PostSolve(b2Contact *contact, const b2ContactImpulse 
         Player *player = (Player *)obj2;
         if (player.isJump == YES) {
             if(contact->GetFixtureB() == player.topRightFixture) { 
-                player.body->ApplyLinearImpulse(b2Vec2(10.0/PTM_RATIO, 15.0/PTM_RATIO), player.body->GetWorldCenter());
+                player.body->ApplyLinearImpulse(b2Vec2(10.0/PTM_RATIO, 10.0/PTM_RATIO), player.body->GetWorldCenter());
             }
             if (contact->GetFixtureB() == player.topLeftFixture) {
-                player.body->ApplyLinearImpulse(b2Vec2(-10.0/PTM_RATIO, 15.0/PTM_RATIO), player.body->GetWorldCenter());
+                player.body->ApplyLinearImpulse(b2Vec2(-10.0/PTM_RATIO, 10.0/PTM_RATIO), player.body->GetWorldCenter());
             }
             
         }

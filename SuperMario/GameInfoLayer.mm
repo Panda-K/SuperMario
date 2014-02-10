@@ -153,6 +153,7 @@
     [scene addChild:scene.layer z:0];
     scene.hudLayer = [HudStickLayer node];
     [scene.hudLayer setStickVisible:NO];
+    [scene.hudLayer setToolMenuEnable:NO];
     [scene addChild:scene.hudLayer z:1];
     return scene;
 }
